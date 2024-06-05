@@ -1,0 +1,40 @@
+.text-center {
+  text-align: center;
+}
+
+.btn-common {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-common:hover {
+  background-color: #0056b3;
+}
+
+.portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.portfolio-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item img {
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
