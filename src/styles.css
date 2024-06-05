@@ -1,40 +1,68 @@
-.text-center {
+section.myPortfolio {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+.app {
   text-align: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
 }
 
-.btn-common {
-  padding: 10px 20px;
-  margin: 5px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-common:hover {
-  background-color: #0056b3;
+.controls {
+  margin: 20px 0;
 }
 
 .portfolio {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
 .portfolio-item {
-  border: 1px solid #ddd;
+  background-color: #000000;
+  border: 1px solid #ffffff;
   border-radius: 5px;
-  margin: 10px;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  background-color: white;
+  overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: calc(25% - 20px); /* Adjust the width and gap */
+  min-width: 200px; /* Minimum width for the cards */
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
 }
 
 .portfolio-item img {
-  border-radius: 5px;
-  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.portfolio-item h3 {
+  margin: 10px 0;
+  font-size: 1.25em;
+}
+
+.portfolio-item p {
+  padding: 0 10px 10px;
+}
+
+h3 {
+  font-weight: bold;
+  color: #ffffff;
+  padding: 1rem;;
+}
+
+p {
+  color: #ffffff;
 }

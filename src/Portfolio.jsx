@@ -1,32 +1,66 @@
-import React from 'react';
-import { useTransition, animated } from 'react-spring';
-import PortfolioCard from 'PortfolioCard';  // Pastikan jalur benar
+const { useState } = React;
 
-const portfolioItems =  [
-  { id: 1, category: 'design', title: 'UI/UX Design 1', description: 'Description of UI/UX Design 1', image: '../assets/img/b1.jpg' },
-  { id: 2, category: 'development', title: 'Fullstack Development 1', description: 'Description of Fullstack Development 1', image: '../assets/img/b1.jpg' },
-  { id: 3, category: 'print', title: 'Graphic Design 1', description: 'Description of Graphic Design 1', image: '../assets/img/b1.jpg' },
-  { id: 4, category: 'design', title: 'UI/UX Design 2', description: 'Description of UI/UX Design 2', image: '../assets/img/b1.jpg' },
-  { id: 5, category: 'development', title: 'Fullstack Development 2', description: 'Description of Fullstack Development 2', image: '../assets/img/b1.jpg' },
+function PortfolioControls({ setFilter }) {
+  const handleClick = (category) => () => setFilter(category);
+
+  return (
+    <div className="controls text-center">
+      <button className="filter btn btn-common" onClick={handleClick('all')}>
+        All
+      </button>
+      <button className="filter btn btn-common" onClick={handleClick('design')}>
+        UI/UX Designers
+      </button>
+      <button className="filter btn btn-common" onClick={handleClick('development')}>
+        Fullstack Development
+      </button>
+      <button className="filter btn btn-common" onClick={handleClick('print')}>
+        Graphic Design
+      </button>
+    </div>
+  );
+}
+
+function PortfolioCard({ item }) {
+  return (
+    <div className={`portfolio-item ${item.category}`}>
+      <img src={item.image} alt={item.title} />
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+    </div>
+  );
+}
+
+const portfolioItems = [
+  { id: 1, category: 'design', title: 'UI/UX Design 1', description: 'Description of UI/UX Design 1', image: 'src/img/b5.png' },
+  { id: 2, category: 'development', title: 'Fullstack Development 1', description: 'Description of Fullstack Development 1', image: 'src/img/b5.png' },
+  { id: 3, category: 'print', title: 'Graphic Design 1', description: 'Description of Graphic Design 1', image: 'src/img/b5.png' },
+  { id: 4, category: 'design', title: 'UI/UX Design 2', description: 'Description of UI/UX Design 2', image: 'src/img/b5.png' },
+  { id: 5, category: 'development', title: 'Fullstack Development 2', description: 'Description of Fullstack Development 2', image: 'src/img/b5.png' },
 ];
 
 function Portfolio({ filter }) {
   const filteredItems = filter === 'all' ? portfolioItems : portfolioItems.filter(item => item.category === filter);
-  const transitions = useTransition(filteredItems, item => item.id, {
-    from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
-  });
 
   return (
     <div className="portfolio">
-      {transitions.map(({ item, props, key }) => (
-        <animated.div key={key} style={props} className="portfolio-item">
-          <PortfolioCard item={item} />
-        </animated.div>
+      {filteredItems.map(item => (
+        <PortfolioCard key={item.id} item={item} />
       ))}
     </div>
   );
 }
 
-export default Portfolio;
+function App() {
+  const [filter, setFilter] = useState('all');
+
+  return (
+    <div className="app">
+      <PortfolioControls setFilter={setFilter} />
+      <Portfolio filter={filter} />
+    </div>
+  );
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App />, rootElement);
