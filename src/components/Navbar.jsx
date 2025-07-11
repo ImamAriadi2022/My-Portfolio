@@ -28,7 +28,15 @@ const Navbar = ({ isLoading }) => {
           href="#home" 
           onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
         >
-          <p style={{ margin: 0 }}>Imam</p>
+          <p 
+            style={{ 
+              margin: 0, 
+              color: scrollPosition > 100 ? '#ffffff' : 'var(--primary-color)',
+              transition: 'color 0.3s ease'
+            }}
+          >
+            Imam
+          </p>
         </a>
         
         <button 

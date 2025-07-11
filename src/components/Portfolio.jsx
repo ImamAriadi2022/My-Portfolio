@@ -4,7 +4,22 @@ import { portfolioCategories, portfolioData } from '../data/portfolioData';
 
 // Modal untuk detail portfolio
 const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
+  const [imageAspectRatio, setImageAspectRatio] = useState('unknown');
+
   if (!isOpen || !portfolio) return null;
+
+  const handleImageLoad = (e) => {
+    const img = e.target;
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+    
+    if (aspectRatio > 1.3) {
+      setImageAspectRatio('landscape');
+    } else if (aspectRatio < 0.8) {
+      setImageAspectRatio('portrait');
+    } else {
+      setImageAspectRatio('square');
+    }
+  };
 
   return (
     <div className="portfolio-modal-overlay" onClick={onClose}>
@@ -14,8 +29,12 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
         </button>
         
         <div className="portfolio-modal-content">
-          <div className="portfolio-modal-image">
-            <img src={portfolio.image} alt={portfolio.title} />
+          <div className={`portfolio-modal-image ${imageAspectRatio}`}>
+            <img 
+              src={portfolio.image} 
+              alt={portfolio.title}
+              onLoad={handleImageLoad}
+            />
           </div>
           
           <div className="portfolio-modal-info">
@@ -74,10 +93,42 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
 
 // Card komponen untuk setiap portfolio item
 const PortfolioCard = ({ portfolio, onClick }) => {
+  const [imageAspectRatio, setImageAspectRatio] = useState('unknown');
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageLoad = (e) => {
+    const img = e.target;
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+    
+    if (aspectRatio > 1.3) {
+      setImageAspectRatio('landscape');
+    } else if (aspectRatio < 0.8) {
+      setImageAspectRatio('portrait');
+    } else {
+      setImageAspectRatio('square');
+    }
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div className="portfolio-card" onClick={() => onClick(portfolio)}>
-      <div className="portfolio-card-image">
-        <img src={portfolio.image} alt={portfolio.title} />
+      <div className={`portfolio-card-image ${imageAspectRatio}`}>
+        {!imageError ? (
+          <img 
+            src={portfolio.image} 
+            alt={portfolio.title}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="image-placeholder">
+            <i className="fa fa-image"></i>
+          </div>
+        )}
+        
         <div className="portfolio-card-overlay">
           <div className="portfolio-card-actions">
             {portfolio.type === 'demo' ? (

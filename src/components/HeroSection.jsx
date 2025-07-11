@@ -148,9 +148,7 @@ const HeroSection = () => {
                   <b className="fw_600">Web Developer</b>
                 </span>
               </h1>
-              <p>
-                I'm a Web Developer with extensive experience for over 2 years. 
-                My expertise is to create and Websites design, graphic design and many more...
+              <p> I'm a Web Developer with over 3 years of experience, specializing in backend, frontend, and fullstack development for both mobile and web applications
               </p>
               <a 
                 href="/komponen/Final Portfolio_Imam Ariadi.pdf" 

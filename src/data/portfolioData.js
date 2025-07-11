@@ -3,13 +3,13 @@ export const portfolioData = [
   {
     id: 1,
     category: 'frontend-web',
-    title: 'E-Commerce Dashboard',
-    description: 'Modern admin dashboard untuk e-commerce dengan fitur analitik real-time, manajemen produk, dan laporan penjualan.',
-    image: '/assets/img/port3.jpg',
-    technologies: ['React', 'TypeScript', 'Material-UI', 'Chart.js'],
+    title: 'TeraLab (E-Learning Platform)',
+    description: 'Website Teralab Proteksi adalah landing page modern berbasis React dan Bootstrap dengan desain responsif, navigasi smooth, kartu layanan interaktif, serta fitur chatbot yang memudahkan komunikasi langsung dengan pengunjung.',
+    image: '/img/teralab.png',
+    technologies: ['React', 'JavaScript', 'Material-UI', 'Bootstrap'],
     type: 'demo',
-    demoUrl: 'https://ecommerce-dashboard-demo.vercel.app',
-    githubUrl: 'https://github.com/imam/ecommerce-dashboard',
+    demoUrl: 'https://teralab-proteksi.vercel.app/',
+    githubUrl: 'https://github.com/ImamAriadi2022/teralab-proteksi',
     featured: true
   },
   {
@@ -79,12 +79,12 @@ export const portfolioData = [
   {
     id: 7,
     category: 'backend',
-    title: 'RESTful API E-Commerce',
-    description: 'Backend API untuk e-commerce dengan authentication, payment processing, dan inventory management.',
-    image: '/assets/img/b5.png',
-    technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Stripe API'],
+    title: 'TodoList WEB3 using ethereum',
+    description: 'Backend API untuk TodoList berbasis WEB3 dengan smart contract dan IPFS.',
+    image: '/img/web3.png',
+    technologies: ['Node.js', 'hardhat', 'Solidity'],
     type: 'project',
-    githubUrl: 'https://github.com/imam/ecommerce-api',
+    githubUrl: 'https://github.com/ImamAriadi2022/metamint-nft-dapp',
     details: 'API yang menangani 10,000+ transaksi per hari dengan response time rata-rata 150ms. Implementasi rate limiting, caching dengan Redis, dan monitoring dengan Prometheus.',
     featured: true
   },
@@ -202,76 +202,19 @@ export const services = [
   {
     id: 1,
     icon: '/assets/img/service/icon-responsive.svg',
-    title: 'UI/UX Designer',
-    description: 'Creating intuitive and engaging user interfaces with modern design principles'
+    title: 'Backend Development',
+    description: 'Building robust and scalable server-side applications with modern technologies and best practices'
   },
   {
     id: 2,
     icon: '/assets/img/service/icon-email.svg',
-    title: 'Fullstack Web Developer',
-    description: 'Building complete web applications from frontend to backend with modern technologies'
+    title: 'Frontend Development',
+    description: 'Creating responsive and interactive user interfaces for web and mobile applications'
   },
   {
     id: 3,
     icon: '/assets/img/service/icon-lock.svg',
-    title: 'Graphic Design',
-    description: 'Designing visual content for digital and print media with creative solutions'
-  }
-];
-
-export const blogPosts = [
-  {
-    id: 1,
-    title: 'Web Design Evolution Insights',
-    excerpt: 'Discover the latest advancements shaping the digital landscape, ensuring your online presence stays ahead of the curve.',
-    image: '/assets/img/b4.png',
-    date: 'July 31, 2024',
-    category: 'Design',
-    slug: 'web-design-evolution-insights'
-  },
-  {
-    id: 2,
-    title: 'Responsive Design Innovations',
-    excerpt: 'Explore cutting-edge techniques and technologies ensuring seamless user experiences across all devices.',
-    image: '/assets/img/b3.png',
-    date: 'July 31, 2024',
-    category: 'Design',
-    slug: 'responsive-design-innovations'
-  },
-  {
-    id: 3,
-    title: 'User-Centric Web Solutions',
-    excerpt: 'Crafting websites focused on meeting user needs, enhancing engagement and satisfaction.',
-    image: '/assets/img/b5.png',
-    date: 'July 31, 2024',
-    category: 'Design',
-    slug: 'user-centric-web-solutions'
-  },
-  {
-    id: 4,
-    title: 'Modern JavaScript Frameworks',
-    excerpt: 'A comprehensive guide to choosing the right JavaScript framework for your next project.',
-    image: '/assets/img/b8.jpg',
-    date: 'August 15, 2024',
-    category: 'Development',
-    slug: 'modern-javascript-frameworks'
-  },
-  {
-    id: 5,
-    title: 'The Future of Web Development',
-    excerpt: 'Exploring emerging trends and technologies that will shape the future of web development.',
-    image: '/assets/img/b6.jpg',
-    date: 'August 20, 2024',
-    category: 'Technology',
-    slug: 'future-of-web-development'
-  },
-  {
-    id: 6,
-    title: 'Design Systems Best Practices',
-    excerpt: 'Building scalable and maintainable design systems for modern web applications.',
-    image: '/assets/img/b7.png',
-    date: 'September 5, 2024',
-    category: 'Design',
-    slug: 'design-systems-best-practices'
+    title: 'Fullstack Development',
+    description: 'Complete end-to-end development solutions for both web and mobile applications'
   }
 ];
