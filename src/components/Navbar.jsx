@@ -23,8 +23,12 @@ const Navbar = ({ isLoading }) => {
       }}
     >
       <div className="container">
-        <a className="navbar-brand" href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>
-          <p>Imam</p>
+        <a 
+          className="navbar-brand" 
+          href="#home" 
+          onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
+        >
+          <p style={{ margin: 0 }}>Imam</p>
         </a>
         
         <button 

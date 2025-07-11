@@ -4,7 +4,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import Navbar from './components/Navbar';
-import PortfolioSection from './components/PortfolioSection';
+import Portfolio from './components/Portfolio';
 import Preloader from './components/Preloader';
 import ServicesSection from './components/ServicesSection';
 
@@ -111,7 +111,7 @@ function App() {
       <Navbar isLoading={isLoading} />
       <HeroSection isLoading={isLoading} />
       <ServicesSection />
-      <PortfolioSection />
+      <Portfolio />
       <BlogSection />
       <ContactSection />
       <Footer />
