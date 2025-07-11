@@ -1,0 +1,637 @@
+/* CSS Variables for consistent color scheme */
+:root {
+  --primary-color: #28a745;
+  --primary-color-dark: #1e7e34;
+  --primary-color-light: #34ce57;
+  --secondary-color: #6c757d;
+  --dark-bg: #000000;
+  --text-light: #ffffff;
+  --text-muted: #cccccc;
+  --border-color: #333333;
+}
+
+/* Custom CSS untuk komponen React */
+.react-navbar {
+  transition: all 0.3s ease;
+}
+
+.react-navbar.scrolled {
+  background-color: rgba(40, 167, 69, 0.9) !important;
+  backdrop-filter: blur(10px);
+}
+
+.section-padding {
+  padding: 80px 0;
+}
+
+.wow {
+  visibility: hidden;
+}
+
+.wow.animated {
+  visibility: visible;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Portfolio filter active state */
+.portfolio-filter .btn.active {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+/* Particles container */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: transparent;
+}
+
+#particles-js canvas {
+  display: block;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+  transition: opacity .8s ease, transform 1.4s ease;
+}
+
+/* Loading state styles */
+.app-loading .navbar {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.app-loading #particles-js {
+  opacity: 0;
+}
+
+/* Enhanced preloader */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ensure navbar is properly hidden during loading */
+.react-navbar {
+  transition: all 0.3s ease, opacity 0.5s ease 0.3s, visibility 0.5s ease 0.3s;
+}
+
+/* Hero section improvements */
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner_content, .banner-images {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated headline - Clip Animation (Original Style) */
+.cd-words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+}
+
+.cd-words-wrapper b {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.cd-words-wrapper b.is-visible {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ensure only one word is visible at a time */
+.cd-words-wrapper b:not(.is-visible) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  position: absolute !important;
+}
+
+.no-js .cd-words-wrapper b {
+  opacity: 0;
+}
+
+.no-js .cd-words-wrapper b.is-visible {
+  opacity: 1;
+}
+
+/* Clip animation styles */
+.cd-headline.clip span {
+  display: inline-block;
+  padding: .2em 0;
+}
+
+.cd-headline.clip .cd-words-wrapper {
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.cd-headline.clip .cd-words-wrapper::after {
+  /* line cursor */
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #28a745; /* Green to match theme */
+  animation: cd-pulse 3s infinite; /* Sinkronisasi dengan interval kata */
+}
+
+.cd-headline.clip b {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out; /* Smooth transition saat pergantian kata */
+}
+
+.cd-headline.clip b.is-visible {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out; /* Smooth transition saat pergantian kata */
+}
+
+/* Pulse animation for cursor - sinkron dengan pergantian kata */
+@keyframes cd-pulse {
+  0% {
+    opacity: 1;
+  }
+  2% {
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 0;  /* Fade out sebelum transisi kata */
+  }
+  96% {
+    opacity: 0;  /* Stay hidden saat transisi */
+  }
+  98% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1; /* Fade in setelah kata baru muncul */
+  }
+}
+
+/* Alternative: cursor pause state untuk transisi yang lebih smooth */
+.cd-headline.clip .cd-words-wrapper.transitioning::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+/* Particles interaction improvements */
+#particles-js:hover canvas {
+  opacity: 0.8;
+}
+
+/* Loading spinner animation */
+@keyframes particlesLoad {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.particles-loaded #particles-js {
+  animation: particlesLoad 1s ease forwards;
+}
+
+/* React Spring Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Portfolio specific styles */
+.portfolio-container {
+  margin-top: 50px;
+}
+
+.portfolio-filter {
+  margin-bottom: 40px;
+}
+
+.portfolio-filter .btn {
+  margin: 5px;
+  padding: 10px 20px;
+  border: 2px solid #28a745;
+  background: transparent;
+  color: #28a745;
+  transition: all 0.3s ease;
+}
+
+.portfolio-filter .btn:hover,
+.portfolio-filter .btn.active {
+  background: #28a745;
+  color: white;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.single_portfolio {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.single_portfolio:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-content {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.portfolio-content h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.tech-tag {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin: 2px;
+}
+
+/* Contact form styles */
+.contact-area {
+  padding: 80px 0;
+}
+
+.contact-form .form-control {
+  background: transparent;
+  border: 1px solid #333;
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.contact-form .form-control:focus {
+  border-color: #28a745;
+  box-shadow: none;
+  background: transparent;
+  color: white;
+}
+
+.contact-form .form-control::placeholder {
+  color: #ccc;
+}
+
+.contact-info {
+  padding-left: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.contact-item .icon {
+  width: 50px;
+  height: 50px;
+  background: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.contact-item .icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.contact-item .content h4 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.contact-item .content p {
+  color: #ccc;
+  margin: 0;
+}
+
+/* Footer styles */
+.footer-area {
+  padding: 50px 0 20px;
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.social-links {
+  margin-bottom: 30px;
+}
+
+.social-link {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: white;
+  color: #28a745;
+  text-decoration: none;
+}
+
+.copyright {
+  color: #ccc;
+  margin: 0;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background: white;
+  color: #28a745;
+}
+
+/* AOS Animation Classes */
+[data-aos] {
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(30px);
+}
+
+[data-aos="fade-left"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(-30px);
+}
+
+[data-aos="fade-right"].aos-animate {
+  transform: translateX(0);
+}
+
+/* Services section specific */
+.services-item {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.services-item:hover {
+  transform: translateY(-10px);
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.services-item .icon {
+  margin-bottom: 20px;
+}
+
+.services-item .icon img {
+  width: 60px;
+  height: 60px;
+}
+
+.services-content h3 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.services-content h3 a {
+  color: white;
+  text-decoration: none;
+}
+
+.services-content p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* Update button styles to use CSS variables */
+.btn-secondary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--text-light) !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color-dark) !important;
+  border-color: var(--primary-color-dark) !important;
+  color: var(--text-light) !important;
+}
+
+.banner_btn {
+  background: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.banner_btn:hover {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Blog button styles */
+.blog_btn {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.blog_btn:hover {
+  background: var(--primary-color-dark);
+  border: 1px solid var(--primary-color-dark);
+}
+
+/* Section title accent color */
+.section-title span {
+  color: var(--primary-color) !important;
+}
+
+/* Link colors */
+a {
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color-light);
+  text-decoration: none;
+}
+
+/* Form focus states */
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Navbar brand color */
+.navbar-brand p {
+  color: var(--primary-color) !important;
+  font-weight: bold;
+}
+
+/* Nav link hover */
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Active nav link */
+.nav-link.active {
+  color: var(--primary-color) !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .portfolio-filter .btn {
+    margin: 2px;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .contact-info {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+  
+  .back-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+}
