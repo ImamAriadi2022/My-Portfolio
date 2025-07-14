@@ -1,46 +1,82 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ParticlesBackground from './ParticlesBackground';
 
 const HeroSection = () => {
   const particlesRef = useRef(null);
+  const [particlesLoaded, setParticlesLoaded] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
-    // Initialize particles.js
-    if (window.particlesJS) {
-      window.particlesJS('particles-js', {
-        particles: {
-          number: { value: 80, density: { enable: true, value_area: 800 } },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5, random: false },
-          size: { value: 3, random: true },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.4,
-            width: 1
-          },
-          move: {
-            enable: true,
-            speed: 6,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false
-          }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: true, mode: "repulse" },
-            onclick: { enable: true, mode: "push" },
-            resize: true
-          }
-        },
-        retina_detect: true
-      });
-    }
+    // Check if particles.js is available and initialize
+    const initParticles = () => {
+      if (window.particlesJS && particlesRef.current) {
+        try {
+          window.particlesJS('particles-js', {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: "#ffffff" },
+              shape: { type: "circle" },
+              opacity: { value: 0.5, random: false },
+              size: { value: 3, random: true },
+              line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
+              },
+              move: {
+                enable: true,
+                speed: 6,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+              }
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+              }
+            },
+            retina_detect: true
+          });
+          
+          // Check if canvas was actually created
+          setTimeout(() => {
+            const canvas = document.querySelector('#particles-js canvas');
+            if (canvas) {
+              setParticlesLoaded(true);
+              console.log('Particles.js loaded successfully');
+            } else {
+              setShowFallback(true);
+              console.log('Particles.js canvas not created, using CSS fallback');
+            }
+          }, 500);
+          
+        } catch (error) {
+          console.warn('Particles.js failed to initialize:', error);
+          setShowFallback(true);
+        }
+      } else {
+        console.warn('Particles.js library not found, using CSS fallback');
+        setShowFallback(true);
+      }
+    };
+
+    // Try to initialize particles immediately
+    initParticles();
+
+    // If not loaded after delay, show fallback
+    const fallbackTimeout = setTimeout(() => {
+      if (!particlesLoaded) {
+        setShowFallback(true);
+      }
+    }, 2000);
 
     // Animated headline effect
     const initAnimatedHeadline = () => {
@@ -96,7 +132,7 @@ const HeroSection = () => {
           // Show first word dengan timing yang pas
           setTimeout(() => {
             showWord(0);
-          }, 100); // Faster initialization
+          }, 100);
           
           const showNextWord = () => {
             if (!isAnimating) {
@@ -106,7 +142,7 @@ const HeroSection = () => {
           };
           
           // Start animation dengan timing yang sinkron dengan CSS cursor animation
-          const intervalId = setInterval(showNextWord, 3000); // Sama dengan animation duration cursor
+          const intervalId = setInterval(showNextWord, 3000);
           
           // Store interval ID for cleanup
           headline.animationInterval = intervalId;
@@ -114,28 +150,37 @@ const HeroSection = () => {
       });
     };
 
-    const timer = setTimeout(initAnimatedHeadline, 500); // Faster initialization
+    const timer = setTimeout(initAnimatedHeadline, 500);
     
     return () => {
       clearTimeout(timer);
+      clearTimeout(fallbackTimeout);
+      
       // Cleanup intervals
       const headlines = document.querySelectorAll('.cd-headline');
       headlines.forEach(headline => {
         if (headline.animationInterval) {
           clearInterval(headline.animationInterval);
         }
-        // Also remove transitioning class on cleanup
         const wordsWrapper = headline.querySelector('.cd-words-wrapper');
         if (wordsWrapper) {
           wordsWrapper.classList.remove('transitioning');
         }
       });
     };
-  }, []);
+  }, [particlesLoaded]);
 
   return (
-    <section id="home" className="dark_bg">
-      <div id="particles-js" ref={particlesRef}></div>
+    <section id="home" className="dark_bg hero-section">
+      <div 
+        id="particles-js" 
+        ref={particlesRef}
+        className={`particles-container ${showFallback ? 'fallback-bg' : ''}`}
+      ></div>
+      
+      {/* CSS Fallback Particles */}
+      {showFallback && <ParticlesBackground />}
+      
       <div className="container">
         <div className="row">
           <div className="col-lg-6 col-md-6">

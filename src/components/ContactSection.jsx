@@ -1,266 +1,347 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { clientTestimonials, monthlyData, projectCategories, projectStats, techStats } from '../data/projectData';
 
-const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+const StatisticsSection = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [animatedStats, setAnimatedStats] = useState({});
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  useEffect(() => {
+    // Animate counters when component mounts
+    const animateCounters = () => {
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const stepDuration = duration / steps;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Create WhatsApp message
-    const { name, email, subject, message } = formData;
-    const whatsappMessage = `Hello Imam! 👋
+      const counters = {
+        projects: projectStats.projects.completed,
+        clients: projectStats.clients.total,
+        happyClients: projectStats.clients.happy,
+        successRate: projectStats.metrics.successRate
+      };
 
-*Name:* ${name}
-*Email:* ${email}
-*Subject:* ${subject}
+      let currentStep = 0;
+      const interval = setInterval(() => {
+        currentStep++;
+        const progress = currentStep / steps;
+        
+        setAnimatedStats({
+          projects: Math.floor(counters.projects * progress),
+          clients: Math.floor(counters.clients * progress),
+          happyClients: Math.floor(counters.happyClients * progress),
+          successRate: Math.floor(counters.successRate * progress)
+        });
 
-*Message:*
-${message}
+        if (currentStep >= steps) {
+          clearInterval(interval);
+          setAnimatedStats(counters);
+        }
+      }, stepDuration);
+    };
 
----
-Sent from your portfolio website`;
+    const timer = setTimeout(animateCounters, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    
-    // WhatsApp URL with your number
-    const whatsappUrl = `https://wa.me/6285788322061?text=${encodedMessage}`;
-    
-    // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
-    
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const handleQuickMessage = (messageType) => {
-    let quickMessage = '';
-    
-    switch(messageType) {
-      case 'project':
-        quickMessage = "Hi Imam! I'm interested in discussing a project with you. Can we talk about the details?";
-        break;
-      case 'collaboration':
-        quickMessage = "Hello! I'd like to explore collaboration opportunities. Let's connect!";
-        break;
-      case 'consultation':
-        quickMessage = "Hi! I need some technical consultation. Are you available for a discussion?";
-        break;
-      default:
-        quickMessage = "Hello Imam! I'd like to get in touch with you.";
+  const renderChart = (data, type) => {
+    if (type === 'bar') {
+      const maxValue = Math.max(...data.map(item => item.projects));
+      return (
+        <div className="chart-container bar-chart">
+          <div className="chart-bars">
+            {data.slice(0, 6).map((item, index) => (
+              <div key={index} className="bar-item">
+                <div 
+                  className="bar"
+                  style={{ 
+                    height: `${(item.projects / maxValue) * 100}%`,
+                    animationDelay: `${index * 0.1}s`
+                  }}
+                >
+                  <span className="bar-value">{item.projects}</span>
+                </div>
+                <span className="bar-label">{item.month}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     }
-    
-    const encodedMessage = encodeURIComponent(quickMessage);
-    const whatsappUrl = `https://wa.me/6285788322061?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
+
+    if (type === 'tech') {
+      return (
+        <div className="tech-chart">
+          {techStats.slice(0, 6).map((tech, index) => (
+            <div key={index} className="tech-item">
+              <div className="tech-info">
+                <span className="tech-name">{tech.name}</span>
+                <span className="tech-percentage">{tech.percentage}%</span>
+              </div>
+              <div className="tech-bar">
+                <div 
+                  className="tech-progress"
+                  style={{ 
+                    width: `${tech.percentage}%`,
+                    animationDelay: `${index * 0.1}s`
+                  }}
+                ></div>
+              </div>
+              <small className="tech-projects">{tech.projects} projects</small>
+            </div>
+          ))}
+        </div>
+      );
+    }
   };
 
   return (
-    <section id="contact" className="dark_bg contact-area section-padding">
+    <section id="statistics" className="dark_bg statistics-area section-padding">
       <div className="container">
         <div className="section-header text-center">
           <h2 className="section-title wow flipInX" data-wow-delay="0.4s">
-            Get In <span>Touch</span>
+            Project <span>Statistics</span>
           </h2>
           <div className="shape wow fadeInDown" data-wow-delay="0.3s"></div>
           <p className="section-subtitle">
-            Ready to start your project? Let's discuss your ideas and bring them to life!
+            Data-driven insights into my professional journey and achievements
           </p>
         </div>
-        
-        <div className="row">
-          {/* Contact Form */}
-          <div className="col-lg-8 col-md-8 col-xs-12">
-            <div className="contact-form-wrapper" data-aos="fade-right">
-              <div className="contact-form-header">
-                <h3><i className="fa fa-whatsapp"></i> Send via WhatsApp</h3>
-                <p>Fill the form below and it will redirect to WhatsApp for instant communication</p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="contact-form">
-                <div className="row">
-                  <div className="col-lg-6 col-md-6 col-xs-12">
-                    <div className="form-group">
-                      <label>Your Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-6 col-xs-12">
-                    <div className="form-group">
-                      <label>Your Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        name="email"
-                        placeholder="Enter your email address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label>Subject</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="subject"
-                    placeholder="What's this about?"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Your Message</label>
-                  <textarea
-                    className="form-control"
-                    name="message"
-                    rows="5"
-                    placeholder="Tell me about your project or inquiry..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </div>
-                
-                <div className="form-actions">
-                  <button type="submit" className="btn btn-whatsapp">
-                    <i className="fa fa-whatsapp"></i>
-                    Send to WhatsApp
-                  </button>
-                </div>
-              </form>
-              
-              {/* Quick Message Buttons */}
-              <div className="quick-messages">
-                <h4>Or send a quick message:</h4>
-                <div className="quick-btn-group">
-                  <button 
-                    className="btn btn-quick"
-                    onClick={() => handleQuickMessage('project')}
-                  >
-                    <i className="fa fa-code"></i>
-                    Project Discussion
-                  </button>
-                  <button 
-                    className="btn btn-quick"
-                    onClick={() => handleQuickMessage('collaboration')}
-                  >
-                    <i className="fa fa-handshake-o"></i>
-                    Collaboration
-                  </button>
-                  <button 
-                    className="btn btn-quick"
-                    onClick={() => handleQuickMessage('consultation')}
-                  >
-                    <i className="fa fa-comments"></i>
-                    Consultation
-                  </button>
-                </div>
-              </div>
+
+        {/* Statistics Overview Cards */}
+        <div className="stats-overview">
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <div className="stat-icon">
+              <i className="fa fa-check-circle"></i>
+            </div>
+            <div className="stat-content">
+              <h3 className="stat-number">{animatedStats.projects || 0}</h3>
+              <p className="stat-label">Projects Completed</p>
+              <small className="stat-detail">+{projectStats.projects.ongoing} ongoing</small>
             </div>
           </div>
           
-          {/* Contact Info */}
-          <div className="col-lg-4 col-md-4 col-xs-12">
-            <div className="contact-info" data-aos="fade-left">
-              <div className="contact-info-header">
-                <h3>Let's Connect</h3>
-                <p>Choose your preferred way to reach out</p>
-              </div>
-              
-              <div className="contact-item whatsapp-primary">
-                <div className="icon">
-                  <i className="fa fa-whatsapp"></i>
-                </div>
-                <div className="content">
-                  <h4>WhatsApp</h4>
-                  <p>+62 857-8832-2061</p>
-                  <a 
-                    href="https://wa.me/6285788322061" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="btn btn-sm btn-whatsapp-direct"
-                  >
-                    <i className="fa fa-whatsapp"></i> Chat Now
-                  </a>
-                </div>
-              </div>
-              
-              <div className="contact-item">
-                <div className="icon">
-                  <i className="fa fa-envelope"></i>
-                </div>
-                <div className="content">
-                  <h4>Email</h4>
-                  <p>imam.ariadi@gmail.com</p>
-                  <small>For formal inquiries</small>
-                </div>
-              </div>
-              
-              <div className="contact-item">
-                <div className="icon">
-                  <i className="fa fa-map-marker"></i>
-                </div>
-                <div className="content">
-                  <h4>Location</h4>
-                  <p>Indonesia</p>
-                  <small>Available for remote work</small>
-                </div>
-              </div>
-              
-              <div className="contact-item">
-                <div className="icon">
-                  <i className="fa fa-clock-o"></i>
-                </div>
-                <div className="content">
-                  <h4>Response Time</h4>
-                  <p>Usually within 2-4 hours</p>
-                  <small>Monday - Saturday</small>
-                </div>
-              </div>
-              
-              {/* Social Links */}
-              <div className="social-links">
-                <h4>Follow Me</h4>
-                <div className="social-buttons">
-                  <a href="#" className="social-btn github">
-                    <i className="fa fa-github"></i>
-                  </a>
-                  <a href="#" className="social-btn linkedin">
-                    <i className="fa fa-linkedin"></i>
-                  </a>
-                  <a href="#" className="social-btn instagram">
-                    <i className="fa fa-instagram"></i>
-                  </a>
-                  <a href="#" className="social-btn twitter">
-                    <i className="fa fa-twitter"></i>
-                  </a>
-                </div>
-              </div>
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div className="stat-icon">
+              <i className="fa fa-users"></i>
             </div>
+            <div className="stat-content">
+              <h3 className="stat-number">{animatedStats.clients || 0}</h3>
+              <p className="stat-label">Total Clients</p>
+              <small className="stat-detail">{projectStats.clients.returning} returning clients</small>
+            </div>
+          </div>
+          
+          
+          <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
+            <div className="stat-icon">
+              <i className="fa fa-trophy"></i>
+            </div>
+            <div className="stat-content">
+              <h3 className="stat-number">{animatedStats.successRate || 0}%</h3>
+              <p className="stat-label">Success Rate</p>
+              <small className="stat-detail">{projectStats.metrics.onTimeDelivery}% on-time delivery</small>
+            </div>
+          </div>
+        </div>
+
+        {/* Statistics Tabs */}
+        <div className="stats-tabs">
+          <div className="tab-navigation">
+            <button 
+              className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+              onClick={() => setActiveTab('overview')}
+            >
+              <i className="fa fa-bar-chart"></i>
+              <span>Monthly Overview</span>
+            </button>
+            <button 
+              className={`tab-btn ${activeTab === 'technologies' ? 'active' : ''}`}
+              onClick={() => setActiveTab('technologies')}
+            >
+              <i className="fa fa-code"></i>
+              <span>Technologies</span>
+            </button>
+            <button 
+              className={`tab-btn ${activeTab === 'categories' ? 'active' : ''}`}
+              onClick={() => setActiveTab('categories')}
+            >
+              <i className="fa fa-pie-chart"></i>
+              <span>Project Types</span>
+            </button>
+            <button 
+              className={`tab-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
+              onClick={() => setActiveTab('testimonials')}
+            >
+              <i className="fa fa-comments"></i>
+              <span>Client Reviews</span>
+            </button>
+          </div>
+
+          <div className="tab-content">
+            {activeTab === 'overview' && (
+              <div className="tab-panel overview-panel">
+                <div className="row">
+                  <div className="col-lg-8">
+                    <div className="chart-wrapper">
+                      <h4>Monthly Project Completion</h4>
+                      {renderChart(monthlyData, 'bar')}
+                    </div>
+                  </div>
+                  <div className="col-lg-4">
+                    <div className="insights-box">
+                      <h5>Key Insights</h5>
+                      <div className="insight-item">
+                        <i className="fa fa-trending-up"></i>
+                        <div>
+                          <strong>Peak Performance</strong>
+                          <p>August was the most productive month</p>
+                        </div>
+                      </div>
+                      <div className="insight-item">
+                        <i className="fa fa-calendar"></i>
+                        <div>
+                          <strong>Consistency</strong>
+                          <p>Average 6 projects per month</p>
+                        </div>
+                      </div>
+                      <div className="insight-item">
+                        <i className="fa fa-growth"></i>
+                        <div>
+                          <strong>Growth</strong>
+                          <p>40% increase from last year</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'technologies' && (
+              <div className="tab-panel tech-panel">
+                <div className="row">
+                  <div className="col-lg-8">
+                    <div className="chart-wrapper">
+                      <h4>Technology Usage Statistics</h4>
+                      {renderChart(techStats, 'tech')}
+                    </div>
+                  </div>
+                  <div className="col-lg-4">
+                    <div className="tech-summary">
+                      <h5>Tech Stack Summary</h5>
+                      <div className="tech-category">
+                        <h6>Frontend</h6>
+                        <div className="tech-tags">
+                          <span>React</span>
+                          <span>JavaScript</span>
+                          <span>CSS3</span>
+                        </div>
+                      </div>
+                      <div className="tech-category">
+                        <h6>Backend</h6>
+                        <div className="tech-tags">
+                          <span>Node.js</span>
+                          <span>PHP</span>
+                          <span>Python</span>
+                        </div>
+                      </div>
+                      <div className="tech-category">
+                        <h6>Database</h6>
+                        <div className="tech-tags">
+                          <span>MySQL</span>
+                          <span>MongoDB</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'categories' && (
+              <div className="tab-panel categories-panel">
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="categories-chart">
+                      <h4>Project Categories</h4>
+                      <div className="category-items">
+                        {projectCategories.map((category, index) => (
+                          <div key={index} className="category-item">
+                            <div className="category-info">
+                              <span className="category-name">{category.name}</span>
+                              <span className="category-count">{category.count} projects</span>
+                            </div>
+                            <div className="category-bar">
+                              <div 
+                                className="category-progress"
+                                style={{ 
+                                  width: `${category.percentage}%`,
+                                  animationDelay: `${index * 0.2}s`
+                                }}
+                              ></div>
+                            </div>
+                            <span className="category-percentage">{category.percentage}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="category-highlights">
+                      <h5>Category Highlights</h5>
+                      <div className="highlight-item">
+                        <i className="fa fa-globe"></i>
+                        <div>
+                          <strong>Web Applications</strong>
+                          <p>Most popular service with 37% of projects</p>
+                        </div>
+                      </div>
+                      <div className="highlight-item">
+                        <i className="fa fa-mobile"></i>
+                        <div>
+                          <strong>Mobile Development</strong>
+                          <p>Growing demand with 28% share</p>
+                        </div>
+                      </div>
+                      <div className="highlight-item">
+                        <i className="fa fa-shopping-cart"></i>
+                        <div>
+                          <strong>E-commerce</strong>
+                          <p>Specialized solutions for online businesses</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'testimonials' && (
+              <div className="tab-panel testimonials-panel">
+                <h4>Client Testimonials</h4>
+                <div className="testimonials-grid">
+                  {clientTestimonials.map((testimonial) => (
+                    <div key={testimonial.id} className="testimonial-card">
+                      <div className="testimonial-header">
+                        <div className="client-info">
+                          <h6>{testimonial.name}</h6>
+                          <p>{testimonial.company}</p>
+                        </div>
+                        <div className="rating">
+                          {[...Array(5)].map((_, i) => (
+                            <i 
+                              key={i} 
+                              className={`fa fa-star ${i < testimonial.rating ? 'filled' : ''}`}
+                            ></i>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="testimonial-text">"{testimonial.comment}"</p>
+                      <small className="project-name">Project: {testimonial.project}</small>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -268,4 +349,4 @@ Sent from your portfolio website`;
   );
 };
 
-export default ContactSection;
+export default StatisticsSection;

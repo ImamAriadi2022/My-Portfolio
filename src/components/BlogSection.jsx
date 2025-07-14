@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { blogData } from '../data/blogData';
 
 const BlogCard = ({ post, index }) => {
@@ -111,16 +112,14 @@ const BlogSection = () => {
         
         {/* View All Blog Posts Button */}
         <div className="blog-view-all text-center">
-          <a 
-            href="https://blog.imam-ariadi.dev" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <Link 
+            to="/all-blogs"
             className="btn btn-view-all-blog"
           >
             <i className="fa fa-newspaper-o"></i>
             <span>View All Blog Posts</span>
-            <small>Visit my blog for more articles</small>
-          </a>
+            <small>({blogData.length} total articles)</small>
+          </Link>
         </div>
       </div>
     </div>

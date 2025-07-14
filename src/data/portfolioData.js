@@ -6,6 +6,11 @@ export const portfolioData = [
     title: 'TeraLab (E-Learning Platform)',
     description: 'Website Teralab Proteksi adalah landing page modern berbasis React dan Bootstrap dengan desain responsif, navigasi smooth, kartu layanan interaktif, serta fitur chatbot yang memudahkan komunikasi langsung dengan pengunjung.',
     image: '/img/teralab.png',
+    images: [
+      '/img/teralab.png',
+      '/assets/img/b1.jpg',
+      '/assets/img/port3.jpg'
+    ],
     technologies: ['React', 'JavaScript', 'Material-UI', 'Bootstrap'],
     type: 'demo',
     demoUrl: 'https://teralab-proteksi.vercel.app/',
@@ -18,6 +23,11 @@ export const portfolioData = [
     title: 'Restaurant Website',
     description: 'Website responsive untuk restaurant dengan sistem reservasi online, menu interaktif, dan galeri foto.',
     image: '/assets/img/port9.jpg',
+    images: [
+      '/assets/img/port9.jpg',
+      '/assets/img/b1.jpg',
+      '/assets/img/port3.png'
+    ],
     technologies: ['Vue.js', 'Tailwind CSS', 'Firebase'],
     type: 'demo',
     demoUrl: 'https://restaurant-website-demo.netlify.app',
@@ -30,6 +40,11 @@ export const portfolioData = [
     title: 'Learning Management System',
     description: 'Platform pembelajaran online dengan fitur video streaming, quiz interaktif, dan tracking progress siswa.',
     image: '/assets/img/b1.jpg',
+    images: [
+      '/assets/img/b1.jpg',
+      '/assets/img/b2.png',
+      '/assets/img/b3.png'
+    ],
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Clerk'],
     type: 'project',
     githubUrl: 'https://github.com/imam/lms-platform',
@@ -44,6 +59,11 @@ export const portfolioData = [
     title: 'Task Manager App',
     description: 'Aplikasi mobile untuk manajemen tugas dengan fitur reminder, kategori, dan sinkronisasi cloud.',
     image: '/assets/img/b2.png',
+    images: [
+      '/assets/img/b2.png',
+      '/assets/img/b3.png',
+      '/assets/img/b4.png'
+    ],
     technologies: ['React Native', 'Redux', 'AsyncStorage', 'Push Notifications'],
     type: 'demo',
     demoUrl: 'https://expo.dev/@imam/task-manager',
@@ -56,6 +76,11 @@ export const portfolioData = [
     title: 'Fitness Tracker',
     description: 'Aplikasi tracking olahraga dengan GPS, monitoring detak jantung, dan social sharing.',
     image: '/assets/img/b3.png',
+    images: [
+      '/assets/img/b3.png',
+      '/assets/img/b4.png',
+      '/assets/img/b5.png'
+    ],
     technologies: ['Flutter', 'Dart', 'Firebase', 'Google Maps API'],
     type: 'project',
     githubUrl: 'https://github.com/imam/fitness-tracker',
@@ -68,6 +93,11 @@ export const portfolioData = [
     title: 'Food Delivery App',
     description: 'Aplikasi pemesanan makanan dengan real-time tracking, payment gateway, dan review system.',
     image: '/assets/img/b4.png',
+    images: [
+      '/assets/img/b4.png',
+      '/assets/img/b5.png',
+      '/assets/img/b6.jpg'
+    ],
     technologies: ['React Native', 'Expo', 'Stripe', 'Socket.io'],
     type: 'demo',
     demoUrl: 'https://expo.dev/@imam/food-delivery',
@@ -82,6 +112,11 @@ export const portfolioData = [
     title: 'TodoList WEB3 using ethereum',
     description: 'Backend API untuk TodoList berbasis WEB3 dengan smart contract dan IPFS.',
     image: '/img/web3.png',
+    images: [
+      '/img/web3.png',
+      '/assets/img/b7.png',
+      '/assets/img/b8.jpg'
+    ],
     technologies: ['Node.js', 'hardhat', 'Solidity'],
     type: 'project',
     githubUrl: 'https://github.com/ImamAriadi2022/metamint-nft-dapp',
@@ -94,6 +129,11 @@ export const portfolioData = [
     title: 'Microservices Architecture',
     description: 'Sistem microservices untuk aplikasi fintech dengan service discovery dan load balancing.',
     image: '/assets/img/b6.jpg',
+    images: [
+      '/assets/img/b6.jpg',
+      '/assets/img/b7.png',
+      '/assets/img/b8.jpg'
+    ],
     technologies: ['Docker', 'Kubernetes', 'PostgreSQL', 'Redis', 'RabbitMQ'],
     type: 'project',
     githubUrl: 'https://github.com/imam/fintech-microservices',
@@ -106,6 +146,11 @@ export const portfolioData = [
     title: 'Real-time Chat API',
     description: 'Backend untuk aplikasi chat real-time dengan support grup, file sharing, dan end-to-end encryption.',
     image: '/assets/img/b7.png',
+    images: [
+      '/assets/img/b7.png',
+      '/assets/img/b8.jpg',
+      '/assets/img/port3.jpg'
+    ],
     technologies: ['Node.js', 'Socket.io', 'MongoDB', 'AWS S3', 'WebRTC'],
     type: 'demo',
     demoUrl: 'https://chat-api-docs.herokuapp.com',

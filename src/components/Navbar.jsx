@@ -15,7 +15,7 @@ const Navbar = ({ isLoading }) => {
 
   return (
     <nav 
-      className={`navbar navbar-toggleable-sm fixed-top navbar-light bg-faded site-navigation dark_bg_menu react-navbar ${scrollPosition > 100 ? 'scrolled menu-bg' : ''}`}
+      className={`navbar navbar-toggleable-sm navbar-light bg-faded site-navigation dark_bg_menu react-navbar ${scrollPosition > 100 ? 'scrolled menu-bg' : ''}`}
       style={{
         opacity: isLoading ? 0 : 1,
         visibility: isLoading ? 'hidden' : 'visible',
@@ -71,6 +71,15 @@ const Navbar = ({ isLoading }) => {
             <li className="nav-item">
               <a 
                 className="nav-link" 
+                href="#github-contributions"
+                onClick={(e) => { e.preventDefault(); scrollToSection('github-contributions'); }}
+              >
+                GitHub
+              </a>
+            </li>
+            <li className="nav-item">
+              <a 
+                className="nav-link" 
                 href="#portfolio"
                 onClick={(e) => { e.preventDefault(); scrollToSection('portfolio'); }}
               >
@@ -89,10 +98,10 @@ const Navbar = ({ isLoading }) => {
             <li className="nav-item">
               <a 
                 className="nav-link" 
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+                href="#statistics"
+                onClick={(e) => { e.preventDefault(); scrollToSection('statistics'); }}
               >
-                Contact
+                Statistics
               </a>
             </li>
           </ul>

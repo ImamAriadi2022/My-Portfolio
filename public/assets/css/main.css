@@ -1055,6 +1055,421 @@ Start FunFacts CSS
 10. End Contact Area
 ========================================================================== */
 
+/* ==========================================================================
+10.1. Start GitHub Section
+========================================================================== */
+.github-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.github-section .section-title-header .shape {
+    width: 60px;
+    height: 4px;
+    background: #08d665;
+    margin: 20px auto 30px;
+    border-radius: 2px;
+}
+
+.github-loading,
+.github-error {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.github-loading .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #08d665;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.github-error i {
+    font-size: 48px;
+    color: #08d665;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.github-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* GitHub Stats */
+.github-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-left: 4px solid #08d665;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.stat-icon.repositories { background: #08d665; }
+.stat-icon.stars { background: #ffc107; }
+.stat-icon.forks { background: #17a2b8; }
+.stat-icon.languages { background: #6f42c1; }
+
+.stat-info h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.stat-info p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Contribution Graph */
+.contribution-graph-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 60px;
+}
+
+.contribution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.contribution-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.contribution-legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legend-levels {
+    display: flex;
+    gap: 3px;
+}
+
+.level {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.level.level-0 { background-color: #ebedf0; }
+.level.level-1 { background-color: #c6e48b; }
+.level.level-2 { background-color: #7bc96f; }
+.level.level-3 { background-color: #239a3b; }
+.level.level-4 { background-color: #196127; }
+
+.github-calendar-container {
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.contribution-grid-fallback {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-width: 650px;
+}
+
+.calendar-months {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #666;
+    padding-left: 20px;
+}
+
+.calendar-days {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: #666;
+    margin-right: 8px;
+    float: left;
+    line-height: 12px;
+}
+
+.calendar-grid {
+    display: flex;
+    gap: 3px;
+    overflow-x: auto;
+    padding-left: 20px;
+}
+
+.week-fallback {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contribution-day-fallback {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.contribution-day-fallback:hover {
+    outline: 1px solid #000;
+}
+
+.contribution-day-fallback.level-0 { background-color: #ebedf0; }
+.contribution-day-fallback.level-1 { background-color: #c6e48b; }
+.contribution-day-fallback.level-2 { background-color: #7bc96f; }
+.contribution-day-fallback.level-3 { background-color: #239a3b; }
+.contribution-day-fallback.level-4 { background-color: #196127; }
+
+/* Recent Repositories */
+.recent-repos {
+    margin-bottom: 60px;
+}
+
+.recent-repos h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.repo-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 3px solid #08d665;
+}
+
+.repo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.repo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.repo-header h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.repo-header h4 a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.repo-header h4 a:hover {
+    color: #08d665;
+}
+
+.repo-visibility {
+    background: #f6f8fa;
+    color: #586069;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #e1e4e8;
+}
+
+.repo-description {
+    color: #586069;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.repo-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #586069;
+}
+
+.repo-language {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.language-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.repo-stars,
+.repo-forks {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.repo-updated {
+    font-size: 12px;
+    color: #586069;
+}
+
+.no-repos {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+/* GitHub Profile Link */
+.github-profile-link {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-github {
+    background: #24292e;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-github:hover {
+    background: #08d665;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(8, 214, 101, 0.3);
+}
+
+.btn-github i {
+    font-size: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .github-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 20px 15px;
+    }
+    
+    .contribution-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .repos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .repo-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .calendar-grid {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .github-content {
+        padding: 0 15px;
+    }
+    
+    .contribution-graph-container {
+        padding: 20px 15px;
+    }
+    
+    .repo-card {
+        padding: 20px 15px;
+    }
+    
+    .repo-stats {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+/* ==========================================================================
+10.1. End GitHub Section
+========================================================================== */
 
 /* ==========================================================================
 11. Start Footer Area

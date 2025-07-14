@@ -4,9 +4,12 @@ import { portfolioCategories, portfolioData } from '../data/portfolioData';
 
 // Modal untuk detail portfolio
 const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageAspectRatio, setImageAspectRatio] = useState('unknown');
 
   if (!isOpen || !portfolio) return null;
+
+  const images = portfolio.images || [portfolio.image];
 
   const handleImageLoad = (e) => {
     const img = e.target;
@@ -21,6 +24,14 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
     }
   };
 
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <div className="portfolio-modal-overlay" onClick={onClose}>
       <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
@@ -31,10 +42,31 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
         <div className="portfolio-modal-content">
           <div className={`portfolio-modal-image ${imageAspectRatio}`}>
             <img 
-              src={portfolio.image} 
-              alt={portfolio.title}
+              src={images[currentImageIndex]} 
+              alt={`${portfolio.title} - Image ${currentImageIndex + 1}`}
               onLoad={handleImageLoad}
             />
+            
+            {images.length > 1 && (
+              <>
+                <button className="image-nav prev" onClick={prevImage}>
+                  <i className="fa fa-chevron-left"></i>
+                </button>
+                <button className="image-nav next" onClick={nextImage}>
+                  <i className="fa fa-chevron-right"></i>
+                </button>
+                
+                <div className="image-indicators">
+                  {images.map((_, index) => (
+                    <button 
+                      key={index}
+                      className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIndex(index)}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
           
           <div className="portfolio-modal-info">
@@ -93,8 +125,11 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
 
 // Card komponen untuk setiap portfolio item
 const PortfolioCard = ({ portfolio, onClick }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageAspectRatio, setImageAspectRatio] = useState('unknown');
   const [imageError, setImageError] = useState(false);
+
+  const images = portfolio.images || [portfolio.image];
 
   const handleImageLoad = (e) => {
     const img = e.target;
@@ -113,16 +148,43 @@ const PortfolioCard = ({ portfolio, onClick }) => {
     setImageError(true);
   };
 
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
-    <div className="portfolio-card" onClick={() => onClick(portfolio)}>
+    <div className="portfolio-card dark-theme" onClick={() => onClick(portfolio)}>
       <div className={`portfolio-card-image ${imageAspectRatio}`}>
         {!imageError ? (
-          <img 
-            src={portfolio.image} 
-            alt={portfolio.title}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-          />
+          <>
+            <img 
+              src={images[currentImageIndex]} 
+              alt={`${portfolio.title} - Image ${currentImageIndex + 1}`}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+            
+            {images.length > 1 && (
+              <>
+                <button className="card-image-nav prev" onClick={prevImage}>
+                  <i className="fa fa-chevron-left"></i>
+                </button>
+                <button className="card-image-nav next" onClick={nextImage}>
+                  <i className="fa fa-chevron-right"></i>
+                </button>
+                
+                <div className="card-image-count">
+                  {currentImageIndex + 1} / {images.length}
+                </div>
+              </>
+            )}
+          </>
         ) : (
           <div className="image-placeholder">
             <i className="fa fa-image"></i>
@@ -223,7 +285,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="section-padding">
+    <section id="portfolio" className="section-padding portfolio-dark">
       <div className="container">
         <div className="section-header text-center">
           <h2 className="section-title wow fadeInDown" data-wow-delay="0.3s">
