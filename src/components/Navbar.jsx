@@ -71,15 +71,6 @@ const Navbar = ({ isLoading }) => {
             <li className="nav-item">
               <a 
                 className="nav-link" 
-                href="#github-contributions"
-                onClick={(e) => { e.preventDefault(); scrollToSection('github-contributions'); }}
-              >
-                GitHub
-              </a>
-            </li>
-            <li className="nav-item">
-              <a 
-                className="nav-link" 
                 href="#portfolio"
                 onClick={(e) => { e.preventDefault(); scrollToSection('portfolio'); }}
               >
