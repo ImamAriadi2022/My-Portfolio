@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { portfolioCategories, portfolioData } from '../data/portfolioData';
+import './Portfolio.css';
 
 // Modal untuk detail portfolio
 const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
@@ -33,14 +34,14 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
   };
 
   return (
-    <div className="portfolio-modal-overlay" onClick={onClose}>
-      <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="portfolio-modal-close" onClick={onClose}>
+    <div className="portfolio-modal-overlay-unique" onClick={onClose}>
+      <div className="portfolio-modal-unique" onClick={(e) => e.stopPropagation()}>
+        <button className="portfolio-modal-close-unique" onClick={onClose}>
           <i className="fa fa-times"></i>
         </button>
         
-        <div className="portfolio-modal-content">
-          <div className={`portfolio-modal-image ${imageAspectRatio}`}>
+        <div className="portfolio-modal-content-unique">
+          <div className={`portfolio-modal-image-unique ${imageAspectRatio}`}>
             <img 
               src={images[currentImageIndex]} 
               alt={`${portfolio.title} - Image ${currentImageIndex + 1}`}
@@ -49,18 +50,18 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
             
             {images.length > 1 && (
               <>
-                <button className="image-nav prev" onClick={prevImage}>
+                <button className="image-nav-unique prev" onClick={prevImage}>
                   <i className="fa fa-chevron-left"></i>
                 </button>
-                <button className="image-nav next" onClick={nextImage}>
+                <button className="image-nav-unique next" onClick={nextImage}>
                   <i className="fa fa-chevron-right"></i>
                 </button>
                 
-                <div className="image-indicators">
+                <div className="image-indicators-unique">
                   {images.map((_, index) => (
                     <button 
                       key={index}
-                      className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                      className={`indicator-unique ${index === currentImageIndex ? 'active' : ''}`}
                       onClick={() => setCurrentImageIndex(index)}
                     />
                   ))}
@@ -69,31 +70,31 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
             )}
           </div>
           
-          <div className="portfolio-modal-info">
+          <div className="portfolio-modal-info-unique">
             <h3>{portfolio.title}</h3>
-            <div className="portfolio-category-badge">
+            <div className="portfolio-category-badge-unique">
               {portfolioCategories.find(cat => cat.id === portfolio.category)?.name}
             </div>
             
-            <p className="portfolio-description">{portfolio.description}</p>
+            <p className="portfolio-description-unique">{portfolio.description}</p>
             
             {portfolio.details && (
-              <div className="portfolio-details">
-                <h4>Project Details</h4>
+              <div className="portfolio-details-unique">
+                <h4><i className="fa fa-info-circle"></i> Project Details</h4>
                 <p>{portfolio.details}</p>
               </div>
             )}
             
-            <div className="portfolio-technologies">
-              <h4>Technologies Used</h4>
-              <div className="tech-tags">
+            <div className="portfolio-technologies-unique">
+              <h4><i className="fa fa-code"></i> Technologies Used</h4>
+              <div className="tech-tags-unique">
                 {portfolio.technologies.map((tech, index) => (
-                  <span key={index} className="tech-tag">{tech}</span>
+                  <span key={index} className="tech-tag-unique">{tech}</span>
                 ))}
               </div>
             </div>
             
-            <div className="portfolio-actions">
+            <div className="portfolio-actions-unique">
               {portfolio.type === 'demo' && portfolio.demoUrl && (
                 <a 
                   href={portfolio.demoUrl} 
@@ -159,8 +160,8 @@ const PortfolioCard = ({ portfolio, onClick }) => {
   };
 
   return (
-    <div className="portfolio-card dark-theme" onClick={() => onClick(portfolio)}>
-      <div className={`portfolio-card-image ${imageAspectRatio}`}>
+    <div className="portfolio-card-unique" onClick={() => onClick(portfolio)}>
+      <div className={`portfolio-card-image-unique ${imageAspectRatio}`}>
         {!imageError ? (
           <>
             <img 
@@ -172,58 +173,58 @@ const PortfolioCard = ({ portfolio, onClick }) => {
             
             {images.length > 1 && (
               <>
-                <button className="card-image-nav prev" onClick={prevImage}>
+                <button className="card-image-nav-unique prev" onClick={prevImage}>
                   <i className="fa fa-chevron-left"></i>
                 </button>
-                <button className="card-image-nav next" onClick={nextImage}>
+                <button className="card-image-nav-unique next" onClick={nextImage}>
                   <i className="fa fa-chevron-right"></i>
                 </button>
                 
-                <div className="card-image-count">
+                <div className="card-image-count-unique">
                   {currentImageIndex + 1} / {images.length}
                 </div>
               </>
             )}
           </>
         ) : (
-          <div className="image-placeholder">
+          <div className="image-placeholder-unique">
             <i className="fa fa-image"></i>
           </div>
         )}
         
-        <div className="portfolio-card-overlay">
-          <div className="portfolio-card-actions">
+        <div className="portfolio-card-overlay-unique">
+          <div className="portfolio-card-actions-unique">
             {portfolio.type === 'demo' ? (
-              <div className="portfolio-type-badge demo">
+              <div className="portfolio-type-badge-unique demo">
                 <i className="fa fa-external-link"></i>
                 <span>Live Demo</span>
               </div>
             ) : (
-              <div className="portfolio-type-badge project">
+              <div className="portfolio-type-badge-unique project">
                 <i className="fa fa-folder"></i>
                 <span>Project</span>
               </div>
             )}
-            <button className="btn btn-view">
+            <button className="btn-view-unique">
               <i className="fa fa-eye"></i> View Details
             </button>
           </div>
         </div>
       </div>
       
-      <div className="portfolio-card-content">
-        <div className="portfolio-card-category">
+      <div className="portfolio-card-content-unique">
+        <div className="portfolio-card-category-unique">
           {portfolioCategories.find(cat => cat.id === portfolio.category)?.name}
         </div>
-        <h3 className="portfolio-card-title">{portfolio.title}</h3>
-        <p className="portfolio-card-description">{portfolio.description}</p>
+        <h3 className="portfolio-card-title-unique">{portfolio.title}</h3>
+        <p className="portfolio-card-description-unique">{portfolio.description}</p>
         
-        <div className="portfolio-card-tech">
+        <div className="portfolio-card-tech-unique">
           {portfolio.technologies.slice(0, 3).map((tech, index) => (
-            <span key={index} className="tech-tag-small">{tech}</span>
+            <span key={index} className="tech-tag-small-unique">{tech}</span>
           ))}
           {portfolio.technologies.length > 3 && (
-            <span className="tech-more">+{portfolio.technologies.length - 3}</span>
+            <span className="tech-more-unique">+{portfolio.technologies.length - 3}</span>
           )}
         </div>
       </div>
@@ -234,11 +235,11 @@ const PortfolioCard = ({ portfolio, onClick }) => {
 // Filter buttons komponen
 const PortfolioFilter = ({ activeCategory, onFilterChange }) => {
   return (
-    <div className="portfolio-filter">
+    <div className="portfolio-filter-unique">
       {portfolioCategories.map((category) => (
         <button
           key={category.id}
-          className={`filter-btn ${activeCategory === category.id ? 'active' : ''}`}
+          className={`portfolio-filter-btn ${activeCategory === category.id ? 'active' : ''}`}
           onClick={() => onFilterChange(category.id)}
         >
           <i className={`fa ${category.icon}`}></i>
@@ -285,14 +286,14 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="section-padding portfolio-dark">
+    <section id="portfolio" className="portfolio-section-main">
       <div className="container">
-        <div className="section-header text-center">
-          <h2 className="section-title wow fadeInDown" data-wow-delay="0.3s">
+        <div className="portfolio-section-header">
+          <h2 className="portfolio-section-title wow fadeInDown" data-wow-delay="0.3s">
             Featured Portfolio
           </h2>
-          <div className="shape wow fadeInDown" data-wow-delay="0.3s"></div>
-          <p className="section-subtitle">
+          <div className="portfolio-section-shape wow fadeInDown" data-wow-delay="0.3s"></div>
+          <p className="portfolio-section-subtitle">
             Here are some of my best projects across different categories
           </p>
         </div>
@@ -302,7 +303,7 @@ const Portfolio = () => {
           onFilterChange={setActiveCategory}
         />
         
-        <div className="portfolio-grid">
+        <div className="portfolio-grid-unique">
           {filteredPortfolio.map((portfolio) => (
             <PortfolioCard 
               key={portfolio.id}
@@ -313,10 +314,10 @@ const Portfolio = () => {
         </div>
         
         {/* View All Projects Button */}
-        <div className="portfolio-view-all">
+        <div className="portfolio-view-all-unique">
           <Link 
             to="/all-projects"
-            className="btn btn-view-all"
+            className="btn-view-all-unique"
           >
             <i className="fa fa-grid"></i>
             <span>View All Projects</span>
@@ -325,7 +326,8 @@ const Portfolio = () => {
         </div>
         
         {filteredPortfolio.length === 0 && (
-          <div className="portfolio-empty">
+          <div className="portfolio-empty-unique">
+            <i className="fa fa-folder-open"></i>
             <p>No featured projects found in this category.</p>
           </div>
         )}

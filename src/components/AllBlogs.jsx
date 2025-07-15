@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { blogData } from '../data/blogData';
+import './AllBlogs.css';
 
 // Blog categories for filtering
 const blogCategories = [
@@ -17,42 +18,42 @@ const BlogModal = ({ blog, isOpen, onClose }) => {
   if (!isOpen || !blog) return null;
 
   return (
-    <div className="blog-modal-overlay" onClick={onClose}>
-      <div className="blog-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="blog-modal-close" onClick={onClose}>
+    <div className="blog-modal-overlay-unique" onClick={onClose}>
+      <div className="blog-modal-unique" onClick={(e) => e.stopPropagation()}>
+        <button className="blog-modal-close-unique" onClick={onClose}>
           <i className="fa fa-times"></i>
         </button>
         
-        <div className="blog-modal-content">
-          <div className="blog-modal-image">
+        <div className="blog-modal-content-unique">
+          <div className="blog-modal-image-unique">
             <img src={blog.coverImage || blog.image} alt={blog.title} />
           </div>
           
-          <div className="blog-modal-info">
-            <div className="blog-meta">
-              <span className="blog-category">{blog.category}</span>
-              <span className="blog-date">{blog.date}</span>
-              <span className="blog-read-time">{blog.readTime}</span>
+          <div className="blog-modal-info-unique">
+            <div className="blog-meta-unique">
+              <span className="blog-category-unique">{blog.category}</span>
+              <span className="blog-date-unique">{blog.date}</span>
+              <span className="blog-read-time-unique">{blog.readTime}</span>
             </div>
             
             <h3>{blog.title}</h3>
-            <p className="blog-description">{blog.description}</p>
+            <p className="blog-description-unique">{blog.description}</p>
             
-            <div className="blog-tags">
+            <div className="blog-tags-unique">
               <h4>Tags</h4>
-              <div className="tag-list">
+              <div className="tag-list-unique">
                 {blog.tags.map((tag, index) => (
-                  <span key={index} className="blog-tag">{tag}</span>
+                  <span key={index} className="blog-tag-unique">{tag}</span>
                 ))}
               </div>
             </div>
             
-            <div className="blog-actions">
+            <div className="blog-actions-unique">
               <a 
                 href={blog.articleUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn-blog-primary-unique"
               >
                 <i className="fa fa-external-link"></i> Read Full Article
               </a>
@@ -67,35 +68,44 @@ const BlogModal = ({ blog, isOpen, onClose }) => {
 // Card komponen untuk setiap blog item
 const BlogCard = ({ blog, onClick }) => {
   return (
-    <div className="blog-card dark-theme" onClick={() => onClick(blog)}>
-      <div className="blog-card-image">
+    <div className="all-blogs-card-unique" onClick={() => onClick(blog)}>
+      <div className="all-blogs-card-image-unique">
         <img src={blog.image} alt={blog.title} />
-        <div className="blog-card-overlay">
-          <div className="blog-card-actions">
-            <div className="blog-category-badge">
+        {blog.featured && (
+          <div className="blog-featured-badge-unique">
+            <i className="fa fa-star"></i> Featured
+          </div>
+        )}
+        <div className="all-blogs-card-overlay-unique">
+          <div className="all-blogs-card-actions-unique">
+            <div className="blog-category-badge-unique">
               <span>{blog.category}</span>
             </div>
-            <button className="btn btn-view">
+            <button className="btn-blog-view-unique">
               <i className="fa fa-eye"></i> Read More
             </button>
           </div>
         </div>
       </div>
       
-      <div className="blog-card-content">
-        <div className="blog-card-meta">
-          <span className="blog-date">{blog.date}</span>
-          <span className="blog-read-time">{blog.readTime}</span>
+      <div className="all-blogs-card-content-unique">
+        <div className="all-blogs-meta-unique">
+          <span className="all-blogs-date-unique">
+            <i className="fa fa-calendar"></i> {blog.date}
+          </span>
+          <span className="all-blogs-read-time-unique">
+            <i className="fa fa-clock-o"></i> {blog.readTime}
+          </span>
         </div>
-        <h3 className="blog-card-title">{blog.title}</h3>
-        <p className="blog-card-excerpt">{blog.excerpt}</p>
+        <h3 className="all-blogs-title-text-unique">{blog.title}</h3>
+        <p className="all-blogs-excerpt-unique">{blog.excerpt}</p>
         
-        <div className="blog-card-tags">
+        <div className="all-blogs-tags-unique">
           {blog.tags.slice(0, 3).map((tag, index) => (
-            <span key={index} className="tag-small">{tag}</span>
+            <span key={index} className="all-blogs-tag-unique">{tag}</span>
           ))}
           {blog.tags.length > 3 && (
-            <span className="tag-more">+{blog.tags.length - 3}</span>
+            <span className="tag-more-unique">+{blog.tags.length - 3}</span>
           )}
         </div>
       </div>
@@ -106,11 +116,11 @@ const BlogCard = ({ blog, onClick }) => {
 // Filter buttons komponen
 const BlogFilter = ({ activeCategory, onFilterChange }) => {
   return (
-    <div className="blog-filter">
+    <div className="all-blogs-filter-unique">
       {blogCategories.map((category) => (
         <button
           key={category.id}
-          className={`filter-btn ${activeCategory === category.id ? 'active' : ''}`}
+          className={`all-blogs-filter-btn ${activeCategory === category.id ? 'active' : ''}`}
           onClick={() => onFilterChange(category.id)}
         >
           <i className={`fa ${category.icon}`}></i>
@@ -143,14 +153,14 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="all-blogs-page blog-dark">
+    <div className="all-blogs-page-unique">
       {/* Header */}
-      <section className="all-blogs-header">
+      <section className="all-blogs-header-unique">
         <div className="container">
-          <Link to="/" className="back-btn">
+          <Link to="/" className="back-btn-blogs-unique">
             <i className="fa fa-arrow-left"></i> Back to Home
           </Link>
-          <div className="all-blogs-title">
+          <div className="all-blogs-title-unique">
             <h1>All Blog Articles</h1>
             <p>Explore my complete collection of web development tutorials, guides, and insights</p>
           </div>
@@ -158,7 +168,7 @@ const AllBlogs = () => {
       </section>
 
       {/* Blog Content */}
-      <section className="all-blogs-content">
+      <section className="all-blogs-content-unique">
         <div className="container">
           <BlogFilter 
             activeCategory={activeCategory}
@@ -166,28 +176,28 @@ const AllBlogs = () => {
           />
           
           {/* Stats */}
-          <div className="blog-stats">
-            <div className="stat-item">
-              <span className="stat-number">{filteredBlogs.length}</span>
-              <span className="stat-label">
+          <div className="blog-stats-unique">
+            <div className="blog-stat-item-unique">
+              <span className="blog-stat-number-unique">{filteredBlogs.length}</span>
+              <span className="blog-stat-label-unique">
                 {activeCategory === 'all' ? 'Total Articles' : 'Articles in Category'}
               </span>
             </div>
-            <div className="stat-item">
-              <span className="stat-number">
+            <div className="blog-stat-item-unique">
+              <span className="blog-stat-number-unique">
                 {filteredBlogs.filter(b => b.featured).length}
               </span>
-              <span className="stat-label">Featured Articles</span>
+              <span className="blog-stat-label-unique">Featured Articles</span>
             </div>
-            <div className="stat-item">
-              <span className="stat-number">
+            <div className="blog-stat-item-unique">
+              <span className="blog-stat-number-unique">
                 {Math.round(filteredBlogs.reduce((sum, b) => sum + parseInt(b.readTime), 0) / filteredBlogs.length) || 0}
               </span>
-              <span className="stat-label">Avg Read Time (min)</span>
+              <span className="blog-stat-label-unique">Avg Read Time (min)</span>
             </div>
           </div>
           
-          <div className="blog-grid">
+          <div className="all-blogs-grid-unique">
             {filteredBlogs.map((blog) => (
               <BlogCard 
                 key={blog.id}
@@ -198,7 +208,7 @@ const AllBlogs = () => {
           </div>
           
           {filteredBlogs.length === 0 && (
-            <div className="blog-empty">
+            <div className="all-blogs-empty-unique">
               <i className="fa fa-file-text-o"></i>
               <p>No articles found in this category.</p>
             </div>

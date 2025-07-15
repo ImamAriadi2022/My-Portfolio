@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allPortfolioData, portfolioCategories } from '../data/portfolioData';
+import './AllProjects.css';
 
 // Modal untuk detail portfolio
 const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
@@ -19,30 +20,30 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
   };
 
   return (
-    <div className="portfolio-modal-overlay" onClick={onClose}>
-      <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="portfolio-modal-close" onClick={onClose}>
+    <div className="all-projects-modal-overlay-unique" onClick={onClose}>
+      <div className="all-projects-modal-unique" onClick={(e) => e.stopPropagation()}>
+        <button className="all-projects-modal-close-unique" onClick={onClose}>
           <i className="fa fa-times"></i>
         </button>
         
-        <div className="portfolio-modal-content">
-          <div className="portfolio-modal-image">
+        <div className="all-projects-modal-content-unique">
+          <div className="all-projects-modal-image-unique">
             <img src={images[currentImageIndex]} alt={`${portfolio.title} - Image ${currentImageIndex + 1}`} />
             
             {images.length > 1 && (
               <>
-                <button className="image-nav prev" onClick={prevImage}>
+                <button className="all-projects-image-nav-unique prev" onClick={prevImage}>
                   <i className="fa fa-chevron-left"></i>
                 </button>
-                <button className="image-nav next" onClick={nextImage}>
+                <button className="all-projects-image-nav-unique next" onClick={nextImage}>
                   <i className="fa fa-chevron-right"></i>
                 </button>
                 
-                <div className="image-indicators">
+                <div className="all-projects-image-indicators-unique">
                   {images.map((_, index) => (
                     <button 
                       key={index}
-                      className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                      className={`all-projects-indicator-unique ${index === currentImageIndex ? 'active' : ''}`}
                       onClick={() => setCurrentImageIndex(index)}
                     />
                   ))}
@@ -51,31 +52,31 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
             )}
           </div>
           
-          <div className="portfolio-modal-info">
+          <div className="all-projects-modal-info-unique">
             <h3>{portfolio.title}</h3>
-            <div className="portfolio-category-badge">
+            <div className="all-projects-category-badge-unique">
               {portfolioCategories.find(cat => cat.id === portfolio.category)?.name}
             </div>
             
-            <p className="portfolio-description">{portfolio.description}</p>
+            <p className="all-projects-description-unique">{portfolio.description}</p>
             
             {portfolio.details && (
-              <div className="portfolio-details">
-                <h4>Project Details</h4>
+              <div className="all-projects-details-unique">
+                <h4><i className="fa fa-info-circle"></i> Project Details</h4>
                 <p>{portfolio.details}</p>
               </div>
             )}
             
-            <div className="portfolio-technologies">
-              <h4>Technologies Used</h4>
-              <div className="tech-tags">
+            <div className="all-projects-technologies-unique">
+              <h4><i className="fa fa-code"></i> Technologies Used</h4>
+              <div className="all-projects-tech-tags-unique">
                 {portfolio.technologies.map((tech, index) => (
-                  <span key={index} className="tech-tag">{tech}</span>
+                  <span key={index} className="all-projects-tech-tag-modal-unique">{tech}</span>
                 ))}
               </div>
             </div>
             
-            <div className="portfolio-actions">
+            <div className="all-projects-actions-unique">
               {portfolio.type === 'demo' && portfolio.demoUrl && (
                 <a 
                   href={portfolio.demoUrl} 
@@ -122,34 +123,34 @@ const PortfolioCard = ({ portfolio, onClick }) => {
   };
 
   return (
-    <div className="portfolio-card dark-theme" onClick={() => onClick(portfolio)}>
-      <div className="portfolio-card-image">
+    <div className="all-projects-card-unique" onClick={() => onClick(portfolio)}>
+      <div className="all-projects-card-image-unique">
         <img src={images[currentImageIndex]} alt={`${portfolio.title} - Image ${currentImageIndex + 1}`} />
         
         {images.length > 1 && (
           <>
-            <button className="card-image-nav prev" onClick={prevImage}>
+            <button className="all-projects-card-nav-unique prev" onClick={prevImage}>
               <i className="fa fa-chevron-left"></i>
             </button>
-            <button className="card-image-nav next" onClick={nextImage}>
+            <button className="all-projects-card-nav-unique next" onClick={nextImage}>
               <i className="fa fa-chevron-right"></i>
             </button>
             
-            <div className="card-image-count">
+            <div className="all-projects-card-count-unique">
               {currentImageIndex + 1} / {images.length}
             </div>
           </>
         )}
         
-        <div className="portfolio-card-overlay">
-          <div className="portfolio-card-actions">
+        <div className="all-projects-card-overlay-unique">
+          <div className="all-projects-card-actions-unique">
             {portfolio.type === 'demo' ? (
-              <div className="portfolio-type-badge demo">
+              <div className="all-projects-type-badge-unique demo">
                 <i className="fa fa-external-link"></i>
                 <span>Live Demo</span>
               </div>
             ) : (
-              <div className="portfolio-type-badge project">
+              <div className="all-projects-type-badge-unique project">
                 <i className="fa fa-folder"></i>
                 <span>Project</span>
               </div>
@@ -160,26 +161,26 @@ const PortfolioCard = ({ portfolio, onClick }) => {
                 <span>Featured</span>
               </div>
             )}
-            <button className="btn btn-view">
+            <button className="all-projects-btn-view-unique">
               <i className="fa fa-eye"></i> View Details
             </button>
           </div>
         </div>
       </div>
       
-      <div className="portfolio-card-content">
-        <div className="portfolio-card-category">
+      <div className="all-projects-card-content-unique">
+        <div className="all-projects-card-category-unique">
           {portfolioCategories.find(cat => cat.id === portfolio.category)?.name}
         </div>
-        <h3 className="portfolio-card-title">{portfolio.title}</h3>
-        <p className="portfolio-card-description">{portfolio.description}</p>
+        <h3 className="all-projects-card-title-unique">{portfolio.title}</h3>
+        <p className="all-projects-card-description-unique">{portfolio.description}</p>
         
-        <div className="portfolio-card-tech">
+        <div className="all-projects-card-tech-unique">
           {portfolio.technologies.slice(0, 3).map((tech, index) => (
-            <span key={index} className="tech-tag-small">{tech}</span>
+            <span key={index} className="all-projects-tech-tag-unique">{tech}</span>
           ))}
           {portfolio.technologies.length > 3 && (
-            <span className="tech-more">+{portfolio.technologies.length - 3}</span>
+            <span className="all-projects-tech-more-unique">+{portfolio.technologies.length - 3}</span>
           )}
         </div>
       </div>
@@ -190,11 +191,11 @@ const PortfolioCard = ({ portfolio, onClick }) => {
 // Filter buttons komponen
 const PortfolioFilter = ({ activeCategory, onFilterChange }) => {
   return (
-    <div className="portfolio-filter">
+    <div className="all-projects-filter-unique">
       {portfolioCategories.map((category) => (
         <button
           key={category.id}
-          className={`filter-btn ${activeCategory === category.id ? 'active' : ''}`}
+          className={`all-projects-filter-btn ${activeCategory === category.id ? 'active' : ''}`}
           onClick={() => onFilterChange(category.id)}
         >
           <i className={`fa ${category.icon}`}></i>
@@ -231,14 +232,14 @@ const AllProjects = () => {
   };
 
   return (
-    <div className="all-projects-page portfolio-dark">
+    <div className="all-projects-page-unique">
       {/* Header */}
-      <section className="all-projects-header">
+      <section className="all-projects-header-unique">
         <div className="container">
-          <Link to="/" className="back-btn">
+          <Link to="/" className="back-btn-unique">
             <i className="fa fa-arrow-left"></i> Back to Home
           </Link>
-          <div className="all-projects-title">
+          <div className="all-projects-title-unique">
             <h1>All My Projects</h1>
             <p>Explore my complete portfolio of web development, mobile apps, and backend projects</p>
           </div>
@@ -246,7 +247,7 @@ const AllProjects = () => {
       </section>
 
       {/* Portfolio Content */}
-      <section className="all-projects-content">
+      <section className="all-projects-content-unique">
         <div className="container">
           <PortfolioFilter 
             activeCategory={activeCategory}
@@ -254,28 +255,28 @@ const AllProjects = () => {
           />
           
           {/* Stats */}
-          <div className="portfolio-stats">
-            <div className="stat-item">
-              <span className="stat-number">{filteredPortfolio.length}</span>
-              <span className="stat-label">
+          <div className="portfolio-stats-unique">
+            <div className="stat-item-unique">
+              <span className="stat-number-unique">{filteredPortfolio.length}</span>
+              <span className="stat-label-unique">
                 {activeCategory === 'all' ? 'Total Projects' : 'Projects in Category'}
               </span>
             </div>
-            <div className="stat-item">
-              <span className="stat-number">
+            <div className="stat-item-unique">
+              <span className="stat-number-unique">
                 {filteredPortfolio.filter(p => p.type === 'demo').length}
               </span>
-              <span className="stat-label">Live Demos</span>
+              <span className="stat-label-unique">Live Demos</span>
             </div>
-            <div className="stat-item">
-              <span className="stat-number">
+            <div className="stat-item-unique">
+              <span className="stat-number-unique">
                 {filteredPortfolio.filter(p => p.featured).length}
               </span>
-              <span className="stat-label">Featured Projects</span>
+              <span className="stat-label-unique">Featured Projects</span>
             </div>
           </div>
           
-          <div className="portfolio-grid">
+          <div className="all-projects-grid-unique">
             {filteredPortfolio.map((portfolio) => (
               <PortfolioCard 
                 key={portfolio.id}
@@ -286,7 +287,8 @@ const AllProjects = () => {
           </div>
           
           {filteredPortfolio.length === 0 && (
-            <div className="portfolio-empty">
+            <div className="all-projects-empty-unique">
+              <i className="fa fa-folder-open"></i>
               <p>No projects found in this category.</p>
             </div>
           )}

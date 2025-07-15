@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import BlogSection from './components/BlogSection';
 import StatisticsSection from './components/ContactSection';
 import Footer from './components/Footer';
-import GitHubContributions from './components/GitHubContributions';
 import HeroSection from './components/HeroSection';
 import Navbar from './components/Navbar';
 import Portfolio from './components/Portfolio';
@@ -112,7 +111,6 @@ function App() {
       <Navbar isLoading={isLoading} />
       <HeroSection isLoading={isLoading} />
       <ServicesSection />
-      <GitHubContributions />
       <Portfolio />
       <BlogSection />
       <StatisticsSection />
