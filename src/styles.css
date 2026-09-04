@@ -140,37 +140,6 @@ p {
   }
 }
 
-.btn-refresh-stats {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(40, 167, 69, 0.4);
-  color: #ffffff;
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-refresh-stats:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  color: #ffffff;
-  box-shadow: 0 4px 18px rgba(40, 167, 69, 0.45);
-  transform: translateY(-2px);
-}
-
-.btn-refresh-stats:active {
-  transform: translateY(0);
-}
-
-.btn-refresh-stats i {
-  font-size: 0.95rem;
-}
-
 /* Statistics Overview Cards */
 .stats-overview {
   margin: 60px 0;

@@ -5,8 +5,7 @@ const StatisticsSection = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [statsData, setStatsData] = useState(() => generateSynchronizedProjectData(new Date()));
   const [animatedStats, setAnimatedStats] = useState({});
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [chartKey, setChartKey] = useState(1);
+  const [chartKey] = useState(1);
 
   // Fungsi animasi angka naik (Counter Animation) dengan kurva halus
   const animateCounters = useCallback((targetStats) => {
@@ -46,20 +45,6 @@ const StatisticsSection = () => {
   useEffect(() => {
     animateCounters(statsData.projectStats);
   }, [animateCounters, statsData.projectStats]);
-
-  // Handler untuk mengacak dan memperbarui data secara dinamis & tersinkronisasi
-  const handleRandomizeData = () => {
-    setIsRefreshing(true);
-    const now = new Date();
-    const newData = generateSynchronizedProjectData(now);
-    setStatsData(newData);
-    setChartKey((prev) => prev + 1);
-    animateCounters(newData.projectStats);
-
-    setTimeout(() => {
-      setIsRefreshing(false);
-    }, 600);
-  };
 
   const renderChart = (data, type) => {
     if (type === 'bar') {
@@ -143,22 +128,12 @@ const StatisticsSection = () => {
             Wawasan berbasis data mengenai perjalanan profesional dan pencapaian proyek saya
           </p>
 
-          {/* Bar Sinkronisasi Waktu Nyata & Tombol Acak/Perbarui */}
+          {/* Bar Sinkronisasi Waktu Nyata */}
           <div className="stats-sync-bar">
             <span className="sync-badge">
               <span className="sync-pulse-dot"></span>
               Sinkronisasi Real-Time: <strong>{statsData.lastUpdated.monthName} {statsData.lastUpdated.year}</strong> (Pukul {statsData.lastUpdated.time} WIB)
             </span>
-            <button 
-              type="button" 
-              className="btn-refresh-stats" 
-              onClick={handleRandomizeData}
-              title="Klik untuk mengacak data baru yang tetap sinkron dengan metrik atas"
-              disabled={isRefreshing}
-            >
-              <i className={`fa fa-refresh ${isRefreshing ? 'fa-spin' : ''}`}></i>
-              <span>{isRefreshing ? 'Memperbarui...' : 'Acak / Perbarui Data'}</span>
-            </button>
           </div>
         </div>
 
