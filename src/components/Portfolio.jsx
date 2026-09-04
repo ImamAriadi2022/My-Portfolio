@@ -1,12 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { portfolioCategories, portfolioData } from '../data/portfolioData';
+import { allPortfolioData, portfolioCategories, portfolioData } from '../data/portfolioData';
 import './Portfolio.css';
 
 // Modal untuk detail portfolio
 const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageAspectRatio, setImageAspectRatio] = useState('unknown');
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      setCurrentImageIndex(0);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, portfolio]);
 
   if (!isOpen || !portfolio) return null;
 
@@ -78,15 +90,48 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
             
             <p className="portfolio-description-unique">{portfolio.description}</p>
             
+            {/* 1. Tujuan Proyek */}
+            {portfolio.goal && (
+              <div className="portfolio-section-block-unique goal-block">
+                <h4><i className="fa fa-bullseye"></i> Tujuan Proyek</h4>
+                <p>{portfolio.goal}</p>
+              </div>
+            )}
+
+            {/* 2. Fitur Utama */}
+            {portfolio.features && portfolio.features.length > 0 && (
+              <div className="portfolio-section-block-unique features-block">
+                <h4><i className="fa fa-check-square-o"></i> Fitur Utama</h4>
+                <ul className="portfolio-features-list-unique">
+                  {portfolio.features.map((feature, idx) => (
+                    <li key={idx}>
+                      <i className="fa fa-check-circle"></i>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* 3. Arsitektur Sistem */}
+            {portfolio.architecture && (
+              <div className="portfolio-section-block-unique architecture-block">
+                <h4><i className="fa fa-cubes"></i> Arsitektur & Alur Sistem</h4>
+                <p>{portfolio.architecture}</p>
+              </div>
+            )}
+
+            {/* 4. Detail Teknis / Skala */}
             {portfolio.details && (
-              <div className="portfolio-details-unique">
-                <h4><i className="fa fa-info-circle"></i> Project Details</h4>
+              <div className="portfolio-section-block-unique details-block">
+                <h4><i className="fa fa-tachometer"></i> Skala & Catatan Teknis</h4>
                 <p>{portfolio.details}</p>
               </div>
             )}
             
+            {/* 5. Teknologi yang Digunakan */}
             <div className="portfolio-technologies-unique">
-              <h4><i className="fa fa-code"></i> Technologies Used</h4>
+              <h4><i className="fa fa-code"></i> Teknologi yang Digunakan</h4>
               <div className="tech-tags-unique">
                 {portfolio.technologies.map((tech, index) => (
                   <span key={index} className="tech-tag-unique">{tech}</span>
@@ -94,6 +139,7 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
               </div>
             </div>
             
+            {/* 6. Action & CTA Buttons */}
             <div className="portfolio-actions-unique">
               {portfolio.type === 'demo' && portfolio.demoUrl && (
                 <a 
@@ -102,7 +148,7 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
                   rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
-                  <i className="fa fa-external-link"></i> View Demo
+                  <i className="fa fa-external-link"></i> Live Demo
                 </a>
               )}
               
@@ -116,6 +162,16 @@ const PortfolioModal = ({ portfolio, isOpen, onClose }) => {
                   <i className="fa fa-github"></i> Source Code
                 </a>
               )}
+
+              <a 
+                href={`https://wa.me/6285788322061?text=${encodeURIComponent(`Halo Mas Imam, saya melihat proyek "${portfolio.title}" di portfolio Anda dan tertarik untuk konsultasi pembuatan proyek serupa.`)}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-consult-unique"
+                title="Konsultasi Proyek Serupa"
+              >
+                <i className="fa fa-whatsapp"></i> Konsultasi Proyek
+              </a>
             </div>
           </div>
         </div>
@@ -319,9 +375,10 @@ const Portfolio = () => {
             to="/all-projects"
             className="btn-view-all-unique"
           >
-            <i className="fa fa-grid"></i>
+            <i className="fa fa-th-large"></i>
             <span>View All Projects</span>
-            <small>({portfolioData.length + 6} total projects)</small>
+            <span className="view-all-badge-unique">{allPortfolioData.length}</span>
+            <i className="fa fa-arrow-right view-all-arrow"></i>
           </Link>
         </div>
         

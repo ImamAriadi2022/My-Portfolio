@@ -1,6 +1,10 @@
 
 
+import { useState } from 'react';
+import TermsModal from './TermsModal';
+
 const Footer = () => {
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -135,17 +139,22 @@ Sent from footer contact form`;
                 <h5><i className="fa fa-whatsapp"></i> Quick Message</h5>
                 <p>Send me a quick message via WhatsApp</p>
                 <form className="whatsapp-form" onSubmit={handleQuickMessage}>
-                  <input 
-                    type="text" 
-                    placeholder="Type your message here..." 
-                    required
-                    maxLength="200"
-                  />
-                  <button type="submit">
-                    <i className="fa fa-whatsapp"></i>
-                  </button>
+                  <div className="whatsapp-input-wrapper">
+                    <input 
+                      type="text" 
+                      placeholder="Type your message..." 
+                      required
+                      maxLength="200"
+                    />
+                    <button type="submit" aria-label="Send WhatsApp message" title="Send message">
+                      <i className="fa fa-whatsapp"></i>
+                    </button>
+                  </div>
                 </form>
-                <small>Direct WhatsApp message</small>
+                <small>
+                  <span className="whatsapp-status-dot"></span>
+                  Direct WhatsApp message
+                </small>
               </div>
             </div>
           </div>
@@ -161,9 +170,16 @@ Sent from footer contact form`;
             </div>
             <div className="col-lg-6 col-md-6">
               <div className="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Sitemap</a>
+                <a 
+                  href="#terms" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsTermsOpen(true);
+                  }}
+                  title="Baca Syarat & Ketentuan Layanan"
+                >
+                  Terms of Service
+                </a>
               </div>
             </div>
           </div>
@@ -185,6 +201,9 @@ Sent from footer contact form`;
           <span></span>
         </div>
       </div>
+      
+      {/* Terms of Service Modal */}
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </footer>
   );
 };

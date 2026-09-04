@@ -492,7 +492,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000000;
   padding: 20px;
   backdrop-filter: blur(8px);
 }
@@ -754,6 +754,115 @@
   background: #666666;
   color: #ffffff;
   border-color: #666666;
+}
+
+.all-projects-actions-unique .btn-consult-unique {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  border: 2px solid transparent;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.all-projects-actions-unique .btn-consult-unique:hover {
+  background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+  transform: translateY(-4px);
+  color: #ffffff;
+}
+
+/* Portfolio Case Study Blocks in AllProjects */
+.portfolio-section-block-unique {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+  transition: all 0.25s ease;
+}
+
+.portfolio-section-block-unique:hover {
+  border-color: rgba(40, 167, 69, 0.35);
+  background: rgba(40, 167, 69, 0.03);
+}
+
+.portfolio-section-block-unique h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-section-block-unique h4 i {
+  color: #28a745;
+  font-size: 15px;
+}
+
+.portfolio-section-block-unique p {
+  color: #d1d5db;
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Specific Block Accents */
+.portfolio-section-block-unique.goal-block {
+  border-left: 3px solid #28a745;
+}
+
+.portfolio-section-block-unique.goal-block h4 i {
+  color: #28a745;
+}
+
+.portfolio-section-block-unique.features-block {
+  border-left: 3px solid #34ce57;
+}
+
+.portfolio-section-block-unique.features-block h4 i {
+  color: #34ce57;
+}
+
+.portfolio-section-block-unique.architecture-block {
+  border-left: 3px solid #17a2b8;
+}
+
+.portfolio-section-block-unique.architecture-block h4 i {
+  color: #17a2b8;
+}
+
+.portfolio-section-block-unique.details-block {
+  border-left: 3px solid #ffc107;
+}
+
+.portfolio-section-block-unique.details-block h4 i {
+  color: #ffc107;
+}
+
+/* Features List */
+.portfolio-features-list-unique {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.portfolio-features-list-unique li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #cbd5e0;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.portfolio-features-list-unique li i {
+  color: #28a745;
+  font-size: 13px;
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 
 /* Empty State for All Projects */

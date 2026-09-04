@@ -62,35 +62,35 @@ export const projectCategories = [
 export const clientTestimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    company: "TechStart Inc.",
+    name: "Rizky Pratama",
+    company: "PT Sinar Solusi Digital",
     rating: 5,
-    comment: "Outstanding work! Delivered exactly what we needed.",
-    project: "E-commerce Platform"
+    comment: "Pengerjaan website e-learning kami sangat memuaskan! Desainnya modern, performa responsif, dan alur komunikasinya sangat cepat tanggap. Sangat profesional!",
+    project: "Platform E-Learning & Portal Edukasi"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    company: "Digital Solutions",
+    name: "Dian Safitri",
+    company: "Nusantara Tech Kreatif",
     rating: 5,
-    comment: "Professional, timely, and excellent communication.",
-    project: "Mobile App Development"
+    comment: "Mas Imam sangat responsif dan paham betul kebutuhan bisnis kami. Aplikasi mobile task management yang dibangun berjalan sangat lancar dan selesai tepat waktu.",
+    project: "Aplikasi Mobile Task Management"
   },
   {
     id: 3,
-    name: "Lisa Rodriguez",
-    company: "Creative Agency",
-    rating: 4,
-    comment: "Great attention to detail and modern design.",
-    project: "Portfolio Website"
+    name: "Budi Santoso",
+    company: "CV Media Mandiri Pratama",
+    rating: 5,
+    comment: "Kerja sama yang luar biasa. Desain landing page sangat rapi, navigasi interaktif, dan integrasi fitur chatbot langsung membantu meningkatkan konversi pengunjung kami.",
+    project: "Landing Page & Chatbot Bisnis"
   },
   {
     id: 4,
-    name: "David Kim",
-    company: "StartupHub",
+    name: "Anisa Rahmawati",
+    company: "Inovasi Berkah Bersama",
     rating: 5,
-    comment: "Exceeded expectations in every aspect.",
-    project: "Web Application"
+    comment: "Arsitektur backend API yang dibangun sangat stabil, cepat, dan aman. Dokumentasi-nya juga rapi sehingga tim kami sangat terbantu saat integrasi.",
+    project: "Backend API & Database Architecture"
   }
 ];
 

@@ -1,0 +1,62 @@
+{
+  "title": "Terms of Service",
+  "subtitle": "Syarat & Ketentuan Penggunaan Website",
+  "lastUpdated": "September 2024",
+  "effectiveDate": "1 September 2024",
+  "introduction": "Selamat datang di website portofolio Imam Ariadi. Dengan mengakses, membaca, atau menggunakan website ini, Anda dianggap telah memahami dan menyetujui seluruh syarat serta ketentuan yang tercantum di bawah ini.",
+  "sections": [
+    {
+      "id": "acceptance",
+      "icon": "fa-check-circle",
+      "title": "1. Penerimaan Ketentuan",
+      "content": "Website ini disediakan sebagai media portofolio profesional untuk menampilkan karya, proyek pengembangan web & mobile, tulisan blog, serta penawaran layanan teknologi.",
+      "points": [
+        "Akses ke website ini sepenuhnya sukarela dan tunduk pada kepatuhan terhadap ketentuan ini.",
+        "Jika Anda tidak menyetujui salah satu ketentuan, disarankan untuk tidak melanjutkan penggunaan website."
+      ]
+    },
+    {
+      "id": "intellectual-property",
+      "icon": "fa-shield",
+      "title": "2. Hak Cipta & Kekayaan Intelektual",
+      "content": "Seluruh konten dalam website ini, termasuk desain tampilan, kode sumber, logo, tulisan, dan aset grafis adalah milik Imam Ariadi, kecuali disebutkan lain.",
+      "points": [
+        "Dilarang menduplikasi, mempublikasikan ulang, atau memperjualbelikan materi di website ini tanpa izin tertulis dari pemilik.",
+        "Repositori kode publik di GitHub tunduk pada lisensi open-source masing-masing yang tertera pada repositori terkait."
+      ]
+    },
+    {
+      "id": "services",
+      "icon": "fa-briefcase",
+      "title": "3. Layanan & Kerja Sama Profesional",
+      "content": "Informasi mengenai jasa (Frontend, Backend, Fullstack Development) yang ditampilkan bertujuan sebagai gambaran keahlian dan kapasitas kerja.",
+      "points": [
+        "Setiap kerja sama proyek resmi akan diikat melalui perjanjian kontrak kerja dan kesepakatan tertulis terpisah.",
+        "Estimasi biaya dan linimasa penyelesaian dapat bervariasi sesuai tingkat kompleksitas kebutuhan proyek."
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "icon": "fa-info-circle",
+      "title": "4. Penafian Tanggung Jawab (Disclaimer)",
+      "content": "Website ini disediakan secara 'as-is' (sebagaimana adanya). Meskipun selalu diupayakan akurasi dan pembaruan informasi yang optimal, pemilik website tidak bertanggung jawab atas kerugian langsung maupun tidak langsung yang timbul dari pemanfaatan informasi pada situs ini."
+    },
+    {
+      "id": "external-links",
+      "icon": "fa-external-link",
+      "title": "5. Tautan ke Pihak Ketiga",
+      "content": "Website ini dapat memuat tautan ke situs eksternal (seperti GitHub, LinkedIn, Medium, atau demo live aplikasi). Pemilik website tidak memiliki kendali atas isi dan kebijakan privasi situs pihak ketiga tersebut."
+    },
+    {
+      "id": "contact",
+      "icon": "fa-envelope-o",
+      "title": "6. Hubungi Saya",
+      "content": "Jika ada pertanyaan atau kebutuhan klarifikasi lebih lanjut seputar Syarat dan Ketentuan ini, Anda dapat menghubungi langsung melalui:",
+      "points": [
+        "Email: imam.ariadi@gmail.com",
+        "WhatsApp: +62 857-8832-2061"
+      ]
+    }
+  ],
+  "footerNote": "Ketentuan ini dapat diperbarui sewaktu-waktu sesuai perkembangan website. Pembaruan akan efektif berlaku segera setelah diunggah ke halaman ini."
+}

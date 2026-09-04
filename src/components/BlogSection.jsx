@@ -114,11 +114,12 @@ const BlogSection = () => {
         <div className="blog-view-all text-center">
           <Link 
             to="/all-blogs"
-            className="btn btn-view-all-blog"
+            className="btn-view-all-blog"
           >
             <i className="fa fa-newspaper-o"></i>
             <span>View All Blog Posts</span>
-            <small>({blogData.length} total articles)</small>
+            <span className="view-all-badge-unique">{blogData.length}</span>
+            <i className="fa fa-arrow-right view-all-arrow"></i>
           </Link>
         </div>
       </div>
