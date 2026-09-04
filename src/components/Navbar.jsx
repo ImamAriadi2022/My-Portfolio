@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollPosition } from '../hooks/useScrollEffects';
 
 const Navbar = ({ isLoading }) => {
@@ -56,7 +57,7 @@ const Navbar = ({ isLoading }) => {
                 href="#home"
                 onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
               >
-                Home
+                Beranda
               </a>
             </li>
             <li className="nav-item">
@@ -65,8 +66,17 @@ const Navbar = ({ isLoading }) => {
                 href="#services"
                 onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
               >
-                Services
+                Layanan
               </a>
+            </li>
+            <li className="nav-item">
+              <Link 
+                className="nav-link" 
+                to="/price-list"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Daftar Harga
+              </Link>
             </li>
             <li className="nav-item">
               <a 
@@ -74,7 +84,7 @@ const Navbar = ({ isLoading }) => {
                 href="#portfolio"
                 onClick={(e) => { e.preventDefault(); scrollToSection('portfolio'); }}
               >
-                Portfolio
+                Portofolio
               </a>
             </li>
             <li className="nav-item">
@@ -92,7 +102,7 @@ const Navbar = ({ isLoading }) => {
                 href="#statistics"
                 onClick={(e) => { e.preventDefault(); scrollToSection('statistics'); }}
               >
-                Statistics
+                Statistik
               </a>
             </li>
           </ul>

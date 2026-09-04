@@ -1,3 +1,17 @@
+/**
+ * DATA PORTFOLIO IMAM ARIADI
+ * 
+ * CATATAN PENGGUNAAN:
+ * 1. `image`: Gambar sampul utama (cover) yang akan tampil di kartu (card) proyek.
+ * 2. `images`: Array pameran dokumentasi / screenshot seluruh halaman proyek.
+ *    Bisa berupa string URL: ['/img/page1.png', '/img/page2.png']
+ *    Atau objek dengan caption: [{ url: '/img/page1.png', caption: 'Halaman Dashboard' }]
+ * 3. `demoUrl`: Link demo aplikasi live.
+ *    - Jika proyek SUDAH TERDEPLOY: isi URL live demo (contoh: 'https://teralab.vercel.app').
+ *    - Jika proyek BELUM TERDEPLOY: isi `null` atau kosongkan. Sistem akan otomatis menampilkan
+ *      status "Lokal / Belum Terdeploy Publik" dan mengarahkan calon buyer melihat pameran screenshot.
+ */
+
 export const portfolioData = [
   // Frontend Web Projects - Top 3
   {
@@ -13,11 +27,13 @@ export const portfolioData = [
       'Chatbot terintegrasi untuk customer support cepat dan konsultasi langsung',
       'Optimasi aset dan struktur halaman ramah SEO untuk visibilitas mesin pencari'
     ],
+    // Gambar Cover Utama untuk Card
     image: '/img/teralab.png',
+    // Dokumentasi Screenshot Seluruh Halaman untuk Modal
     images: [
-      '/img/teralab.png',
-      '/assets/img/b1.jpg',
-      '/assets/img/port3.jpg'
+      { url: '/img/teralab.png', caption: 'Halaman Beranda & Navigasi Silabus' },
+      { url: '/assets/img/b1.jpg', caption: 'Katalog Layanan & Modul Proteksi' },
+      { url: '/assets/img/port3.jpg', caption: 'Fitur Chatbot & Konsultasi Interaktif' }
     ],
     technologies: ['React', 'JavaScript', 'Material-UI', 'Bootstrap'],
     type: 'demo',
@@ -40,11 +56,13 @@ export const portfolioData = [
       'Dukungan offline-first: data tetap tersimpan aman saat tidak ada koneksi internet',
       'Filter cerdas dan pelacakan riwayat tugas selesai dengan visual progres'
     ],
+    // Gambar Cover Utama untuk Card
     image: '/assets/img/b2.png',
+    // Dokumentasi Screenshot Seluruh Halaman untuk Modal
     images: [
-      '/assets/img/b2.png',
-      '/assets/img/b3.png',
-      '/assets/img/b4.png'
+      { url: '/assets/img/b2.png', caption: 'Dashboard Utama & Manajemen Tugas' },
+      { url: '/assets/img/b3.png', caption: 'Detail Tenggat Waktu & Prioritas' },
+      { url: '/assets/img/b4.png', caption: 'Riwayat Tugas Selesai & Filter Kategori' }
     ],
     technologies: ['React Native', 'Redux', 'AsyncStorage', 'Push Notifications'],
     type: 'demo',
@@ -53,7 +71,7 @@ export const portfolioData = [
     featured: true
   },
 
-  // Backend Projects - Top 3
+  // Backend Projects - Top 3 (Contoh Proyek Belum Dideploy / DApp Blockchain)
   {
     id: 7,
     category: 'backend',
@@ -67,14 +85,17 @@ export const portfolioData = [
       'Penyimpanan aset terdistribusi menggunakan protokol IPFS yang tahan sensor',
       'Smart contract teroptimasi untuk konsumsi gas yang efisien pada setiap transaksi'
     ],
+    // Gambar Cover Utama untuk Card
     image: '/img/web3.png',
+    // Dokumentasi Screenshot Seluruh Halaman untuk Modal
     images: [
-      '/img/web3.png',
-      '/assets/img/b7.png',
-      '/assets/img/b8.jpg'
+      { url: '/img/web3.png', caption: 'Antarmuka DApp & Koneksi Dompet MetaMask' },
+      { url: '/assets/img/b7.png', caption: 'Pengujian & Kompilasi Smart Contract via Hardhat' },
+      { url: '/assets/img/b8.jpg', caption: 'Penyimpanan Desentralisasi Metadata IPFS' }
     ],
-    technologies: ['Node.js', 'hardhat', 'Solidity', 'IPFS', 'Ethers.js'],
+    technologies: ['Node.js', 'Hardhat', 'Solidity', 'IPFS', 'Ethers.js'],
     type: 'project',
+    demoUrl: null, // Belum terdeploy publik (lingkungan lokal / testnet)
     githubUrl: 'https://github.com/ImamAriadi2022/metamint-nft-dapp',
     details: 'API yang menangani 10,000+ transaksi per hari dengan response time rata-rata 150ms. Implementasi rate limiting, caching dengan Redis, dan monitoring dengan Prometheus.',
     featured: true
@@ -100,11 +121,17 @@ export const allPortfolioData = [
       'Mode gelap/terang (Dark/Light Mode) dengan penyimpanan preferensi pengguna'
     ],
     image: '/assets/img/b8.jpg',
+    images: [
+      { url: '/assets/img/b8.jpg', caption: 'Ringkasan Metrik Multi-Platform & Total Engagement' },
+      { url: '/assets/img/b6.jpg', caption: 'Grafik Analitik Interaktif Performa Kampanye' },
+      { url: '/assets/img/port9.jpg', caption: 'Fitur Filter Periode & Ekspor Laporan CSV/PDF' }
+    ],
     technologies: ['React', 'Redux Toolkit', 'Chart.js', 'Axios'],
     type: 'demo',
     demoUrl: 'https://social-dashboard-demo.vercel.app',
     githubUrl: 'https://github.com/imam/social-dashboard'
   },
+
   // Additional Mobile Apps
   {
     id: 12,
@@ -120,13 +147,18 @@ export const allPortfolioData = [
       'Antarmuka dinamis dengan animasi visual yang berganti sesuai kondisi cuaca aktual'
     ],
     image: '/assets/img/arr (4).jpg',
+    images: [
+      { url: '/assets/img/arr (4).jpg', caption: 'Tampilan Cuaca Real-Time Berdasarkan GPS' },
+      { url: '/assets/img/b2.png', caption: 'Prakiraan Cuaca Per Jam & 7 Hari ke Depan' },
+      { url: '/assets/img/b3.png', caption: 'Peringatan Dini Cuaca Ekstrem & Indeks UV' }
+    ],
     technologies: ['React Native', 'OpenWeather API', 'AsyncStorage'],
     type: 'demo',
     demoUrl: 'https://expo.dev/@imam/weather-app',
     githubUrl: 'https://github.com/imam/weather-app'
   },
   
-  // Additional Backend Projects
+  // Additional Backend Projects (Contoh Proyek Belum Dideploy / Microservice Internal)
   {
     id: 14,
     category: 'backend',
@@ -140,39 +172,45 @@ export const allPortfolioData = [
       'Proteksi Brute-Force dan Rate Limiting terdistribusi menggunakan Redis',
       'Role-Based Access Control (RBAC) granular dan audit trail pencatatan aktivitas login'
     ],
-    image: '/assets/img/hero-section.png',
+    image: '/assets/img/b7.png',
+    images: [
+      { url: '/assets/img/b7.png', caption: 'Dokumentasi RESTful API via Swagger UI' },
+      { url: '/assets/img/b5.png', caption: 'Skema Database Relasional PostgreSQL' },
+      { url: '/assets/img/port3.png', caption: 'Arsitektur Microservice & Redis Session Store' }
+    ],
     technologies: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Passport.js', 'JWT'],
     type: 'project',
+    demoUrl: null, // Microservice backend internal / belum terdeploy publik
     githubUrl: 'https://github.com/imam/auth-service',
-    details: 'Service yang handle authentication untuk multiple applications dengan rate limiting dan session management.'
+    details: 'Layanan terpusat yang menangani autentikasi untuk berbagai aplikasi dengan rate limiting dan pengelolaan sesi yang aman.'
   }
 ];
 
 export const portfolioCategories = [
-  { id: 'all', name: 'All Projects', icon: 'fa-th' },
-  { id: 'frontend-web', name: 'Frontend Web', icon: 'fa-globe' },
-  { id: 'frontend-mobile', name: 'Mobile Apps', icon: 'fa-mobile' },
-  { id: 'backend', name: 'Backend', icon: 'fa-server' },
-  { id: 'ai', name: 'Artificial Intelligence', icon: 'fa-robot' }
+  { id: 'all', name: 'Semua Proyek', icon: 'fa-th' },
+  { id: 'frontend-web', name: 'Web Frontend', icon: 'fa-globe' },
+  { id: 'frontend-mobile', name: 'Aplikasi Mobile', icon: 'fa-mobile' },
+  { id: 'backend', name: 'Backend & API', icon: 'fa-server' },
+  { id: 'ai', name: 'Kecerdasan Buatan (AI)', icon: 'fa-robot' }
 ];
 
 export const services = [
   {
     id: 1,
     icon: '/assets/img/service/icon-responsive.svg',
-    title: 'Backend Development',
-    description: 'Building robust and scalable server-side applications with modern technologies and best practices'
+    title: 'Pengembangan Backend',
+    description: 'Membangun arsitektur server yang andal, aman, dan berkinerja tinggi dengan teknologi modern dan standar industri.'
   },
   {
     id: 2,
     icon: '/assets/img/service/icon-email.svg',
-    title: 'Frontend Development',
-    description: 'Creating responsive and interactive user interfaces for web and mobile applications'
+    title: 'Pengembangan Frontend',
+    description: 'Merancang antarmuka pengguna (UI/UX) yang responsif, interaktif, dan estetik untuk aplikasi web dan mobile.'
   },
   {
     id: 3,
     icon: '/assets/img/service/icon-lock.svg',
-    title: 'Fullstack Development',
-    description: 'Complete end-to-end development solutions for both web and mobile applications'
+    title: 'Pengembangan Fullstack',
+    description: 'Solusi pengembangan aplikasi menyeluruh mulai dari perancangan database, backend API, hingga antarmuka pengguna siap pakai.'
   }
 ];

@@ -1,0 +1,346 @@
+{
+  "pageHeader": {
+    "title": "Daftar Harga & Paket Layanan",
+    "subtitle": "Pilihan layanan pengembangan web, bimbingan teknologi, support IT, dan konsultasi profesional dengan harga transparan dan dapat disesuaikan dengan kebutuhan Anda.",
+    "badge": "Transparan & Fleksibel"
+  },
+  "categories": [
+    {
+      "id": "all",
+      "name": "Semua Layanan",
+      "icon": "fa-th-large"
+    },
+    {
+      "id": "web-development",
+      "name": "Pengembangan Web",
+      "icon": "fa-globe"
+    },
+    {
+      "id": "learning",
+      "name": "Bimbingan Belajar",
+      "icon": "fa-graduation-cap"
+    },
+    {
+      "id": "it-support",
+      "name": "Support IT",
+      "icon": "fa-wrench"
+    },
+    {
+      "id": "consultation",
+      "name": "Konsultasi Berbayar",
+      "icon": "fa-comments"
+    }
+  ],
+  "packages": [
+    {
+      "id": "landing-page",
+      "category": "web-development",
+      "name": "Landing Page / Company Profile",
+      "badge": "Pilihan Pemula",
+      "isPopular": false,
+      "price": "Rp 1.500.000",
+      "pricePeriod": "mulai dari / proyek",
+      "description": "Website profesional untuk UMKM, personal brand, organisasi, perusahaan, produk, maupun layanan yang membutuhkan kehadiran digital.",
+      "timeline": "3 - 7 Hari Kerja",
+      "features": [
+        "Desain responsif Mobile, Tablet, dan Desktop",
+        "Hingga 6 section utama",
+        "Integrasi WhatsApp & Form Kontak",
+        "Animasi dan interaksi dasar",
+        "Optimasi performa dan SEO dasar",
+        "Bantuan konfigurasi domain & hosting",
+        "Garansi perbaikan bug 14 hari"
+      ],
+      "technologies": [
+        "React / Vite",
+        "Tailwind CSS / Bootstrap",
+        "SEO Ready"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya tertarik dengan paket Landing Page / Company Profile. Bisa minta detail paket dan estimasinya?"
+    },
+    {
+      "id": "web-application",
+      "category": "web-development",
+      "name": "Web Application",
+      "badge": "Paling Populer",
+      "isPopular": true,
+      "price": "Rp 3.500.000",
+      "pricePeriod": "mulai dari / proyek",
+      "description": "Pengembangan aplikasi web dinamis dengan database, autentikasi, dashboard, CRUD, dan fitur bisnis yang disesuaikan dengan kebutuhan.",
+      "timeline": "2 - 4 Minggu",
+      "features": [
+        "Frontend interaktif berbasis React",
+        "Backend API menggunakan Node.js / Express",
+        "Sistem login dan autentikasi",
+        "Role & permission management",
+        "Database MySQL / PostgreSQL / MongoDB",
+        "Dashboard dan sistem CRUD",
+        "Integrasi API pihak ketiga",
+        "Source code dan dokumentasi proyek",
+        "Garansi bug hingga 30 hari"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express",
+        "MySQL / PostgreSQL",
+        "REST API"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya ingin membuat Web Application untuk kebutuhan bisnis/proyek saya. Bisa diskusi mengenai fitur dan estimasinya?"
+    },
+    {
+      "id": "custom-web-system",
+      "category": "web-development",
+      "name": "Custom Web System",
+      "badge": "Kebutuhan Khusus",
+      "isPopular": false,
+      "price": "Rp 6.000.000",
+      "pricePeriod": "mulai dari / proyek",
+      "description": "Pengembangan sistem web kompleks seperti sistem informasi, dashboard manajemen, marketplace, SaaS, sistem internal perusahaan, atau platform digital dengan kebutuhan khusus.",
+      "timeline": "4 - 8 Minggu",
+      "features": [
+        "Analisis kebutuhan sistem",
+        "Perancangan UI/UX",
+        "Frontend dan backend terintegrasi",
+        "Database architecture",
+        "Multi-role & permission system",
+        "Dashboard management",
+        "Integrasi REST API",
+        "Integrasi layanan pihak ketiga",
+        "Deployment ke server / cloud",
+        "Source code lengkap",
+        "Dokumentasi teknis",
+        "Garansi bug hingga 30 hari"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL / MySQL",
+        "REST API",
+        "Docker"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya memiliki kebutuhan Custom Web System dan ingin mendiskusikan fitur serta estimasi biayanya."
+    },
+    {
+      "id": "coding-mentoring",
+      "category": "learning",
+      "name": "Bimbingan Coding & Programming",
+      "badge": "Belajar Langsung",
+      "isPopular": true,
+      "price": "Rp 75.000",
+      "pricePeriod": "/ sesi",
+      "description": "Bimbingan personal untuk memahami programming, web development, database, debugging, Git, maupun teknologi lainnya sesuai kebutuhan belajar.",
+      "timeline": "60 - 90 Menit / Sesi",
+      "features": [
+        "Private mentoring 1-on-1",
+        "Materi disesuaikan dengan level peserta",
+        "Web development & programming",
+        "Bantuan memahami error dan debugging",
+        "Review kode",
+        "Penjelasan konsep secara bertahap",
+        "Rekaman atau materi tambahan jika diperlukan"
+      ],
+      "technologies": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "PHP",
+        "Python",
+        "Database",
+        "Git"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya ingin mengikuti bimbingan coding. Bisa info jadwal dan materi yang tersedia?"
+    },
+    {
+      "id": "academic-mentoring",
+      "category": "learning",
+      "name": "Bimbingan Proyek & Skripsi IT",
+      "badge": "Pendampingan",
+      "isPopular": false,
+      "price": "Rp 100.000",
+      "pricePeriod": "/ sesi",
+      "description": "Pendampingan akademik untuk mahasiswa bidang Informatika, Sistem Informasi, dan teknologi dalam memahami serta mengembangkan proyek atau penelitian secara mandiri.",
+      "timeline": "60 - 90 Menit / Sesi",
+      "features": [
+        "Brainstorming ide dan topik",
+        "Bedah judul dan permasalahan",
+        "Bimbingan metodologi penelitian",
+        "Pendampingan pengembangan sistem",
+        "Review struktur dan implementasi kode",
+        "Debugging dan troubleshooting",
+        "Review dokumentasi teknis",
+        "Pendampingan presentasi dan persiapan sidang"
+      ],
+      "technologies": [
+        "Web Development",
+        "Mobile Development",
+        "Database",
+        "Software Engineering",
+        "UI/UX",
+        "Research Methodology"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya ingin konsultasi/bimbingan untuk proyek atau skripsi bidang IT. Bisa diskusi mengenai kebutuhannya?"
+    },
+    {
+      "id": "it-troubleshooting",
+      "category": "it-support",
+      "name": "IT Troubleshooting",
+      "badge": "Solusi Cepat",
+      "isPopular": false,
+      "price": "Rp 75.000",
+      "pricePeriod": "mulai dari / masalah",
+      "description": "Bantuan troubleshooting untuk masalah software, development environment, deployment, server, hosting, database, maupun konfigurasi sistem.",
+      "timeline": "Sesuai Kompleksitas",
+      "features": [
+        "Analisis masalah teknis",
+        "Troubleshooting error aplikasi",
+        "Debugging website",
+        "Bantuan konfigurasi environment",
+        "Troubleshooting hosting & deployment",
+        "Database troubleshooting",
+        "Git & repository troubleshooting",
+        "Panduan solusi dan dokumentasi"
+      ],
+      "technologies": [
+        "Windows / Linux",
+        "Git",
+        "Node.js",
+        "React",
+        "PHP",
+        "Database",
+        "Hosting / VPS"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya sedang mengalami masalah teknis dan membutuhkan bantuan troubleshooting. Bisa saya jelaskan masalahnya?"
+    },
+    {
+      "id": "deployment-support",
+      "category": "it-support",
+      "name": "Deployment & Hosting Support",
+      "badge": "Teknis",
+      "isPopular": false,
+      "price": "Rp 150.000",
+      "pricePeriod": "mulai dari / deployment",
+      "description": "Bantuan deployment aplikasi atau website ke hosting, VPS, maupun cloud platform hingga sistem dapat diakses dengan baik.",
+      "timeline": "1 - 3 Hari Kerja",
+      "features": [
+        "Deployment website / web application",
+        "Konfigurasi hosting atau VPS",
+        "Konfigurasi environment variable",
+        "Setup database production",
+        "Konfigurasi domain",
+        "SSL / HTTPS setup",
+        "Basic server configuration",
+        "Troubleshooting deployment error"
+      ],
+      "technologies": [
+        "Vercel",
+        "VPS",
+        "Linux",
+        "Nginx",
+        "Docker",
+        "Git"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya membutuhkan bantuan deployment website/aplikasi ke hosting atau VPS. Bisa dibantu?"
+    },
+    {
+      "id": "technical-consultation",
+      "category": "consultation",
+      "name": "Konsultasi Teknologi",
+      "badge": "Per Jam",
+      "isPopular": true,
+      "price": "Rp 100.000",
+      "pricePeriod": "/ 60 menit",
+      "description": "Sesi konsultasi untuk membahas solusi teknologi, arsitektur sistem, pemilihan teknologi, estimasi pengembangan, maupun permasalahan teknis.",
+      "timeline": "60 Menit / Sesi",
+      "features": [
+        "Konsultasi 1-on-1",
+        "Analisis kebutuhan teknologi",
+        "Diskusi arsitektur sistem",
+        "Rekomendasi teknologi",
+        "Review stack teknologi",
+        "Estimasi kompleksitas proyek",
+        "Diskusi deployment & infrastructure",
+        "Rekomendasi solusi teknis"
+      ],
+      "technologies": [
+        "Web",
+        "Mobile",
+        "Backend",
+        "Database",
+        "Cloud",
+        "DevOps"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya ingin melakukan konsultasi teknologi berbayar. Saya ingin mendiskusikan kebutuhan dan solusi untuk proyek saya."
+    },
+    {
+      "id": "code-review",
+      "category": "consultation",
+      "name": "Code Review & Technical Review",
+      "badge": "Review",
+      "isPopular": false,
+      "price": "Rp 150.000",
+      "pricePeriod": "mulai dari / proyek",
+      "description": "Review kode dan struktur proyek untuk menemukan potensi bug, masalah arsitektur, maintainability, performa, dan kualitas implementasi.",
+      "timeline": "1 - 3 Hari Kerja",
+      "features": [
+        "Review struktur project",
+        "Review kualitas kode",
+        "Identifikasi potensi bug",
+        "Review arsitektur aplikasi",
+        "Review database dan API",
+        "Review security dasar",
+        "Review performance",
+        "Laporan rekomendasi perbaikan"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PHP",
+        "Python",
+        "Flutter",
+        "Database"
+      ],
+      "whatsappMessage": "Halo Mas Imam, saya ingin menggunakan layanan Code Review untuk project saya. Bisa dijelaskan proses dan estimasinya?"
+    }
+  ],
+  "customProjectCta": {
+    "title": "Punya Kebutuhan di Luar Paket?",
+    "description": "Setiap kebutuhan memiliki tingkat kompleksitas yang berbeda. Jika layanan yang Anda cari belum tersedia di daftar, silakan konsultasikan kebutuhan Anda untuk mendapatkan estimasi dan penawaran harga yang sesuai.",
+    "buttonText": "Konsultasikan Kebutuhan",
+    "whatsappMessage": "Halo Mas Imam, saya memiliki kebutuhan khusus dan ingin berkonsultasi mengenai layanan serta estimasi biayanya."
+  },
+  "faqs": [
+    {
+      "question": "Apakah harga yang tercantum merupakan harga tetap?",
+      "answer": "Tidak. Harga yang tercantum merupakan harga mulai dari. Harga akhir dapat berubah berdasarkan kompleksitas fitur, jumlah halaman, kebutuhan integrasi, tingkat kesulitan, deadline, dan kebutuhan teknis lainnya."
+    },
+    {
+      "question": "Bagaimana sistem pembayaran untuk pengembangan website?",
+      "answer": "Untuk proyek pengembangan, pembayaran umumnya menggunakan DP 30% - 50% sebelum pengerjaan dimulai. Sisa pembayaran dilakukan berdasarkan milestone atau setelah proyek selesai sesuai kesepakatan."
+    },
+    {
+      "question": "Apakah source code akan diberikan?",
+      "answer": "Ya. Source code proyek akan diserahkan kepada klien setelah kewajiban pembayaran proyek telah diselesaikan, sesuai dengan kesepakatan awal."
+    },
+    {
+      "question": "Apakah ada garansi setelah website selesai?",
+      "answer": "Ya. Paket pengembangan website memiliki masa garansi untuk perbaikan bug yang berasal dari implementasi. Garansi tidak mencakup penambahan fitur atau perubahan kebutuhan baru."
+    },
+    {
+      "question": "Apa perbedaan konsultasi dengan bimbingan?",
+      "answer": "Konsultasi berfokus pada pemberian analisis, rekomendasi, dan solusi terhadap suatu kebutuhan atau masalah. Bimbingan lebih berfokus pada proses belajar dan pendampingan agar peserta memahami serta mampu mengerjakan pekerjaannya sendiri."
+    },
+    {
+      "question": "Apakah bisa meminta bantuan mengerjakan tugas atau skripsi?",
+      "answer": "Layanan bimbingan berfokus pada pendampingan, pembelajaran, review, debugging, dan konsultasi teknis. Pengerjaan akademik secara penuh atas nama peserta tidak termasuk dalam layanan bimbingan."
+    },
+    {
+      "question": "Apakah konsultasi gratis?",
+      "answer": "Konsultasi teknis dan pembahasan mendalam menggunakan sistem berbayar. Komunikasi awal untuk mengetahui kebutuhan layanan dapat dilakukan melalui WhatsApp sebelum menentukan paket atau sesi yang sesuai."
+    }
+  ],
+  "contactInfo": {
+    "whatsappNumber": "6285788322061",
+    "email": "imamariadi775@gmail.com"
+  }
+}

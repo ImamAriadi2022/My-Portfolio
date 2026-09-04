@@ -1,17 +1,17 @@
 export const blogData = [
   {
     id: 1,
-    title: 'Getting Started with React Hooks: A Complete Guide',
-    excerpt: 'Learn how to use React Hooks effectively in your projects. From useState to useEffect, master the fundamentals with practical examples.',
-    description: 'A comprehensive guide covering all essential React Hooks including useState, useEffect, useContext, and custom hooks. Perfect for developers transitioning from class components to functional components.',
+    title: 'Panduan Lengkap Memulai React Hooks untuk Pemula & Profesional',
+    excerpt: 'Pelajari cara menggunakan React Hooks secara efektif dalam proyek web Anda. Dari useState hingga useEffect, kuasai fundamental dan contoh praktisnya.',
+    description: 'Panduan komprehensif yang membahas React Hooks esensial termasuk useState, useEffect, useContext, dan pembuatan custom hooks. Sangat cocok bagi developer yang ingin transisi dari class component ke functional component.',
     image: '/assets/img/b4.png',
-    coverImage: '/assets/img/blog-covers/react-hooks.jpg', // Optional: different cover for detail page
-    date: 'December 15, 2024',
+    coverImage: '/assets/img/blog-covers/react-hooks.jpg',
+    date: '15 Desember 2024',
     category: 'Web',
-    readTime: '8 min read',
+    readTime: '8 menit baca',
     author: 'Imam Ariadi',
     tags: ['React', 'JavaScript', 'Frontend', 'Hooks'],
-    articleUrl: 'https://medium.com/@imam-ariadi/react-hooks-complete-guide', // Direct link to article
+    articleUrl: 'https://medium.com/@imam-ariadi/react-hooks-complete-guide',
     slug: 'react-hooks-complete-guide',
     featured: true
   },
@@ -19,9 +19,9 @@ export const blogData = [
 
 // Blog categories for filtering (if needed later)
 export const blogCategories = [
-  { id: 'all', name: 'All Posts', icon: 'fa-th' },
-  { id: 'AI', name: 'AI', icon: 'fa-robot' },
-  { id: 'Web', name: 'Web Development', icon: 'fa-web' },
-  { id: 'Mobile', name: 'Mobile Development', icon: 'fa-mobile-alt' },
-  { id: 'Tutorials', name: 'Tutorials', icon: 'fa-book-open' }
+  { id: 'all', name: 'Semua Artikel', icon: 'fa-th' },
+  { id: 'AI', name: 'Kecerdasan Buatan (AI)', icon: 'fa-robot' },
+  { id: 'Web', name: 'Pengembangan Web', icon: 'fa-web' },
+  { id: 'Mobile', name: 'Aplikasi Mobile', icon: 'fa-mobile-alt' },
+  { id: 'Tutorials', name: 'Tutorial & Panduan', icon: 'fa-book-open' }
 ];

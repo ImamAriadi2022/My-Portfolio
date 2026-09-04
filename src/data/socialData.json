@@ -1,0 +1,31 @@
+﻿[
+  {
+    "id": "github",
+    "name": "GitHub",
+    "url": "https://github.com/ImamAriadi2022",
+    "icon": "fa fa-github",
+    "enabled": true
+  },
+  {
+    "id": "linkedin",
+    "name": "LinkedIn",
+    "url": "https://linkedin.com/in/imamariadi",
+    "icon": "fa fa-linkedin",
+    "enabled": true
+  },
+  {
+    "id": "instagram",
+    "name": "Instagram",
+    "url": "https://instagram.com/imamariadi",
+    "icon": "fa fa-instagram",
+    "enabled": true
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "url": "https://wa.me/6285788322061",
+    "number": "+62 857-8832-2061",
+    "icon": "fa fa-whatsapp",
+    "enabled": true
+  }
+]

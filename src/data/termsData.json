@@ -1,62 +1,221 @@
 {
   "title": "Terms of Service",
-  "subtitle": "Syarat & Ketentuan Penggunaan Website",
-  "lastUpdated": "September 2024",
-  "effectiveDate": "1 September 2024",
-  "introduction": "Selamat datang di website portofolio Imam Ariadi. Dengan mengakses, membaca, atau menggunakan website ini, Anda dianggap telah memahami dan menyetujui seluruh syarat serta ketentuan yang tercantum di bawah ini.",
+  "subtitle": "Syarat & Ketentuan Website dan Layanan Imam Ariadi",
+  "lastUpdated": "September 2026",
+  "effectiveDate": "4 September 2026",
+  "introduction": "Selamat datang di website portofolio Imam Ariadi. Website ini digunakan sebagai media untuk menampilkan portofolio, karya, informasi layanan teknologi, bimbingan, support IT, konsultasi, serta informasi terkait proyek dan keahlian. Dengan mengakses atau menggunakan website ini maupun menghubungi saya untuk menggunakan layanan yang tersedia, Anda dianggap telah membaca, memahami, dan menyetujui syarat serta ketentuan yang berlaku.",
+
   "sections": [
     {
       "id": "acceptance",
       "icon": "fa-check-circle",
       "title": "1. Penerimaan Ketentuan",
-      "content": "Website ini disediakan sebagai media portofolio profesional untuk menampilkan karya, proyek pengembangan web & mobile, tulisan blog, serta penawaran layanan teknologi.",
+      "content": "Dengan mengakses website ini, melihat portofolio, menggunakan informasi yang tersedia, atau menggunakan layanan yang ditawarkan, Anda menyetujui ketentuan yang tercantum dalam halaman ini.",
       "points": [
-        "Akses ke website ini sepenuhnya sukarela dan tunduk pada kepatuhan terhadap ketentuan ini.",
-        "Jika Anda tidak menyetujui salah satu ketentuan, disarankan untuk tidak melanjutkan penggunaan website."
+        "Website ini merupakan media portofolio dan informasi layanan profesional milik Imam Ariadi.",
+        "Penggunaan website harus dilakukan secara wajar, sah, dan tidak melanggar hukum yang berlaku.",
+        "Jika Anda tidak menyetujui ketentuan ini, Anda disarankan untuk tidak menggunakan layanan atau memanfaatkan materi yang tersedia di website.",
+        "Ketentuan layanan tertentu dapat memiliki kesepakatan tambahan yang akan disepakati secara tertulis sebelum pekerjaan dimulai."
       ]
     },
+
     {
       "id": "intellectual-property",
       "icon": "fa-shield",
       "title": "2. Hak Cipta & Kekayaan Intelektual",
-      "content": "Seluruh konten dalam website ini, termasuk desain tampilan, kode sumber, logo, tulisan, dan aset grafis adalah milik Imam Ariadi, kecuali disebutkan lain.",
+      "content": "Seluruh karya dan materi yang dibuat, dikembangkan, atau ditampilkan oleh Imam Ariadi merupakan kekayaan intelektual yang dilindungi oleh hak cipta, kecuali dinyatakan secara tegas sebagai milik pihak lain atau tunduk pada lisensi yang berbeda.",
       "points": [
-        "Dilarang menduplikasi, mempublikasikan ulang, atau memperjualbelikan materi di website ini tanpa izin tertulis dari pemilik.",
-        "Repositori kode publik di GitHub tunduk pada lisensi open-source masing-masing yang tertera pada repositori terkait."
+        "Hak cipta atas desain, source code proprietary, komponen buatan sendiri, dokumentasi, tulisan, ilustrasi, aset grafis, struktur antarmuka, dan materi original tetap menjadi milik Imam Ariadi kecuali hak tersebut secara tegas dialihkan melalui perjanjian tertulis.",
+        "Materi yang ditampilkan dalam portfolio hanya diberikan untuk tujuan demonstrasi kemampuan dan dokumentasi karya.",
+        "Melihat atau mengakses source code yang tersedia secara publik tidak secara otomatis memberikan hak kepada pihak lain untuk menyalin, memodifikasi, menjual, mendistribusikan, atau menggunakannya untuk kepentingan komersial.",
+        "Dilarang mengambil, menyalin, mengunggah ulang, menjual kembali, mendistribusikan, atau mengklaim karya sebagai karya sendiri tanpa izin yang sesuai.",
+        "Dilarang menggunakan desain, source code, struktur website, aset, maupun materi portfolio sebagai dasar untuk membuat produk atau layanan yang secara substansial meniru karya tanpa izin.",
+        "Apabila suatu repository atau komponen menggunakan lisensi open-source pihak ketiga, penggunaan komponen tersebut wajib mengikuti lisensi yang berlaku pada masing-masing repository atau dependensi.",
+        "Lisensi open-source hanya berlaku terhadap bagian kode yang memang dirilis berdasarkan lisensi tersebut dan tidak otomatis berlaku terhadap seluruh karya atau source code proprietary Imam Ariadi.",
+        "Penggunaan ulang karya proprietary hanya dapat dilakukan setelah memperoleh izin tertulis atau berdasarkan lisensi/perjanjian yang secara tegas memberikan hak penggunaan."
       ]
     },
+
+    {
+      "id": "portfolio",
+      "icon": "fa-folder-open",
+      "title": "3. Penggunaan Portofolio",
+      "content": "Portofolio pada website ini digunakan untuk menunjukkan pengalaman, kemampuan, dan hasil pekerjaan Imam Ariadi. Beberapa proyek dapat merupakan proyek pribadi, proyek akademik, proyek kolaborasi, atau proyek klien.",
+      "points": [
+        "Informasi proyek dalam portfolio tidak boleh digunakan untuk menyatakan bahwa pihak lain merupakan pembuat atau pemilik karya apabila tidak memiliki hak tersebut.",
+        "Penggunaan screenshot, desain, source code, dokumentasi, atau aset portfolio untuk materi promosi pihak lain memerlukan izin terlebih dahulu apabila materi tersebut merupakan karya proprietary.",
+        "Proyek klien dapat ditampilkan sebagai bagian dari portfolio hanya sepanjang tidak bertentangan dengan perjanjian kerahasiaan atau kesepakatan dengan klien.",
+        "Jika suatu proyek memiliki pemilik hak cipta atau lisensi dari pihak lain, hak atas proyek tersebut tetap mengikuti kepemilikan dan lisensi yang berlaku."
+      ]
+    },
+
     {
       "id": "services",
       "icon": "fa-briefcase",
-      "title": "3. Layanan & Kerja Sama Profesional",
-      "content": "Informasi mengenai jasa (Frontend, Backend, Fullstack Development) yang ditampilkan bertujuan sebagai gambaran keahlian dan kapasitas kerja.",
+      "title": "4. Layanan Profesional",
+      "content": "Imam Ariadi menyediakan layanan pengembangan web, bimbingan belajar teknologi, support IT, serta konsultasi berbayar. Informasi harga yang ditampilkan pada website merupakan harga awal atau estimasi dan dapat berubah berdasarkan kebutuhan.",
       "points": [
-        "Setiap kerja sama proyek resmi akan diikat melalui perjanjian kontrak kerja dan kesepakatan tertulis terpisah.",
-        "Estimasi biaya dan linimasa penyelesaian dapat bervariasi sesuai tingkat kompleksitas kebutuhan proyek."
+        "Pengembangan web dapat mencakup landing page, company profile, web application, custom web system, frontend, backend, API, database, deployment, dan kebutuhan terkait lainnya.",
+        "Bimbingan mencakup pendampingan belajar programming, pengembangan sistem, debugging, proyek, dan kebutuhan akademik di bidang teknologi.",
+        "Support IT mencakup troubleshooting, deployment, konfigurasi hosting, server, database, environment development, dan permasalahan teknis lainnya.",
+        "Konsultasi berbayar dapat mencakup konsultasi teknologi, arsitektur sistem, pemilihan teknologi, technical review, dan code review.",
+        "Setiap proyek dapat memiliki ruang lingkup, timeline, deliverable, dan biaya yang berbeda.",
+        "Pekerjaan di luar ruang lingkup awal dapat dikenakan biaya tambahan setelah mendapatkan persetujuan dari klien.",
+        "Estimasi pengerjaan dapat berubah apabila terdapat perubahan requirement, keterlambatan feedback, keterlambatan akses atau aset dari klien, maupun kendala teknis di luar kendali."
       ]
     },
+
+    {
+      "id": "project-agreement",
+      "icon": "fa-file-text-o",
+      "title": "5. Ketentuan Proyek & Kesepakatan Kerja",
+      "content": "Proyek pengembangan yang membutuhkan pekerjaan lebih kompleks dapat menggunakan kesepakatan kerja atau kontrak terpisah. Ketentuan khusus dalam kontrak proyek dapat menggantikan atau melengkapi ketentuan umum pada website ini.",
+      "points": [
+        "Ruang lingkup pekerjaan, fitur, timeline, biaya, metode pembayaran, dan deliverable akan disepakati sebelum pengerjaan dimulai.",
+        "Perubahan fitur atau penambahan scope setelah pekerjaan dimulai dapat memengaruhi biaya dan timeline.",
+        "Pengerjaan dimulai setelah persyaratan awal yang disepakati, termasuk pembayaran uang muka apabila berlaku, telah dipenuhi.",
+        "Keterlambatan yang disebabkan oleh pihak klien, seperti keterlambatan pemberian data, konten, akses, feedback, atau approval, dapat menyebabkan perubahan timeline.",
+        "Untuk proyek tertentu, tahapan pekerjaan dapat dibagi berdasarkan milestone.",
+        "Kesepakatan tertulis antara Imam Ariadi dan klien menjadi acuan utama apabila terdapat ketentuan khusus yang berbeda dari Syarat & Ketentuan umum ini."
+      ]
+    },
+
+    {
+      "id": "payment",
+      "icon": "fa-money",
+      "title": "6. Pembayaran & Pembatalan",
+      "content": "Pembayaran layanan dilakukan berdasarkan kesepakatan antara Imam Ariadi dan pengguna layanan. Untuk proyek pengembangan, sistem pembayaran dapat menggunakan uang muka dan pembayaran berdasarkan milestone atau tahap penyelesaian.",
+      "points": [
+        "Proyek pengembangan umumnya menggunakan DP sebesar 30% - 50% sebelum pengerjaan dimulai.",
+        "Pelunasan dilakukan sesuai milestone atau kesepakatan yang telah ditentukan.",
+        "Pekerjaan tambahan di luar scope awal dapat dikenakan biaya tambahan.",
+        "Pembayaran yang telah dilakukan untuk pekerjaan yang sudah dikerjakan tidak dapat dianggap sebagai pembayaran yang dapat dikembalikan secara otomatis.",
+        "Pembatalan proyek setelah pengerjaan dimulai dapat memiliki konsekuensi biaya berdasarkan pekerjaan yang telah dilakukan.",
+        "Detail pembayaran dan ketentuan pembatalan dapat diatur lebih lanjut dalam kesepakatan proyek."
+      ]
+    },
+
+    {
+      "id": "source-code",
+      "icon": "fa-code",
+      "title": "7. Kepemilikan & Penggunaan Source Code",
+      "content": "Kepemilikan dan hak penggunaan source code bergantung pada jenis proyek dan kesepakatan yang dibuat antara Imam Ariadi dan klien. Penyerahan source code tidak selalu berarti seluruh hak kekayaan intelektual atas komponen original berpindah kepada klien.",
+      "points": [
+        "Untuk proyek yang secara tertulis menyepakati penyerahan source code kepada klien, source code akan diserahkan setelah kewajiban pembayaran terpenuhi.",
+        "Komponen, library, template, boilerplate, framework, atau aset pihak ketiga tetap tunduk pada lisensi masing-masing.",
+        "Komponen proprietary atau reusable milik Imam Ariadi yang digunakan dalam beberapa proyek dapat tetap menjadi kekayaan intelektual Imam Ariadi apabila tidak terdapat kesepakatan pengalihan hak secara tertulis.",
+        "Klien memperoleh hak penggunaan terhadap hasil proyek sesuai ruang lingkup dan ketentuan yang disepakati.",
+        "Penjualan kembali, redistribusi source code, atau penggunaan source code proyek untuk membuat produk komersial lain dapat memerlukan izin tambahan apabila hak tersebut tidak diberikan dalam perjanjian.",
+        "Jika tidak terdapat pengalihan hak cipta secara tertulis, kepemilikan hak cipta tetap berada pada pihak yang secara hukum memiliki hak tersebut."
+      ]
+    },
+
+    {
+      "id": "mentoring",
+      "icon": "fa-graduation-cap",
+      "title": "8. Bimbingan & Pendampingan",
+      "content": "Layanan bimbingan ditujukan untuk membantu pengguna memahami konsep, teknologi, metode pengembangan, debugging, dan penyelesaian masalah secara mandiri.",
+      "points": [
+        "Bimbingan bersifat pendampingan dan edukasi, bukan jaminan nilai akademik atau kelulusan.",
+        "Pengguna bertanggung jawab atas keputusan, implementasi, dan hasil akhir dari pekerjaan yang dikembangkan berdasarkan sesi bimbingan.",
+        "Bimbingan tidak dimaksudkan untuk menggantikan tanggung jawab akademik peserta.",
+        "Pengerjaan tugas, proyek, laporan, skripsi, atau karya akademik secara penuh atas nama peserta tidak termasuk dalam layanan bimbingan kecuali terdapat layanan profesional non-akademik yang secara sah dan jelas disepakati.",
+        "Materi, kode contoh, atau solusi yang diberikan selama sesi tidak boleh diklaim sebagai karya orang lain tanpa atribusi yang sesuai apabila atribusi tersebut diperlukan."
+      ]
+    },
+
+    {
+      "id": "consultation",
+      "icon": "fa-comments",
+      "title": "9. Konsultasi Berbayar",
+      "content": "Konsultasi berbayar merupakan layanan profesional untuk memberikan analisis, rekomendasi, review, dan pandangan teknis berdasarkan informasi yang diberikan oleh pengguna.",
+      "points": [
+        "Durasi dan biaya konsultasi mengikuti paket atau kesepakatan yang berlaku.",
+        "Rekomendasi yang diberikan berdasarkan informasi dan kondisi yang tersedia pada saat konsultasi.",
+        "Konsultasi tidak menjamin hasil bisnis, performa aplikasi, keberhasilan investasi, atau hasil tertentu di luar kendali Imam Ariadi.",
+        "Pengguna bertanggung jawab atas keputusan dan implementasi yang dilakukan setelah konsultasi.",
+        "Informasi atau hasil konsultasi tidak boleh dianggap sebagai jaminan profesional di luar ruang lingkup yang telah disepakati."
+      ]
+    },
+
+    {
+      "id": "confidentiality",
+      "icon": "fa-lock",
+      "title": "10. Kerahasiaan Informasi",
+      "content": "Informasi proyek yang diberikan oleh klien akan diperlakukan secara wajar dan digunakan untuk kebutuhan pengerjaan layanan yang disepakati.",
+      "points": [
+        "Informasi rahasia yang secara jelas dinyatakan sebagai confidential akan dijaga dan tidak digunakan di luar kebutuhan proyek tanpa izin.",
+        "Klien dapat meminta kesepakatan kerahasiaan atau Non-Disclosure Agreement (NDA) untuk proyek yang membutuhkan perlindungan informasi lebih lanjut.",
+        "Informasi yang telah tersedia untuk publik atau diperoleh secara sah dari sumber lain tidak dianggap sebagai informasi rahasia.",
+        "Kewajiban kerahasiaan dapat tetap berlaku setelah proyek selesai sesuai kesepakatan yang dibuat."
+      ]
+    },
+
     {
       "id": "disclaimer",
       "icon": "fa-info-circle",
-      "title": "4. Penafian Tanggung Jawab (Disclaimer)",
-      "content": "Website ini disediakan secara 'as-is' (sebagaimana adanya). Meskipun selalu diupayakan akurasi dan pembaruan informasi yang optimal, pemilik website tidak bertanggung jawab atas kerugian langsung maupun tidak langsung yang timbul dari pemanfaatan informasi pada situs ini."
+      "title": "11. Penafian Tanggung Jawab",
+      "content": "Website dan sebagian informasi yang tersedia di dalamnya disediakan sebagaimana adanya. Meskipun upaya dilakukan untuk menjaga informasi tetap akurat dan relevan, tidak semua informasi dapat dijamin selalu lengkap, bebas kesalahan, atau selalu diperbarui.",
+      "points": [
+        "Imam Ariadi tidak menjamin bahwa website akan selalu tersedia tanpa gangguan.",
+        "Imam Ariadi tidak bertanggung jawab atas gangguan yang disebabkan oleh hosting, domain, layanan pihak ketiga, internet, API eksternal, atau infrastruktur di luar kendali.",
+        "Untuk layanan konsultasi dan bimbingan, hasil akhir tetap bergantung pada keputusan dan implementasi pengguna.",
+        "Untuk proyek pengembangan, tanggung jawab akan mengikuti ruang lingkup dan ketentuan yang telah disepakati bersama klien.",
+        "Klaim atau kerugian yang timbul dari penggunaan informasi website akan ditangani sesuai ketentuan hukum yang berlaku dan kesepakatan layanan terkait."
+      ]
     },
+
     {
-      "id": "external-links",
+      "id": "third-party",
       "icon": "fa-external-link",
-      "title": "5. Tautan ke Pihak Ketiga",
-      "content": "Website ini dapat memuat tautan ke situs eksternal (seperti GitHub, LinkedIn, Medium, atau demo live aplikasi). Pemilik website tidak memiliki kendali atas isi dan kebijakan privasi situs pihak ketiga tersebut."
+      "title": "12. Layanan & Tautan Pihak Ketiga",
+      "content": "Website dapat menggunakan atau menautkan layanan pihak ketiga seperti GitHub, Vercel, Google, WhatsApp, LinkedIn, layanan hosting, API, library, framework, maupun platform lainnya.",
+      "points": [
+        "Setiap layanan pihak ketiga memiliki syarat penggunaan dan kebijakan masing-masing.",
+        "Imam Ariadi tidak memiliki kendali penuh atas perubahan kebijakan, harga, ketersediaan, keamanan, atau performa layanan pihak ketiga.",
+        "Penggunaan library, framework, template, font, icon, maupun komponen pihak ketiga harus mengikuti lisensi masing-masing.",
+        "Tautan eksternal pada website tidak berarti Imam Ariadi memiliki hubungan kepemilikan atau tanggung jawab terhadap seluruh konten di situs tersebut."
+      ]
     },
+
+    {
+      "id": "prohibited-use",
+      "icon": "fa-ban",
+      "title": "13. Larangan Penggunaan",
+      "content": "Pengguna dilarang menggunakan website, layanan, maupun materi yang tersedia untuk aktivitas yang melanggar hukum atau merugikan pihak lain.",
+      "points": [
+        "Dilarang melakukan scraping, cloning, atau reproduksi massal terhadap konten website tanpa izin.",
+        "Dilarang mengambil dan menggunakan source code proprietary untuk proyek lain tanpa hak penggunaan.",
+        "Dilarang menjual kembali, mendistribusikan, atau memberikan source code proprietary kepada pihak lain tanpa izin.",
+        "Dilarang menghapus atau mengubah atribusi hak cipta pada materi yang memang memiliki atribusi.",
+        "Dilarang menggunakan karya portfolio untuk mengklaim pengalaman, kemampuan, atau hasil pekerjaan sebagai milik pihak lain.",
+        "Dilarang melakukan tindakan yang dapat mengganggu, merusak, mengeksploitasi, atau memperoleh akses tidak sah terhadap sistem website."
+      ]
+    },
+
+    {
+      "id": "updates",
+      "icon": "fa-refresh",
+      "title": "14. Perubahan Ketentuan",
+      "content": "Syarat & Ketentuan ini dapat diperbarui dari waktu ke waktu untuk menyesuaikan perkembangan layanan, website, teknologi, maupun kebutuhan hukum.",
+      "points": [
+        "Perubahan akan dicantumkan pada halaman ini.",
+        "Tanggal pembaruan terakhir akan diperbarui setelah perubahan diterapkan.",
+        "Ketentuan yang berlaku pada suatu proyek dapat tetap mengikuti kontrak atau kesepakatan tertulis yang telah disetujui sebelumnya."
+      ]
+    },
+
     {
       "id": "contact",
       "icon": "fa-envelope-o",
-      "title": "6. Hubungi Saya",
-      "content": "Jika ada pertanyaan atau kebutuhan klarifikasi lebih lanjut seputar Syarat dan Ketentuan ini, Anda dapat menghubungi langsung melalui:",
+      "title": "15. Hubungi Saya",
+      "content": "Jika terdapat pertanyaan, permintaan izin penggunaan karya, kebutuhan kerja sama, atau klarifikasi mengenai Syarat & Ketentuan ini, Anda dapat menghubungi Imam Ariadi melalui:",
       "points": [
-        "Email: imam.ariadi@gmail.com",
+        "Email: imamariadi775@gmail.com",
         "WhatsApp: +62 857-8832-2061"
       ]
     }
   ],
-  "footerNote": "Ketentuan ini dapat diperbarui sewaktu-waktu sesuai perkembangan website. Pembaruan akan efektif berlaku segera setelah diunggah ke halaman ini."
+
+  "footerNote": "Dengan menggunakan website atau layanan yang tersedia, Anda dianggap telah memahami dan menyetujui ketentuan yang berlaku. Ketentuan ini dapat diperbarui sewaktu-waktu dan berlaku sejak tanggal pembaruan yang tercantum pada halaman ini."
 }

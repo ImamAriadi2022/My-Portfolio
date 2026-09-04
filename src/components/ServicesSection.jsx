@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { services } from '../data/portfolioData';
 
 const ServicesSection = () => {
@@ -8,7 +9,7 @@ const ServicesSection = () => {
           <div className="col-lg-12">
             <div className="section-header text-center">
               <h2 className="section-title wow flipInX" data-wow-delay="0.4s">
-                My <span>Services</span>
+                Layanan <span>Saya</span>
               </h2>
               <div className="shape wow fadeInDown" data-wow-delay="0.3s"></div>
             </div>
@@ -37,6 +38,17 @@ const ServicesSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View Price List CTA */}
+        <div className="row mt-4">
+          <div className="col-12 text-center" data-aos="fade-up" data-aos-delay="300">
+            <Link to="/price-list" className="btn-view-price-list-unique">
+              <i className="fa fa-tags"></i>
+              <span>Lihat Daftar Harga &amp; Paket Layanan</span>
+              <i className="fa fa-arrow-right view-all-arrow"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

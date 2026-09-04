@@ -16,15 +16,6 @@ function App() {
   };
 
   useEffect(() => {
-    // Load external scripts that are needed
-    const scripts = [
-      '/assets/js/particles.min.js',
-      '/assets/js/wow.js',
-      '/assets/js/jquery-3.2.1.min.js',
-      '/assets/js/bootstrap.min.js',
-      '/assets/js/animated-headline.js'
-    ];
-
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -42,12 +33,11 @@ function App() {
         console.log('Loading particles.js...');
         await loadScript('/assets/js/particles.min.js');
         
-        // Load other scripts
+        // Load other scripts (WOW, jQuery, Bootstrap)
         const otherScripts = [
           '/assets/js/wow.js',
           '/assets/js/jquery-3.2.1.min.js',
-          '/assets/js/bootstrap.min.js',
-          '/assets/js/animated-headline.js'
+          '/assets/js/bootstrap.min.js'
         ];
         
         for (const script of otherScripts) {

@@ -78,97 +78,57 @@ const HeroSection = () => {
       }
     }, 2000);
 
-    // Animated headline effect
-    const initAnimatedHeadline = () => {
-      const headlines = document.querySelectorAll('.cd-headline');
-      headlines.forEach(headline => {
-        const words = headline.querySelectorAll('.cd-words-wrapper b');
-        if (words.length > 0) {
-          let current = 0;
-          let isAnimating = false;
-          
-          // Completely clear all states first
-          words.forEach(word => {
-            word.classList.remove('is-visible');
-            word.style.opacity = '0';
-            word.style.visibility = 'hidden';
-            word.style.position = 'absolute';
-          });
-          
-          // Function to show specific word
-          const showWord = (index) => {
-            if (isAnimating) return;
-            isAnimating = true;
-            
-            const wordsWrapper = headline.querySelector('.cd-words-wrapper');
-            
-            // Add transitioning class untuk pause cursor animation
-            wordsWrapper.classList.add('transitioning');
-            
-            // Hide all words first
-            words.forEach(word => {
-              word.classList.remove('is-visible');
-              word.style.opacity = '0';
-              word.style.visibility = 'hidden';
-              word.style.position = 'absolute';
-            });
-            
-            // Show target word setelah transition selesai
-            setTimeout(() => {
-              const targetWord = words[index];
-              targetWord.classList.add('is-visible');
-              targetWord.style.opacity = '1';
-              targetWord.style.visibility = 'visible';
-              targetWord.style.position = 'relative';
-              
-              // Remove transitioning class setelah kata baru tampil
-              setTimeout(() => {
-                wordsWrapper.classList.remove('transitioning');
-                isAnimating = false;
-              }, 100);
-            }, 50);
-          };
-          
-          // Show first word dengan timing yang pas
-          setTimeout(() => {
-            showWord(0);
-          }, 100);
-          
-          const showNextWord = () => {
-            if (!isAnimating) {
-              current = (current + 1) % words.length;
-              showWord(current);
-            }
-          };
-          
-          // Start animation dengan timing yang sinkron dengan CSS cursor animation
-          const intervalId = setInterval(showNextWord, 3000);
-          
-          // Store interval ID for cleanup
-          headline.animationInterval = intervalId;
-        }
-      });
-    };
-
-    const timer = setTimeout(initAnimatedHeadline, 500);
-    
     return () => {
-      clearTimeout(timer);
       clearTimeout(fallbackTimeout);
-      
-      // Cleanup intervals
-      const headlines = document.querySelectorAll('.cd-headline');
-      headlines.forEach(headline => {
-        if (headline.animationInterval) {
-          clearInterval(headline.animationInterval);
-        }
-        const wordsWrapper = headline.querySelector('.cd-words-wrapper');
-        if (wordsWrapper) {
-          wordsWrapper.classList.remove('transitioning');
-        }
-      });
     };
-  }, [particlesLoaded]);
+  }, []);
+
+  // Professional rotating titles (English as requested)
+  const titles = [
+    'Imam Ariadi',
+    'Fullstack Developer',
+    'Web Developer',
+    'Mobile App Developer',
+    'Backend Specialist'
+  ];
+
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState(titles[0]);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentTitle = titles[titleIndex];
+    let timeout;
+
+    if (!isDeleting) {
+      if (displayText.length < currentTitle.length) {
+        // Typing characters smoothly
+        timeout = setTimeout(() => {
+          setDisplayText(currentTitle.slice(0, displayText.length + 1));
+        }, 75);
+      } else {
+        // Finished typing full word - pause for 2.2 seconds so it is completely readable
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2200);
+      }
+    } else {
+      if (displayText.length > 0) {
+        // Deleting characters quickly and cleanly
+        timeout = setTimeout(() => {
+          setDisplayText(currentTitle.slice(0, displayText.length - 1));
+        }, 35);
+      } else {
+        // Finished deleting - brief natural pause before typing next title
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setTitleIndex((prev) => (prev + 1) % titles.length);
+        }, 300);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, titleIndex]);
 
   return (
     <section id="home" className="dark_bg hero-section">
@@ -182,18 +142,18 @@ const HeroSection = () => {
       {showFallback && <ParticlesBackground />}
       
       <div className="container">
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col-lg-6 col-md-6">
             <div className="banner_content" data-aos="fade-right">
-              <h3>Hi There,</h3>
-              <h1 className="cd-headline clip">
-                <span className="fw_600" style={{ marginRight: '15px' }}>I Am </span>
-                <span className="cd-words-wrapper">
-                  <b className="fw_600">Imam Ariadi</b>
-                  <b className="fw_600">Web Developer</b>
+              <h3>Halo Semuanya,</h3>
+              <h1 className="hero-headline">
+                <span className="hero-static-text">I Am </span>
+                <span className="hero-dynamic-wrapper">
+                  <span className="hero-typed-text">{displayText}</span>
+                  <span className="hero-cursor" aria-hidden="true">|</span>
                 </span>
               </h1>
-              <p> I'm a Web Developer with over 3 years of experience, specializing in backend, frontend, and fullstack development for both mobile and web applications
+              <p>Saya seorang Web &amp; Mobile Developer berpengalaman lebih dari 3 tahun, berfokus pada pengembangan backend, frontend, dan fullstack untuk aplikasi web dan mobile modern.
               </p>
               <a 
                 href="/komponen/Final Portfolio_Imam Ariadi.pdf" 
@@ -201,7 +161,7 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Download CV
+                Unduh CV
               </a>
             </div>
           </div>
@@ -212,6 +172,24 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Soft Bottom Gradient Transition */}
+      <div className="hero-bottom-gradient"></div>
+
+      {/* Scroll Down Indicator */}
+      <a 
+        href="#services" 
+        className="hero-scroll-indicator"
+        onClick={(e) => {
+          e.preventDefault();
+          const target = document.getElementById('services');
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }}
+        title="Gulir ke Bawah"
+      >
+        <span>Gulir</span>
+        <i className="fa fa-angle-down"></i>
+      </a>
     </section>
   );
 };

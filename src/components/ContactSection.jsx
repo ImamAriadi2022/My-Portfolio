@@ -1,67 +1,105 @@
-import { useEffect, useState } from 'react';
-import { clientTestimonials, monthlyData, projectCategories, projectStats, techStats } from '../data/projectData';
+import { useCallback, useEffect, useState } from 'react';
+import { clientTestimonials, generateSynchronizedProjectData } from '../data/projectData';
 
 const StatisticsSection = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [statsData, setStatsData] = useState(() => generateSynchronizedProjectData(new Date()));
   const [animatedStats, setAnimatedStats] = useState({});
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [chartKey, setChartKey] = useState(1);
 
-  useEffect(() => {
-    // Animate counters when component mounts
-    const animateCounters = () => {
-      const duration = 2000; // 2 seconds
-      const steps = 60;
-      const stepDuration = duration / steps;
+  // Fungsi animasi angka naik (Counter Animation) dengan kurva halus
+  const animateCounters = useCallback((targetStats) => {
+    const duration = 1400; // 1.4 detik
+    const steps = 45;
+    const stepDuration = duration / steps;
 
-      const counters = {
-        projects: projectStats.projects.completed,
-        clients: projectStats.clients.total,
-        happyClients: projectStats.clients.happy,
-        successRate: projectStats.metrics.successRate
-      };
-
-      let currentStep = 0;
-      const interval = setInterval(() => {
-        currentStep++;
-        const progress = currentStep / steps;
-        
-        setAnimatedStats({
-          projects: Math.floor(counters.projects * progress),
-          clients: Math.floor(counters.clients * progress),
-          happyClients: Math.floor(counters.happyClients * progress),
-          successRate: Math.floor(counters.successRate * progress)
-        });
-
-        if (currentStep >= steps) {
-          clearInterval(interval);
-          setAnimatedStats(counters);
-        }
-      }, stepDuration);
+    const counters = {
+      projects: targetStats.projects.completed,
+      clients: targetStats.clients.total,
+      happyClients: targetStats.clients.happy,
+      successRate: targetStats.metrics.successRate
     };
 
-    const timer = setTimeout(animateCounters, 500);
-    return () => clearTimeout(timer);
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+      // Easing out cubic: akselerasi halus lalu melambat natural
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      
+      setAnimatedStats({
+        projects: Math.round(counters.projects * easeProgress),
+        clients: Math.round(counters.clients * easeProgress),
+        happyClients: Math.round(counters.happyClients * easeProgress),
+        successRate: Math.round(counters.successRate * easeProgress)
+      });
+
+      if (currentStep >= steps) {
+        clearInterval(interval);
+        setAnimatedStats(counters);
+      }
+    }, stepDuration);
   }, []);
+
+  // Animasi counter saat pertama kali dimuat
+  useEffect(() => {
+    animateCounters(statsData.projectStats);
+  }, [animateCounters, statsData.projectStats]);
+
+  // Handler untuk mengacak dan memperbarui data secara dinamis & tersinkronisasi
+  const handleRandomizeData = () => {
+    setIsRefreshing(true);
+    const now = new Date();
+    const newData = generateSynchronizedProjectData(now);
+    setStatsData(newData);
+    setChartKey((prev) => prev + 1);
+    animateCounters(newData.projectStats);
+
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 600);
+  };
 
   const renderChart = (data, type) => {
     if (type === 'bar') {
-      const maxValue = Math.max(...data.map(item => item.projects));
+      const maxValue = Math.max(...data.map(item => item.projects), 1);
       return (
-        <div className="chart-container bar-chart">
+        <div className="chart-container bar-chart" key={`bar-chart-${chartKey}`}>
           <div className="chart-bars">
-            {data.slice(0, 6).map((item, index) => (
-              <div key={index} className="bar-item">
+            {data.map((item, index) => {
+              const isPeak = item.projects === maxValue;
+              return (
                 <div 
-                  className="bar"
-                  style={{ 
-                    height: `${(item.projects / maxValue) * 100}%`,
-                    animationDelay: `${index * 0.1}s`
-                  }}
+                  key={index} 
+                  className={`bar-item ${item.isCurrentMonth ? 'current-month' : ''} ${isPeak ? 'peak-month' : ''}`}
+                  title={`${item.fullMonth} ${item.year}: ${item.projects} proyek selesai, ${item.clients} klien`}
                 >
-                  <span className="bar-value">{item.projects}</span>
+                  <div className="bar-track">
+                    {isPeak && (
+                      <span className="bar-peak-badge" title="Performa Puncak">
+                        <i className="fa fa-star"></i> Puncak
+                      </span>
+                    )}
+                    {item.isCurrentMonth && !isPeak && (
+                      <span className="bar-current-badge" title="Bulan Berjalan">
+                        Bulan Ini
+                      </span>
+                    )}
+                    <div 
+                      className="bar"
+                      style={{ 
+                        height: `${Math.max(18, (item.projects / maxValue) * 100)}%`,
+                        animationDelay: `${index * 0.08}s`
+                      }}
+                    >
+                      <span className="bar-value">{item.projects}</span>
+                    </div>
+                  </div>
+                  <span className="bar-label">{item.month}</span>
                 </div>
-                <span className="bar-label">{item.month}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       );
@@ -69,8 +107,8 @@ const StatisticsSection = () => {
 
     if (type === 'tech') {
       return (
-        <div className="tech-chart">
-          {techStats.slice(0, 6).map((tech, index) => (
+        <div className="tech-chart" key={`tech-chart-${chartKey}`}>
+          {data.map((tech, index) => (
             <div key={index} className="tech-item">
               <div className="tech-info">
                 <span className="tech-name">{tech.name}</span>
@@ -85,7 +123,7 @@ const StatisticsSection = () => {
                   }}
                 ></div>
               </div>
-              <small className="tech-projects">{tech.projects} projects</small>
+              <small className="tech-projects">{tech.projects} proyek terselesaikan</small>
             </div>
           ))}
         </div>
@@ -98,24 +136,44 @@ const StatisticsSection = () => {
       <div className="container">
         <div className="section-header text-center">
           <h2 className="section-title wow flipInX" data-wow-delay="0.4s">
-            Project <span>Statistics</span>
+            Statistik <span>Proyek</span>
           </h2>
           <div className="shape wow fadeInDown" data-wow-delay="0.3s"></div>
           <p className="section-subtitle">
-            Data-driven insights into my professional journey and achievements
+            Wawasan berbasis data mengenai perjalanan profesional dan pencapaian proyek saya
           </p>
+
+          {/* Bar Sinkronisasi Waktu Nyata & Tombol Acak/Perbarui */}
+          <div className="stats-sync-bar">
+            <span className="sync-badge">
+              <span className="sync-pulse-dot"></span>
+              Sinkronisasi Real-Time: <strong>{statsData.lastUpdated.monthName} {statsData.lastUpdated.year}</strong> (Pukul {statsData.lastUpdated.time} WIB)
+            </span>
+            <button 
+              type="button" 
+              className="btn-refresh-stats" 
+              onClick={handleRandomizeData}
+              title="Klik untuk mengacak data baru yang tetap sinkron dengan metrik atas"
+              disabled={isRefreshing}
+            >
+              <i className={`fa fa-refresh ${isRefreshing ? 'fa-spin' : ''}`}></i>
+              <span>{isRefreshing ? 'Memperbarui...' : 'Acak / Perbarui Data'}</span>
+            </button>
+          </div>
         </div>
 
-        {/* Statistics Overview Cards */}
+        {/* Statistics Overview Cards (Tersinkronisasi 100% dengan Data Bulanan) */}
         <div className="stats-overview">
           <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
             <div className="stat-icon">
               <i className="fa fa-check-circle"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">{animatedStats.projects || 0}</h3>
-              <p className="stat-label">Projects Completed</p>
-              <small className="stat-detail">+{projectStats.projects.ongoing} ongoing</small>
+              <h3 className="stat-number">
+                {animatedStats.projects ?? statsData.projectStats.projects.completed}
+              </h3>
+              <p className="stat-label">Proyek Selesai</p>
+              <small className="stat-detail">+{statsData.projectStats.projects.ongoing} sedang dikerjakan</small>
             </div>
           </div>
           
@@ -124,21 +182,24 @@ const StatisticsSection = () => {
               <i className="fa fa-users"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">{animatedStats.clients || 0}</h3>
-              <p className="stat-label">Total Clients</p>
-              <small className="stat-detail">{projectStats.clients.returning} returning clients</small>
+              <h3 className="stat-number">
+                {animatedStats.clients ?? statsData.projectStats.clients.total}
+              </h3>
+              <p className="stat-label">Total Klien</p>
+              <small className="stat-detail">{statsData.projectStats.clients.returning} klien setia / repeat order</small>
             </div>
           </div>
-          
           
           <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
             <div className="stat-icon">
               <i className="fa fa-trophy"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">{animatedStats.successRate || 0}%</h3>
-              <p className="stat-label">Success Rate</p>
-              <small className="stat-detail">{projectStats.metrics.onTimeDelivery}% on-time delivery</small>
+              <h3 className="stat-number">
+                {animatedStats.successRate ?? statsData.projectStats.metrics.successRate}%
+              </h3>
+              <p className="stat-label">Tingkat Keberhasilan</p>
+              <small className="stat-detail">{statsData.projectStats.metrics.onTimeDelivery}% selesai tepat waktu</small>
             </div>
           </div>
         </div>
@@ -151,28 +212,28 @@ const StatisticsSection = () => {
               onClick={() => setActiveTab('overview')}
             >
               <i className="fa fa-bar-chart"></i>
-              <span>Monthly Overview</span>
+              <span>Ringkasan Bulanan</span>
             </button>
             <button 
               className={`tab-btn ${activeTab === 'technologies' ? 'active' : ''}`}
               onClick={() => setActiveTab('technologies')}
             >
               <i className="fa fa-code"></i>
-              <span>Technologies</span>
+              <span>Teknologi</span>
             </button>
             <button 
               className={`tab-btn ${activeTab === 'categories' ? 'active' : ''}`}
               onClick={() => setActiveTab('categories')}
             >
               <i className="fa fa-pie-chart"></i>
-              <span>Project Types</span>
+              <span>Kategori Proyek</span>
             </button>
             <button 
               className={`tab-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
               onClick={() => setActiveTab('testimonials')}
             >
               <i className="fa fa-comments"></i>
-              <span>Client Reviews</span>
+              <span>Ulasan Klien</span>
             </button>
           </div>
 
@@ -182,32 +243,32 @@ const StatisticsSection = () => {
                 <div className="row">
                   <div className="col-lg-8">
                     <div className="chart-wrapper">
-                      <h4>Monthly Project Completion</h4>
-                      {renderChart(monthlyData, 'bar')}
+                      <h4>Penyelesaian Proyek Bulanan</h4>
+                      {renderChart(statsData.monthlyData, 'bar')}
                     </div>
                   </div>
                   <div className="col-lg-4">
                     <div className="insights-box">
-                      <h5>Key Insights</h5>
+                      <h5>Wawasan Utama</h5>
                       <div className="insight-item">
-                        <i className="fa fa-trending-up"></i>
+                        <i className="fa fa-line-chart"></i>
                         <div>
-                          <strong>Peak Performance</strong>
-                          <p>August was the most productive month</p>
+                          <strong>Performa Puncak</strong>
+                          <p>{statsData.insights.peakMonth.text}</p>
                         </div>
                       </div>
                       <div className="insight-item">
-                        <i className="fa fa-calendar"></i>
+                        <i className="fa fa-calendar-check-o"></i>
                         <div>
-                          <strong>Consistency</strong>
-                          <p>Average 6 projects per month</p>
+                          <strong>Konsistensi</strong>
+                          <p>{statsData.insights.consistency.text}</p>
                         </div>
                       </div>
                       <div className="insight-item">
-                        <i className="fa fa-growth"></i>
+                        <i className="fa fa-arrow-circle-up"></i>
                         <div>
-                          <strong>Growth</strong>
-                          <p>40% increase from last year</p>
+                          <strong>Pertumbuhan</strong>
+                          <p>{statsData.insights.growth.text}</p>
                         </div>
                       </div>
                     </div>
@@ -221,13 +282,13 @@ const StatisticsSection = () => {
                 <div className="row">
                   <div className="col-lg-8">
                     <div className="chart-wrapper">
-                      <h4>Technology Usage Statistics</h4>
-                      {renderChart(techStats, 'tech')}
+                      <h4>Statistik Penggunaan Teknologi</h4>
+                      {renderChart(statsData.techStats, 'tech')}
                     </div>
                   </div>
                   <div className="col-lg-4">
                     <div className="tech-summary">
-                      <h5>Tech Stack Summary</h5>
+                      <h5>Ringkasan Stack Teknologi</h5>
                       <div className="tech-category">
                         <h6>Frontend</h6>
                         <div className="tech-tags">
@@ -240,12 +301,12 @@ const StatisticsSection = () => {
                         <h6>Backend</h6>
                         <div className="tech-tags">
                           <span>Node.js</span>
-                          <span>PHP</span>
+                          <span>PHP / Laravel</span>
                           <span>Python</span>
                         </div>
                       </div>
                       <div className="tech-category">
-                        <h6>Database</h6>
+                        <h6>Basis Data</h6>
                         <div className="tech-tags">
                           <span>MySQL</span>
                           <span>MongoDB</span>
@@ -262,20 +323,20 @@ const StatisticsSection = () => {
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="categories-chart">
-                      <h4>Project Categories</h4>
+                      <h4>Distribusi Kategori Proyek</h4>
                       <div className="category-items">
-                        {projectCategories.map((category, index) => (
+                        {statsData.projectCategories.map((category, index) => (
                           <div key={index} className="category-item">
                             <div className="category-info">
                               <span className="category-name">{category.name}</span>
-                              <span className="category-count">{category.count} projects</span>
+                              <span className="category-count">{category.count} proyek</span>
                             </div>
                             <div className="category-bar">
                               <div 
                                 className="category-progress"
                                 style={{ 
                                   width: `${category.percentage}%`,
-                                  animationDelay: `${index * 0.2}s`
+                                  animationDelay: `${index * 0.15}s`
                                 }}
                               ></div>
                             </div>
@@ -287,28 +348,20 @@ const StatisticsSection = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="category-highlights">
-                      <h5>Category Highlights</h5>
-                      <div className="highlight-item">
-                        <i className="fa fa-globe"></i>
-                        <div>
-                          <strong>Web Applications</strong>
-                          <p>Most popular service with 37% of projects</p>
+                      <h5>Sorotan Kategori</h5>
+                      {statsData.projectCategories.map((cat, idx) => (
+                        <div key={idx} className="highlight-item">
+                          <i className={
+                            idx === 0 ? "fa fa-globe" :
+                            idx === 1 ? "fa fa-mobile" :
+                            idx === 2 ? "fa fa-shopping-cart" : "fa fa-server"
+                          }></i>
+                          <div>
+                            <strong>{cat.name}</strong>
+                            <p>{cat.highlight}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="highlight-item">
-                        <i className="fa fa-mobile"></i>
-                        <div>
-                          <strong>Mobile Development</strong>
-                          <p>Growing demand with 28% share</p>
-                        </div>
-                      </div>
-                      <div className="highlight-item">
-                        <i className="fa fa-shopping-cart"></i>
-                        <div>
-                          <strong>E-commerce</strong>
-                          <p>Specialized solutions for online businesses</p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -317,7 +370,7 @@ const StatisticsSection = () => {
 
             {activeTab === 'testimonials' && (
               <div className="tab-panel testimonials-panel">
-                <h4>Client Testimonials</h4>
+                <h4>Testimoni & Ulasan Klien</h4>
                 <div className="testimonials-grid">
                   {clientTestimonials.map((testimonial) => (
                     <div key={testimonial.id} className="testimonial-card">
@@ -336,7 +389,7 @@ const StatisticsSection = () => {
                         </div>
                       </div>
                       <p className="testimonial-text">"{testimonial.comment}"</p>
-                      <small className="project-name">Project: {testimonial.project}</small>
+                      <small className="project-name">Proyek: {testimonial.project}</small>
                     </div>
                   ))}
                 </div>

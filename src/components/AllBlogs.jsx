@@ -5,12 +5,12 @@ import './AllBlogs.css';
 
 // Blog categories for filtering
 const blogCategories = [
-  { id: 'all', name: 'All Articles', icon: 'fa-th-large' },
+  { id: 'all', name: 'Semua Artikel', icon: 'fa-th-large' },
   { id: 'React', name: 'React', icon: 'fa-atom' },
   { id: 'Backend', name: 'Backend', icon: 'fa-server' },
   { id: 'CSS', name: 'CSS', icon: 'fa-paint-brush' },
   { id: 'JavaScript', name: 'JavaScript', icon: 'fa-code' },
-  { id: 'Tutorial', name: 'Tutorials', icon: 'fa-graduation-cap' }
+  { id: 'Tutorial', name: 'Tutorial', icon: 'fa-graduation-cap' }
 ];
 
 // Modal untuk detail blog
@@ -20,7 +20,7 @@ const BlogModal = ({ blog, isOpen, onClose }) => {
   return (
     <div className="blog-modal-overlay-unique" onClick={onClose}>
       <div className="blog-modal-unique" onClick={(e) => e.stopPropagation()}>
-        <button className="blog-modal-close-unique" onClick={onClose}>
+        <button className="blog-modal-close-unique" onClick={onClose} title="Tutup">
           <i className="fa fa-times"></i>
         </button>
         
@@ -40,7 +40,7 @@ const BlogModal = ({ blog, isOpen, onClose }) => {
             <p className="blog-description-unique">{blog.description}</p>
             
             <div className="blog-tags-unique">
-              <h4>Tags</h4>
+              <h4>Topik / Tags</h4>
               <div className="tag-list-unique">
                 {blog.tags.map((tag, index) => (
                   <span key={index} className="blog-tag-unique">{tag}</span>
@@ -52,10 +52,10 @@ const BlogModal = ({ blog, isOpen, onClose }) => {
               <a 
                 href={blog.articleUrl} 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" 
                 className="btn-blog-primary-unique"
               >
-                <i className="fa fa-external-link"></i> Read Full Article
+                <i className="fa fa-external-link"></i> Baca Artikel Lengkap
               </a>
             </div>
           </div>
@@ -73,7 +73,7 @@ const BlogCard = ({ blog, onClick }) => {
         <img src={blog.image} alt={blog.title} />
         {blog.featured && (
           <div className="blog-featured-badge-unique">
-            <i className="fa fa-star"></i> Featured
+            <i className="fa fa-star"></i> Unggulan
           </div>
         )}
         <div className="all-blogs-card-overlay-unique">
@@ -82,7 +82,7 @@ const BlogCard = ({ blog, onClick }) => {
               <span>{blog.category}</span>
             </div>
             <button className="btn-blog-view-unique">
-              <i className="fa fa-eye"></i> Read More
+              <i className="fa fa-eye"></i> Baca Selengkapnya
             </button>
           </div>
         </div>
@@ -154,15 +154,17 @@ const AllBlogs = () => {
 
   return (
     <div className="all-blogs-page-unique">
-      {/* Header */}
+      {/* Header (Minimalist) */}
       <section className="all-blogs-header-unique">
         <div className="container">
-          <Link to="/" className="back-btn-blogs-unique">
-            <i className="fa fa-arrow-left"></i> Back to Home
-          </Link>
+          <div className="all-blogs-header-top-unique">
+            <Link to="/" className="back-btn-blogs-unique">
+              <i className="fa fa-arrow-left"></i> Kembali ke Beranda
+            </Link>
+          </div>
           <div className="all-blogs-title-unique">
-            <h1>All Blog Articles</h1>
-            <p>Explore my complete collection of web development tutorials, guides, and insights</p>
+            <h1>Semua Artikel Blog</h1>
+            <p>Jelajahi kumpulan panduan teknis, tutorial pemrograman, dan wawasan seputar teknologi</p>
           </div>
         </div>
       </section>
@@ -180,20 +182,20 @@ const AllBlogs = () => {
             <div className="blog-stat-item-unique">
               <span className="blog-stat-number-unique">{filteredBlogs.length}</span>
               <span className="blog-stat-label-unique">
-                {activeCategory === 'all' ? 'Total Articles' : 'Articles in Category'}
+                {activeCategory === 'all' ? 'Total Artikel' : 'Artikel dalam Kategori'}
               </span>
             </div>
             <div className="blog-stat-item-unique">
               <span className="blog-stat-number-unique">
                 {filteredBlogs.filter(b => b.featured).length}
               </span>
-              <span className="blog-stat-label-unique">Featured Articles</span>
+              <span className="blog-stat-label-unique">Artikel Unggulan</span>
             </div>
             <div className="blog-stat-item-unique">
               <span className="blog-stat-number-unique">
                 {Math.round(filteredBlogs.reduce((sum, b) => sum + parseInt(b.readTime), 0) / filteredBlogs.length) || 0}
               </span>
-              <span className="blog-stat-label-unique">Avg Read Time (min)</span>
+              <span className="blog-stat-label-unique">Rata-rata Waktu Baca (menit)</span>
             </div>
           </div>
           
@@ -210,7 +212,7 @@ const AllBlogs = () => {
           {filteredBlogs.length === 0 && (
             <div className="all-blogs-empty-unique">
               <i className="fa fa-file-text-o"></i>
-              <p>No articles found in this category.</p>
+              <p>Tidak ada artikel yang ditemukan dalam kategori ini.</p>
             </div>
           )}
         </div>

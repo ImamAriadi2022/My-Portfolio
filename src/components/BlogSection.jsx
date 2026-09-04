@@ -25,7 +25,7 @@ const BlogCard = ({ post, index }) => {
               {post.featured && (
                 <div className="blog-featured-badge">
                   <i className="fa fa-star"></i>
-                  Featured
+                  Unggulan
                 </div>
               )}
             </a>
@@ -45,7 +45,7 @@ const BlogCard = ({ post, index }) => {
             <div className="blog-date">
               <i className="fa fa-calendar"></i>
               <span>{post.date}</span>
-              <span className="blog-author">by {post.author}</span>
+              <span className="blog-author">oleh {post.author}</span>
             </div>
             
             <p className="blog-excerpt">{post.excerpt}</p>
@@ -65,7 +65,7 @@ const BlogCard = ({ post, index }) => {
                 disabled={!post.articleUrl}
               >
                 <i className="fa fa-external-link"></i>
-                Read Full Article
+                Baca Artikel Lengkap
               </button>
             </div>
           </div>
@@ -88,11 +88,11 @@ const BlogSection = () => {
       <div className="container">
         <div className="section-header text-center">
           <h2 className="section-title wow flipInX" data-wow-delay="0.4s">
-            My <span>Blog</span>
+            Artikel &amp; <span>Blog</span>
           </h2>
           <div className="shape wow fadeInDown" data-wow-delay="0.3s"></div>
           <p className="section-subtitle">
-            Sharing knowledge and insights about web development, programming, and technology
+            Berbagi wawasan, panduan teknis, dan pengalaman seputar dunia pemrograman dan pengembangan web
           </p>
         </div>
         
@@ -117,7 +117,7 @@ const BlogSection = () => {
             className="btn-view-all-blog"
           >
             <i className="fa fa-newspaper-o"></i>
-            <span>View All Blog Posts</span>
+            <span>Lihat Semua Artikel</span>
             <span className="view-all-badge-unique">{blogData.length}</span>
             <i className="fa fa-arrow-right view-all-arrow"></i>
           </Link>
