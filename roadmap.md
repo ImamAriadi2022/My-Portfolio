@@ -1,451 +1,190 @@
-# PHASE.md
+# ROADMAP.md
 
-# Imam Ariadi Portfolio CMS Development Roadmap
+# Imam Ariadi Portfolio — Fullstack Development Roadmap
 
-Version: 2.0
-
----
-
-# Project Goal
-Membangun platform personal website yang terdiri dari:
-* Public Website
-* Admin CMS
-* REST API
-* Dockerized Infrastructure
-* Automated Deployment
-* Production Ready Environment
-Target deployment menggunakan:
-* VPS
-* Docker
-* Docker Compose
-* Existing MySQL Server
-* GitHub Container Registry (GHCR)
-* GitHub Actions
-
-Database MySQL tidak dijalankan sebagai container baru. Project hanya menggunakan database baru (`portfolio_db`) pada MySQL Server yang sudah ada.
+**Versi:** 3.0  
+**Arsitektur:** Next.js 14 (App Router) + Supabase (PostgreSQL) + Vercel Blob Storage + Vercel Deployment  
+**Status Terakhir:** Phase 0 Selesai (Migrasi Penuh Fullstack, Build Clean 100%)
 
 ---
 
-# Phase 0 — Architecture & Planning
-## Objective
-Menyusun seluruh fondasi arsitektur sebelum implementasi dimulai.
+## Ringkasan Tujuan Proyek (Project Goal)
 
-## Scope
-* Finalisasi kebutuhan sistem
-* Menentukan struktur monorepo
-* Mendesain ERD Database
-* Mendesain REST API
-* Mendesain struktur folder
-* Mendesain role dan permission
-* Mendesain deployment architecture
-* Mendesain Docker architecture
-
-## Deliverables
-* ERD
-* API Contract (Swagger Draft)
-* Folder Structure
-* Docker Architecture
-* Deployment Flow
-* Phase Roadmap
-
-## Exit Criteria
-
-* Seluruh arsitektur disetujui.
-* Tidak ada perubahan besar terhadap struktur project.
+Membangun personal website portofolio profesional berarsitektur **Fullstack Modern & Serverless** yang menyajikan:
+* **Public Website**: Beranda interaktif, pameran portofolio, artikel blog teknis, statistik proyek real-time, dan paket daftar harga/layanan.
+* **Database & BaaS**: Supabase (PostgreSQL) dengan Row Level Security (RLS) dan graceful static fallback data JSON.
+* **Cloud Storage**: Vercel Blob Storage (`@vercel/blob`) untuk penyimpanan berkas media, gambar proyek, dan dokumen PDF (CV).
+* **Admin CMS**: Dashboard pengelolaan konten (CRUD Projects, Blogs, Services, & Settings) berbasis Server Actions dan Supabase Auth.
+* **Infrastructure & Hosting**: Vercel Edge/Serverless Network dengan CI/CD otomatis, Zero-Downtime Deployment, dan SSL otomatis.
 
 ---
 
-# Phase 1 — Project Foundation
-## Objective
-Membangun pondasi project agar seluruh tim atau AI Agent memiliki struktur kerja yang konsisten.
-
-## Scope
-### Frontend
-* React
-* Vite
-* TypeScript
-* React Router
-* Axios
-* React Query
-* Zustand
-
-### Backend
-* NestJS
-* Prisma
-* Swagger
-* Validation
-* Logger
-
-### Repository
-* Monorepo
-* Shared Packages
-* Environment Configuration
-
-### Docker
-* Dockerfile Frontend
-* Dockerfile Backend
-* Dockerfile Nginx
-* Docker Compose Development
-* Docker Compose Production
-
-### Documentation
-* README
-* agents.md
-* Coding Convention
-
-## Deliverables
-Project dapat dijalankan secara lokal menggunakan Docker Compose.
-
-## Exit Criteria
-* Frontend berjalan.
-* Backend berjalan.
-* Docker Compose berhasil dijalankan.
-* Repository siap dikembangkan.
-
----
-
-# Phase 2 — Backend Core
-## Objective
-Membangun pondasi backend agar seluruh module CMS dapat menggunakan infrastruktur yang sama.
-
-## Scope
-### Core Infrastructure
-* Config Module
-* Logger
-* Exception Filter
-* Validation Pipe
-* Response Wrapper
-* Pagination Helper
-* Slug Helper
-* Date Helper
-* Upload Helper
-* Environment Validation
-
-### Database
-* Prisma
-* Migration
-* Seeder
-
-### Initial Database
-* User
-* Role
-* Refresh Token
-
-### Security Infrastructure
-* JWT Utility
-* Cookie Utility
-* Password Utility
-* Permission Utility
-
-### Documentation
-* Swagger
-* OpenAPI
-
-### Monitoring
-* Health Endpoint
+## Diagram Arsitektur Sistem
 
 ```
-GET /health
+┌────────────────────────────────────────────────────────────────────────┐
+│                          Next.js 14 (App Router)                       │
+├───────────────────────────────────┬────────────────────────────────────┤
+│         Server Layer              │            Client Layer            │
+│  • Server Components (SSR / ISR)  │  • Interactive UI ('use client')   │
+│  • Route Handlers (/api/*)        │  • AOS & Canvas Animations         │
+│  • Server Actions                 │  • Modal & Client Filters          │
+└─────────────────┬─────────────────┴──────────────────┬─────────────────┘
+                  │                                    │
+                  ▼                                    ▼
+       ┌──────────────────────┐             ┌──────────────────────┐
+       │ Supabase (PostgreSQL)│             │ Vercel Blob Storage  │
+       │  • Projects Table    │             │  • Project Images    │
+       │  • Blogs Table       │             │  • Blog Covers       │
+       │  • Pricing Packages  │             │  • PDF Resume (CV)   │
+       │  • Row Level Security│             │  • Edge CDN Delivery │
+       └──────────────────────┘             └──────────────────────┘
 ```
 
-## Deliverables
-Backend Framework siap digunakan untuk seluruh module.
-## Exit Criteria
-* Migration berhasil.
-* Seeder berhasil.
-* Swagger aktif.
-* Health endpoint aktif.
+---
+
+## Phase 0 — Migrasi & Fondasi Arsitektur (SELESAI)
+
+### Objective
+Merombak struktur aplikasi dari Vite React JS (Frontend-only) ke Next.js 14 App Router (Fullstack) tanpa merubah desain UI, styling, atau fitur yang ada.
+
+### Scope & Deliverables
+* [x] **Setup Dependencies**: Hapus dependensi Vite & `react-router-dom`, pasang `next@14.2.15`, `@supabase/supabase-js`, dan `@vercel/blob`.
+* [x] **Environment Configuration**: Konfigurasi kredensial aman di `.env.local` (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `POSTGRES_*`, `BLOB_READ_WRITE_TOKEN`).
+* [x] **Supabase Client Utilities**: Implementasi [`lib/supabase/client.js`](file:///c:/programming/My-Portfolio/lib/supabase/client.js) dan [`lib/supabase/server.js`](file:///c:/programming/My-Portfolio/lib/supabase/server.js).
+* [x] **Database DDL & Seed Script**: Penyusunan skrip SQL lengkap di [`supabase/schema.sql`](file:///c:/programming/My-Portfolio/supabase/schema.sql) (tabel `projects`, `blogs`, `pricing_packages`, dan RLS policies).
+* [x] **Route Handler Upload**: Pembuatan endpoint [`app/api/upload/route.js`](file:///c:/programming/My-Portfolio/app/api/upload/route.js) menggunakan `@vercel/blob`.
+* [x] **App Router Structure**:
+  * `app/layout.jsx`: RootLayout dengan font Poppins, styling `@import`, dan pemuatan script partikel `beforeInteractive`.
+  * `app/page.jsx`: Server Component beranda dengan Supabase query dan fallback data.
+  * `app/all-projects/page.jsx`: Halaman portofolio lengkap.
+  * `app/all-blogs/page.jsx`: Halaman artikel dan panduan teknis.
+  * `app/price-list/page.jsx`: Halaman daftar harga dan paket layanan.
+  * `app/pricing/page.jsx`: Redirect otomatis ke `/price-list`.
+* [x] **Pembersihan Dead Code**: Menghapus `vite.config.js`, `index.html`, `main.jsx`, `AppRouter.jsx`, `App.jsx`, `contact.js`, `PortfolioSection.jsx`, dan folder `dist/`.
+* [x] **Verifikasi Build**: `npm run build` sukses 100% (9/9 static routes terkompilasi bersih).
 
 ---
 
-# Phase 3 — Authentication
-## Objective
-Membangun sistem autentikasi untuk CMS.
-## Scope
-* Login
-* Logout
-* Refresh Token
-* Current User
-* RBAC
-* Permission Guard
+## Phase 1 — Sinkronisasi Database Supabase (SELESAI)
 
-## Deliverables
-Admin dapat login ke CMS.
+### Objective
+Menjalankan skema database dan mengaktifkan data dinamis dari Supabase PostgreSQL secara langsung ke website.
 
-## Exit Criteria
-
-* JWT berjalan.
-* Refresh Token berjalan.
-* HttpOnly Cookie berjalan.
-* Seeder Admin berhasil.
+### Scope & Deliverables
+* [x] **Eksekusi Skrip SQL**: Skrip [`supabase/schema.sql`](file:///c:/programming/My-Portfolio/supabase/schema.sql) telah dijalankan di Supabase Dashboard (SQL Editor).
+* [x] **Verifikasi Live Query**:
+  * Tabel `projects`: Terverifikasi aktif dan mengembalikan data portofolio dinamis (TeraLab, Task Manager App, TodoList WEB3, dll).
+  * Tabel `blogs`: Terverifikasi aktif dan mengembalikan data artikel blog live.
+  * Tabel `pricing_packages`: Struktur tabel aktif dengan kebijakan RLS publik aman dan skrip seed data lengkap.
+* [x] **Validasi Row Level Security (RLS)**: Hak akses read-only (`SELECT`) publik telah terkonfirmasi aktif dan aman.
+* [x] **Integrasi Server Components**: `app/page.jsx`, `app/all-projects/page.jsx`, `app/all-blogs/page.jsx`, dan `app/price-list/page.jsx` terhubung langsung ke database Supabase dengan sistem fallback otomatis.
 
 ---
 
-# Phase 4 — Media Management
-## Objective
-Membangun Media Library yang digunakan seluruh CMS.
+## Phase 2 — Media Management & Vercel Blob Integration (SELESAI)
 
-## Scope
-* Upload Image
-* Upload PDF
-* Upload Resume
-* Replace File
-* Delete File
-* Media Metadata
+### Objective
+Memanfaatkan Vercel Blob Storage untuk manajemen aset gambar dan dokumen berkinerja tinggi.
 
-## Deliverables
-Media Library siap digunakan.
-
-## Exit Criteria
-* Upload berhasil.
-* Delete berhasil.
-* Replace berhasil.
-
----
-
-# Phase 5 — Portfolio CMS
-
-## Objective
-Membangun CRUD Portfolio.
-
-## Scope
-* Category
-* Technology
-* Gallery
-* Thumbnail
-* Publish
-* Draft
-* Featured Project
-
-## Deliverables
-Portfolio dapat dikelola melalui CMS.
-
-## Exit Criteria
-Portfolio tampil otomatis pada Public Website.
+### Scope & Deliverables
+* [x] **Route Handler Lengkap (`app/api/upload/route.js`)**:
+  * Mendukung `multipart/form-data` (browser file input) dan direct binary stream.
+  * Validasi tipe berkas aman: JPG, JPEG, PNG, WebP, SVG, GIF, dan PDF.
+  * Batasan ukuran berkas ketat (maksimal 4.5 MB).
+  * Terintegrasi dengan `@vercel/blob` (`put`, `del`, `list`).
+  * Sistem graceful local fallback (`/public/uploads/`) saat development offline atau sebelum token diset.
+* [x] **Client Media Utilities (`lib/blob.js`)**:
+  * Fungsi `uploadMedia(file)`, `deleteMedia(url)`, dan `listMedia()`.
+* [x] **Komponen Interaktif Media Uploader (`src/components/MediaUploader.jsx`)**:
+  * Desain dark mode estetik selaras dengan portofolio.
+  * Area drag-and-drop, validasi live, pratinjau thumbnail/PDF, tombol salin URL CDN, dan tombol hapus berkas.
+* [x] **Pembaruan CV/Resume Cloud (`app/cv/route.js`)**:
+  * Tautan "Unduh CV" di Hero Section kini mengarah ke `/cv`.
+  * Rute `/cv` otomatis menyajikan versi terbaru dari cloud storage Vercel Blob (atau fallback lokal).
+* [x] **Konfigurasi Remote Patterns**: Domain Vercel Blob (`**.public.blob.vercel-storage.com`) telah terdaftar di `next.config.js`.
+* [x] **Pengujian Otomatis**: Pengujian `GET`, `POST`, `DELETE`, dan redirect `/cv` sukses 100%.
 
 ---
 
-# Phase 6 — Blog CMS
-## Objective
-Membangun Blog Management.
+## Phase 3 — Admin CMS & Content Management (SELANJUTNYA)
 
-## Scope
-* Rich Text Editor
-* Category
-* Tags
-* SEO
-* Slug
-* Cover Image
-* Publish
-* Draft
+### Objective
+Membangun dashboard CMS terproteksi untuk mengelola seluruh konten website tanpa perlu mengubah kode sumber atau membuka SQL Editor.
 
-## Deliverables
-Blog dapat dikelola melalui CMS.
+### Scope
+* **Autentikasi Admin**:
+  * Login admin menggunakan Supabase Auth (Email & Password atau Magic Link).
+  * Route Protection menggunakan Next.js Middleware (`middleware.js`) untuk rute `/admin/*`.
+* **Admin Dashboard (`app/admin/page.jsx`)**:
+  * Ringkasan metrik (Total Projects, Total Blogs, Active Services, Storage Usage).
+* **Modul CRUD Projects**:
+  * Form input proyek baru (judul, deskripsi teknis, kategori, demo link, github link).
+  * Upload multi-gambar dokumentasi ke Vercel Blob dengan drag-and-drop.
+  * Toggle status *Featured* (Tampil di Homepage).
+* **Modul CRUD Blogs**:
+  * Markdown / Rich-Text Editor untuk artikel blog.
+  * Pengaturan kategori, tags, waktu baca, dan link artikel eksternal.
+* **Modul CRUD Pricing Packages**:
+  * Edit paket layanan, harga, fitur bullet points, dan penyesuaian template pesan WhatsApp.
 
-## Exit Criteria
-Blog tampil otomatis pada Public Website.
-
----
-
-# Phase 7 — Resume CMS
-## Objective
-Mengelola seluruh informasi pribadi.
-## Scope
-* About
-* Experience
-* Education
-* Skill
-* Service
-* Certificate
-
-## Deliverables
-Semua informasi personal dapat diedit melalui CMS.
-
-## Exit Criteria
-Tidak ada data personal yang masih hardcode.
+### Deliverables
+* Halaman `/admin` berfungsi penuh dan aman.
+* Konten website dapat diperbarui kapan saja melalui antarmuka web.
 
 ---
 
-# Phase 8 — Website Settings
+## Phase 4 — On-Demand Revalidation & Live Interactivity
 
-## Objective
-Mengelola konfigurasi website.
+### Objective
+Menjaga kecepatan akses static page (ISR) sembari menjamin konten selalu langsung terbarukan begitu diubah di CMS.
 
-## Scope
-* Hero
-* Navigation
-* Footer
-* Social Media
-* Contact
-* Resume
-* SEO
-* Analytics
+### Scope
+* Implementasi On-Demand Cache Revalidation menggunakan `revalidatePath()` atau `revalidateTag()` pada Server Actions CMS.
+* Begitu admin menyimpan data baru di CMS, halaman `/`, `/all-projects`, `/all-blogs`, dan `/price-list` langsung di-revalidate dalam hitungan milidetik tanpa menunggu interval 60 detik.
+* Fitur contact form interaktif dengan integrasi notifikasi (Email notifikasi via Resend atau pesan otomatis ke WhatsApp/Telegram).
+* Integrasi Vercel Web Analytics & Speed Insights untuk memantau pengunjung dan skor Core Web Vitals.
 
-## Deliverables
-Website dapat dikonfigurasi tanpa mengubah source code.
-
-## Exit Criteria
-Seluruh konfigurasi berasal dari database.
+### Deliverables
+* Performa website secepat static site dengan data yang selalu *real-time*.
+* Notifikasi lead masuk langsung ke saluran komunikasi pribadi.
 
 ---
 
-# Phase 9 — Dashboard
-## Objective
-Membangun dashboard administrator.
+## Phase 5 — SEO, Meta Tags & PWA
 
-## Scope
-* Statistics
-* Recent Portfolio
-* Recent Blog
-* Storage Usage
-* Quick Actions
+### Objective
+Mengoptimalkan visibilitas website di mesin pencari (Google Search) dan tampilan saat tautan dibagikan di media sosial.
 
-## Deliverables
-Dashboard Administrator selesai.
+### Scope
+* Next.js Metadata API dinamis: OpenGraph (OG image), Twitter Cards, dan deskripsi SEO per halaman.
+* Pembuatan Sitemap otomatis: [`app/sitemap.js`](file:///c:/programming/My-Portfolio/app/sitemap.js) yang menarik slug blog dan proyek dari Supabase.
+* Pembuatan Robots config: [`app/robots.js`](file:///c:/programming/My-Portfolio/app/robots.js) untuk aturan perayapan search engine.
+* Penerapan Structured Data (JSON-LD) dengan skema `Person`, `WebSite`, dan `Article`.
+* Audit Google Lighthouse dengan target skor:
+  * Performance: > 90
+  * Accessibility: > 95
+  * Best Practices: 100
+  * SEO: 100
 
-## Exit Criteria
-Dashboard menampilkan seluruh ringkasan website.
-
----
-
-# Phase 10 — Public API
-## Objective
-Menghubungkan frontend dengan backend.
-## Scope
-* Portfolio API
-* Blog API
-* Resume API
-* Settings API
-* Statistics API
-
-## Deliverables
-Frontend menggunakan REST API sepenuhnya.
-
-## Exit Criteria
-Folder `src/data` sudah tidak digunakan lagi.
+### Deliverables
+* Skor SEO dan Core Web Vitals optimal.
+* Tampilan link preview informatif di WhatsApp, LinkedIn, dan Twitter.
 
 ---
 
-# Phase 11 — Frontend Integration
-## Objective
-Mengintegrasikan seluruh CMS dengan website publik.
+## Phase 6 — Deployment Production & Continuous Delivery (Vercel)
 
-## Scope
-* API Integration
-* Loading State
-* Error Handling
-* Empty State
-* Image Optimization
+### Objective
+Menjalankan website di jaringan server global Vercel dengan otomatisasi deployment berbasis Git.
 
-## Deliverables
-Website menjadi dynamic website.
+### Scope
+* Menghubungkan repositori GitHub ke platform Vercel.
+* Konfigurasi Environment Variables di Vercel Dashboard (Supabase & Blob keys).
+* Menghubungkan domain kustom pribadi dengan sertifikat SSL/TLS gratis otomatis.
+* Konfigurasi continuous deployment: setiap commit ke branch `main` otomatis di-build dan di-deploy ke production dalam waktu < 2 menit.
+* Pengujian pratinjau (Preview Deployments) untuk setiap branch fitur atau pull request.
 
-## Exit Criteria
-Semua data berasal dari backend.
-
----
-
-# Phase 12 — Production Docker
-## Objective
-Membangun environment production.
-
-## Scope
-Container yang dibangun:
-* portfolio-frontend
-* portfolio-backend
-* portfolio-nginx
-Menggunakan Existing MySQL Server.
-Tidak membuat container MySQL baru.
-
-## Deliverables
-Docker Production siap.
-
-## Exit Criteria
-Docker Compose Production berjalan tanpa error.
-
----
-
-# Phase 13 — CI/CD
-## Objective
-Mengotomatisasi proses build dan deployment.
-
-## Scope
-GitHub Actions:
-* Lint
-* Test
-* Build Frontend
-* Build Backend
-* Build Docker Images
-* Push GHCR
-* Deploy VPS
-* Prisma Migration
-* Health Check
-
-## Deliverables
-Deployment otomatis melalui GitHub Actions.
-
-## Exit Criteria
-Push ke branch `main` menghasilkan deployment otomatis.
-
----
-
-# Phase 14 — VPS Deployment
-## Objective
-Menjalankan sistem pada server production.
-## Scope
-* Docker Compose
-* Existing MySQL Server
-* Existing Reverse Proxy
-* SSL
-* Domain
-* Environment Variables
-* Migration
-* Seeder
-
-Database yang dibuat:
-
-```
-portfolio_db
-```
-
-User Database:
-
-```
-portfolio_user
-```
-
-## Deliverables
-Website dapat diakses secara online.
-
-## Exit Criteria
-* HTTPS aktif.
-* Frontend aktif.
-* Backend aktif.
-* Database terhubung.
-* Upload berjalan.
-* Admin dapat login.
-
----
-
-# Phase 15 — Production Ready
-## Objective
-Memastikan sistem siap digunakan dalam jangka panjang.
-
-## Scope
-* Security Review
-* Backup Strategy
-* Health Monitoring
-* Log Rotation
-* Image Cleanup
-* Performance Review
-
-## Deliverables
-Production Ready Release.
-
-## Exit Criteria
-* Auto Deploy aktif.
-* Backup aktif.
-* Monitoring aktif.
-* Logging aktif.
-* Semua module CMS stabil.
-* Dokumentasi deployment lengkap.
+### Deliverables
+* Website online di domain kustom dengan uptime 99.99%.
+* Siklus rilis otomatis dan aman.

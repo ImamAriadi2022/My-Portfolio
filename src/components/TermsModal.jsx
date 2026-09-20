@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import termsData from '../data/termsData.json';
 import './TermsModal.css';

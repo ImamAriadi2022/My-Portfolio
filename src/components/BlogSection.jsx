@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { blogData } from '../data/blogData';
 
 const BlogCard = ({ post, index }) => {
@@ -75,9 +77,11 @@ const BlogCard = ({ post, index }) => {
   );
 };
 
-const BlogSection = () => {
+const BlogSection = ({ initialBlogs }) => {
+  const activeBlogList = initialBlogs && initialBlogs.length > 0 ? initialBlogs : blogData;
+
   // Show featured posts first, then others
-  const sortedPosts = [...blogData].sort((a, b) => {
+  const sortedPosts = [...activeBlogList].sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
     return new Date(b.date) - new Date(a.date); // Sort by date if same featured status
@@ -113,12 +117,12 @@ const BlogSection = () => {
         {/* View All Blog Posts Button */}
         <div className="blog-view-all text-center">
           <Link 
-            to="/all-blogs"
+            href="/all-blogs"
             className="btn-view-all-blog"
           >
             <i className="fa fa-newspaper-o"></i>
             <span>Lihat Semua Artikel</span>
-            <span className="view-all-badge-unique">{blogData.length}</span>
+            <span className="view-all-badge-unique">{activeBlogList.length}</span>
             <i className="fa fa-arrow-right view-all-arrow"></i>
           </Link>
         </div>

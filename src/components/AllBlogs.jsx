@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { blogData } from '../data/blogData';
 import './AllBlogs.css';
 
@@ -132,15 +134,17 @@ const BlogFilter = ({ activeCategory, onFilterChange }) => {
 };
 
 // Main All Blogs component
-const AllBlogs = () => {
+const AllBlogs = ({ initialBlogs }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const blogsList = initialBlogs && initialBlogs.length > 0 ? initialBlogs : blogData;
+
   // Filter blogs based on category
   const filteredBlogs = activeCategory === 'all' 
-    ? blogData 
-    : blogData.filter(blog => blog.category === activeCategory);
+    ? blogsList 
+    : blogsList.filter(blog => blog.category === activeCategory);
 
   const handleBlogClick = (blog) => {
     setSelectedBlog(blog);
@@ -158,7 +162,7 @@ const AllBlogs = () => {
       <section className="all-blogs-header-unique">
         <div className="container">
           <div className="all-blogs-header-top-unique">
-            <Link to="/" className="back-btn-blogs-unique">
+            <Link href="/" className="back-btn-blogs-unique">
               <i className="fa fa-arrow-left"></i> Kembali ke Beranda
             </Link>
           </div>

@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { allPortfolioData, portfolioCategories, portfolioData } from '../data/portfolioData';
 import socialData from '../data/socialData.json';
 import './Portfolio.css';
@@ -423,19 +425,20 @@ const PortfolioFilter = ({ activeCategory, onFilterChange }) => {
 };
 
 // Main Portfolio component - Homepage version (Top 3 per category)
-const Portfolio = () => {
+const Portfolio = ({ initialProjects, initialAllProjects }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const activeProjectsList = initialProjects && initialProjects.length > 0 ? initialProjects : portfolioData;
+  const activeAllProjectsList = initialAllProjects && initialAllProjects.length > 0 ? initialAllProjects : allPortfolioData;
+
   // Function to get top 3 projects per category for homepage
   const getHomepagePortfolio = () => {
     if (activeCategory === 'all') {
-      // Show top 3 from each category (9 total)
-      return portfolioData;
+      return activeProjectsList;
     } else {
-      // Show top 3 from selected category
-      return portfolioData.filter(item => item.category === activeCategory);
+      return activeProjectsList.filter(item => item.category === activeCategory);
     }
   };
 
@@ -449,12 +452,6 @@ const Portfolio = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedPortfolio(null);
-  };
-
-  const handleViewAllProjects = () => {
-    // Navigate to All Projects page
-    // Using window.location for now, can be changed to Link later
-    window.location.href = '/all-projects';
   };
 
   return (
@@ -488,12 +485,12 @@ const Portfolio = () => {
         {/* View All Projects Button */}
         <div className="portfolio-view-all-unique">
           <Link 
-            to="/all-projects"
+            href="/all-projects"
             className="btn-view-all-unique"
           >
             <i className="fa fa-th-large"></i>
             <span>Lihat Semua Proyek</span>
-            <span className="view-all-badge-unique">{allPortfolioData.length}</span>
+            <span className="view-all-badge-unique">{activeAllProjectsList.length}</span>
             <i className="fa fa-arrow-right view-all-arrow"></i>
           </Link>
         </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import ParticlesBackground from './ParticlesBackground';
 
@@ -7,9 +9,11 @@ const HeroSection = () => {
   const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
-    // Check if particles.js is available and initialize
+    let intervalId = null;
+    let isCancelled = false;
+
     const initParticles = () => {
-      if (window.particlesJS && particlesRef.current) {
+      if (typeof window !== 'undefined' && window.particlesJS && particlesRef.current) {
         try {
           window.particlesJS('particles-js', {
             particles: {
@@ -46,40 +50,41 @@ const HeroSection = () => {
             retina_detect: true
           });
           
-          // Check if canvas was actually created
           setTimeout(() => {
+            if (isCancelled) return;
             const canvas = document.querySelector('#particles-js canvas');
             if (canvas) {
               setParticlesLoaded(true);
-              console.log('Particles.js loaded successfully');
-            } else {
-              setShowFallback(true);
-              console.log('Particles.js canvas not created, using CSS fallback');
+              setShowFallback(false);
             }
-          }, 500);
-          
+          }, 200);
+
+          return true;
         } catch (error) {
           console.warn('Particles.js failed to initialize:', error);
-          setShowFallback(true);
+          return false;
         }
-      } else {
-        console.warn('Particles.js library not found, using CSS fallback');
-        setShowFallback(true);
       }
+      return false;
     };
 
-    // Try to initialize particles immediately
-    initParticles();
-
-    // If not loaded after delay, show fallback
-    const fallbackTimeout = setTimeout(() => {
-      if (!particlesLoaded) {
-        setShowFallback(true);
-      }
-    }, 2000);
+    // Try immediately
+    if (!initParticles()) {
+      let attempts = 0;
+      intervalId = setInterval(() => {
+        attempts++;
+        if (initParticles() || attempts >= 40) {
+          clearInterval(intervalId);
+          if (attempts >= 40 && !isCancelled) {
+            setShowFallback(true);
+          }
+        }
+      }, 100);
+    }
 
     return () => {
-      clearTimeout(fallbackTimeout);
+      isCancelled = true;
+      if (intervalId) clearInterval(intervalId);
     };
   }, []);
 
@@ -156,10 +161,10 @@ const HeroSection = () => {
               <p>Saya seorang Web &amp; Mobile Developer berpengalaman lebih dari 3 tahun, berfokus pada pengembangan backend, frontend, dan fullstack untuk aplikasi web dan mobile modern.
               </p>
               <a 
-                href="/komponen/Final Portfolio_Imam Ariadi.pdf" 
+                href="/cv" 
                 className="btn btn-secondary banner_btn"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" 
+                rel="noopener noreferrer" 
               >
                 Unduh CV
               </a>

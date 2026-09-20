@@ -1,6 +1,6 @@
 # Project Overview
 
-**Imam Ariadi Portfolio** — a personal portfolio website built with **React 18 + Vite**, migrated from a static HTML/Bootstrap 4 site. Showcases projects, blog articles, services, and interactive statistics charts. Uses React Router for multi-page navigation (`/`, `/all-projects`, `/all-blogs`).
+**Imam Ariadi Portfolio** — a personal fullstack portfolio website built with **Next.js 14 (App Router) + React 18**, migrated from Vite React JS. Showcases projects, blog articles, services, interactive statistics charts, and pricing packages. Connected to **Supabase (PostgreSQL)** for dynamic data with resilient static fallbacks and **Vercel Blob Storage** for media uploads.
 
 ---
 
@@ -8,17 +8,16 @@
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | React 18 (JSX, Hooks) |
-| Build | Vite 4 |
-| Routing | react-router-dom v6 |
-| CSS Framework | Bootstrap 4 (legacy CSS via `public/assets/css/`) |
+| Framework | Next.js 14.2 (App Router: Server & Client Components) |
+| Core Library | React 18 (JSX, Hooks) |
+| Database | Supabase (PostgreSQL) + Row Level Security (RLS) |
+| Cloud Storage | Vercel Blob Storage (`@vercel/blob`) |
+| Styling / CSS | Bootstrap 4 (via `public/assets/css/`), custom scoped CSS, CSS Variables |
 | Icons | Font Awesome 4, Simple Line Icons |
 | Animations | AOS (IntersectionObserver custom impl), WOW.js, CSS keyframes |
 | Particle Effect | particles.js (with CSS fallback) |
 | Carousel | Owl Carousel |
 | Lightbox | Nivo Lightbox |
-| Animation Engine | react-spring (installed, not heavily used) |
-| GitHub Calendar | github-calendar |
 
 ---
 
@@ -141,32 +140,37 @@ AppRouter (BrowserRouter)
 
 ### Routing
 
-- `/` — Main single-page app with anchor sections
-- `/all-projects` — Full portfolio with filter + modal
-- `/all-blogs` — Full blog list with filter + modal
+- `/` — Main single-page app (`app/page.jsx`) with dynamic Supabase projects & blogs
+- `/all-projects` — Full portfolio (`app/all-projects/page.jsx`) with filter + modal
+- `/all-blogs` — Full blog list (`app/all-blogs/page.jsx`) with filter + modal
+- `/price-list` — Pricing packages (`app/price-list/page.jsx`) with dynamic Supabase packages
+- `/pricing` — Redirects to `/price-list`
+- `/api/upload` — Route Handler (`app/api/upload/route.js`) for Vercel Blob file/image uploads
 
 ### Data Layer
 
-All content is static JSON in `src/data/`:
+Hybrid architecture: Server components fetch from **Supabase (PostgreSQL)** tables (`projects`, `blogs`, `pricing_packages`), with graceful fallback to static JSON in `src/data/`:
 - **portfolioData.js** — Featured (3) + all portfolio items (`allPortfolioData`)
 - **projectData.js** — Stats, monthly chart data, tech usage, categories, testimonials
 - **blogData.js** — Blog posts with external article links
+- **pricingData.json** — Pricing packages fallback data
+- **supabase/schema.sql** — Database table schema DDL, RLS policies, and initial seed data
 
 ### Key Patterns to Follow
 
 1. Use `-unique` suffixed class names in new component CSS files to avoid style conflicts
 2. Reference CSS variables (`var(--primary-color)`) for consistent theming
 3. Always import `index.css` which contains the root variables
-4. Use `data-aos` attributes for scroll animations (already configured in App.jsx)
-5. Portfolio modal pattern: overlay → modal → split layout (image | info) with image navigation
-6. Add new routes in `AppRouter.jsx`, new components in `src/components/`, new data in `src/data/`
-7. Keep styles in separate CSS files per component (already has Portfolio.css, AllProjects.css, AllBlogs.css)
-8. Bootstrap 4 grid classes (`container`, `row`, `col-lg-*`, etc.) are available globally
+4. Use `data-aos` attributes for scroll animations
+5. Interactive components must specify `'use client'` at the top
+6. Server components in `app/` query Supabase via `lib/supabase/server.js` and pass data down to client components
+7. Keep styles in separate CSS files per component (Portfolio.css, AllProjects.css, AllBlogs.css, PriceList.css)
 
 ### Dev Commands
 
 ```bash
-npm run dev      # Vite dev server on port 3000
-npm run build    # Production build to dist/
-npm run preview  # Preview production build
+npm run dev      # Next.js dev server on port 3000
+npm run build    # Next.js production build
+npm run start    # Start Next.js production server
 ```
+

@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { allPortfolioData, portfolioCategories } from '../data/portfolioData';
 import socialData from '../data/socialData.json';
 import './AllProjects.css';
@@ -433,15 +435,17 @@ const PortfolioFilter = ({ activeCategory, onFilterChange }) => {
 };
 
 // All Projects Page Component
-const AllProjects = () => {
+const AllProjects = ({ initialProjects }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const projectsList = initialProjects && initialProjects.length > 0 ? initialProjects : allPortfolioData;
+
   // Filter portfolio berdasarkan kategori
   const filteredPortfolio = activeCategory === 'all' 
-    ? allPortfolioData 
-    : allPortfolioData.filter(item => item.category === activeCategory);
+    ? projectsList 
+    : projectsList.filter(item => item.category === activeCategory);
 
   const handlePortfolioClick = (portfolio) => {
     setSelectedPortfolio(portfolio);
@@ -463,7 +467,7 @@ const AllProjects = () => {
       <section className="all-projects-header-unique">
         <div className="container">
           <div className="all-projects-header-top-unique">
-            <Link to="/" className="back-btn-unique">
+            <Link href="/" className="back-btn-unique">
               <i className="fa fa-arrow-left"></i> Kembali ke Beranda
             </Link>
           </div>

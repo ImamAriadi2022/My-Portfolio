@@ -1,7 +1,9 @@
 
 
+'use client';
+
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import TermsModal from './TermsModal';
 import socialData from '../data/socialData.json';
 
@@ -135,7 +137,7 @@ const Footer = () => {
               <ul className="footer-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#services">Layanan</a></li>
-                <li><Link to="/price-list">Daftar Harga</Link></li>
+                <li><Link href="/price-list">Daftar Harga</Link></li>
                 <li><a href="#portfolio">Portofolio</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Statistik</a></li>

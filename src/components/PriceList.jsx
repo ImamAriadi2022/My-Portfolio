@@ -1,9 +1,11 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import pricingData from '../data/pricingData.json';
 import './PriceList.css';
 
-const PriceList = () => {
+const PriceList = ({ initialPackages }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
@@ -11,7 +13,8 @@ const PriceList = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { pageHeader, categories, packages, customProjectCta, faqs, contactInfo } = pricingData;
+  const { pageHeader, categories, packages: defaultPackages, customProjectCta, faqs, contactInfo } = pricingData;
+  const packages = initialPackages && initialPackages.length > 0 ? initialPackages : defaultPackages;
 
   const filteredPackages = activeCategory === 'all'
     ? packages
@@ -33,7 +36,7 @@ const PriceList = () => {
       <header className="price-list-header-unique">
         <div className="container">
           <div className="price-list-top-nav-unique">
-            <Link to="/" className="price-list-back-btn-unique">
+            <Link href="/" className="price-list-back-btn-unique">
               <i className="fa fa-arrow-left"></i> Kembali ke Beranda
             </Link>
             <div className="price-list-badge-pill-unique">

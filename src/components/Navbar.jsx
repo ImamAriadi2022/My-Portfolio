@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useScrollPosition } from '../hooks/useScrollEffects';
 
 const Navbar = ({ isLoading }) => {
@@ -72,7 +74,7 @@ const Navbar = ({ isLoading }) => {
             <li className="nav-item">
               <Link 
                 className="nav-link" 
-                to="/price-list"
+                href="/price-list"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Daftar Harga
