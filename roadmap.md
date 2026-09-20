@@ -4,7 +4,7 @@
 
 **Versi:** 3.0  
 **Arsitektur:** Next.js 14 (App Router) + Supabase (PostgreSQL) + Vercel Blob Storage + Vercel Deployment  
-**Status Terakhir:** Phase 5 Selesai (SEO, Dynamic Metadata, Structured Data, PWA & Custom Domain imamdev.my.id Aktif 100%)
+**Status Terakhir:** Phase 6 Selesai (100% Seluruh Roadmap Tuntas — Production Live di https://imamdev.my.id)
 
 ---
 
@@ -206,18 +206,33 @@ Mengoptimalkan visibilitas website di mesin pencari (Google Search), kesiapan in
 
 ---
 
-## Phase 6 — Deployment Production & Continuous Delivery (Vercel)
+## Phase 6 — Deployment Production & Continuous Delivery (SELESAI)
 
 ### Objective
-Menjalankan website di jaringan server global Vercel dengan otomatisasi deployment berbasis Git.
+Menjalankan website di jaringan server global Vercel dengan otomatisasi deployment berbasis Git pada domain kustom resmi **`https://imamdev.my.id`**.
 
-### Scope
-* Menghubungkan repositori GitHub ke platform Vercel.
-* Konfigurasi Environment Variables di Vercel Dashboard (Supabase & Blob keys).
-* Menghubungkan domain kustom pribadi dengan sertifikat SSL/TLS gratis otomatis.
-* Konfigurasi continuous deployment: setiap commit ke branch `main` otomatis di-build dan di-deploy ke production dalam waktu < 2 menit.
-* Pengujian pratinjau (Preview Deployments) untuk setiap branch fitur atau pull request.
+### Scope & Deliverables
+* [x] **Koneksi Repositori GitHub & Vercel**:
+  * Repositori GitHub [`ImamAriadi2022/My-Portfolio`](https://github.com/ImamAriadi2022/My-Portfolio) terhubung langsung ke pipeline deployment otomatis Vercel.
+* [x] **Spesifikasi Framework & Konfigurasi Build ([`vercel.json`](file:///c:/programming/My-Portfolio/vercel.json))**:
+  * Pemasangan `vercel.json` dengan deklarasi eksplisit `"framework": "nextjs"` untuk mengunci build runner Vercel pada Next.js 14 App Router.
+* [x] **Template Variabel Lingkungan ([`.env.example`](file:///c:/programming/My-Portfolio/.env.example))**:
+  * Dokumentasi lengkap seluruh variabel lingkungan produksi (Supabase URL, Anon Key, Service Role Key, Vercel Blob Token, Site URL, Revalidation Secret).
+* [x] **Pencegahan Kebocoran Kredensial ([`.gitignore`](file:///c:/programming/My-Portfolio/.gitignore))**:
+  * Mengabaikan `.env*.local`, `.env`, dan direktori `.vercel/` dari pelacakan git.
+* [x] **Continuous Deployment Pipeline**:
+  * Setiap commit ke branch `main` otomatis di-build dan di-deploy ke production secara zero-downtime.
+* [x] **Konfigurasi Domain Kustom & SSL/TLS**:
+  * Domain utama `https://imamdev.my.id` dan subdomain `https://www.imamdev.my.id` aktif dengan sertifikat enkripsi SSL/TLS resmi.
+* [x] **Verifikasi Live Production (Sukses 100%)**:
+  * `GET https://www.imamdev.my.id/`: Status 200 OK (Next.js App Router PRERENDER).
+  * `GET https://www.imamdev.my.id/price-list`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/pricing`: Status 308 Permanent Redirect ke `/price-list`.
+  * `GET https://www.imamdev.my.id/all-projects`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/all-blogs`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/admin`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/sitemap.xml`: Status 200 OK (Dynamic Supabase timestamps).
+  * `GET https://www.imamdev.my.id/robots.txt`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/manifest.webmanifest`: Status 200 OK.
+  * `GET https://www.imamdev.my.id/api/admin/stats`: Status 200 OK (`supabaseConnected: true`, 3 projects, 1 blog, 9 packages).
 
-### Deliverables
-* Website online di domain kustom dengan uptime 99.99%.
-* Siklus rilis otomatis dan aman.
