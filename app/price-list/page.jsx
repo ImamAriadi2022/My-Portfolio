@@ -3,8 +3,25 @@ import PriceList from '../../src/components/PriceList';
 import pricingData from '../../src/data/pricingData.json';
 
 export const metadata = {
-  title: 'Daftar Harga & Paket Layanan - Imam Ariadi',
-  description: 'Pilihan paket layanan pengembangan website, bimbingan belajar, support IT, dan konsultasi profesional bersama Imam Ariadi.',
+  title: 'Daftar Harga & Paket Layanan',
+  description:
+    'Pilihan paket layanan transparan untuk pengembangan website, bimbingan coding privat, skripsi IT, konfigurasi server/domain, dan sesi konsultasi teknis profesional.',
+  alternates: {
+    canonical: '/price-list',
+  },
+  openGraph: {
+    title: 'Daftar Harga & Paket Layanan | Imam Ariadi',
+    description:
+      'Layanan pembuatan landing page, web application, custom web system, dan bimbingan belajar dengan harga terjangkau dan garansi hasil.',
+    url: '/price-list',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Daftar Harga & Paket Layanan | Imam Ariadi',
+    description:
+      'Layanan pembuatan landing page, web application, custom web system, dan bimbingan belajar dengan harga terjangkau dan garansi hasil.',
+  },
 };
 
 export const revalidate = 60;

@@ -4,7 +4,7 @@
 
 **Versi:** 3.0  
 **Arsitektur:** Next.js 14 (App Router) + Supabase (PostgreSQL) + Vercel Blob Storage + Vercel Deployment  
-**Status Terakhir:** Phase 4 Selesai (On-Demand Revalidation, Leads System, & Vercel Analytics Aktif 100%)
+**Status Terakhir:** Phase 5 Selesai (SEO, Dynamic Metadata, Structured Data, PWA & Custom Domain imamdev.my.id Aktif 100%)
 
 ---
 
@@ -168,25 +168,41 @@ Menjaga kecepatan akses static page (ISR) sembari menjamin konten selalu langsun
 
 ---
 
-## Phase 5 — SEO, Meta Tags & PWA
+## Phase 5 — SEO, Meta Tags, Structured Data & PWA (SELESAI)
 
 ### Objective
-Mengoptimalkan visibilitas website di mesin pencari (Google Search) dan tampilan saat tautan dibagikan di media sosial.
+Mengoptimalkan visibilitas website di mesin pencari (Google Search), kesiapan instalasi Progressive Web App (PWA), serta tampilan tautan yang kaya saat dibagikan di media sosial mengacu pada domain kustom resmi **`https://imamdev.my.id`**.
 
-### Scope
-* Next.js Metadata API dinamis: OpenGraph (OG image), Twitter Cards, dan deskripsi SEO per halaman.
-* Pembuatan Sitemap otomatis: [`app/sitemap.js`](file:///c:/programming/My-Portfolio/app/sitemap.js) yang menarik slug blog dan proyek dari Supabase.
-* Pembuatan Robots config: [`app/robots.js`](file:///c:/programming/My-Portfolio/app/robots.js) untuk aturan perayapan search engine.
-* Penerapan Structured Data (JSON-LD) dengan skema `Person`, `WebSite`, dan `Article`.
-* Audit Google Lighthouse dengan target skor:
-  * Performance: > 90
-  * Accessibility: > 95
-  * Best Practices: 100
-  * SEO: 100
-
-### Deliverables
-* Skor SEO dan Core Web Vitals optimal.
-* Tampilan link preview informatif di WhatsApp, LinkedIn, dan Twitter.
+### Scope & Deliverables
+* [x] **Konfigurasi Base URL Produksi**:
+  * Pendaftaran `NEXT_PUBLIC_SITE_URL="https://imamdev.my.id"` pada `.env.local` sebagai single source of truth URL kanonikal.
+* [x] **Dynamic Sitemap Generator ([`app/sitemap.js`](file:///c:/programming/My-Portfolio/app/sitemap.js))**:
+  * Menghasilkan file XML `https://imamdev.my.id/sitemap.xml` secara otomatis.
+  * Mengambil waktu update riil (`updated_at` / `lastModified`) secara live dari Supabase PostgreSQL untuk route `/`, `/all-projects`, `/price-list`, dan `/all-blogs`.
+  * Konfigurasi frekuensi perayapan (`changeFrequency`) dan prioritas indeksasi (`priority`).
+* [x] **Robots Engine ([`app/robots.js`](file:///c:/programming/My-Portfolio/app/robots.js))**:
+  * Menghasilkan `https://imamdev.my.id/robots.txt`.
+  * Mengizinkan mesin pencari merayapi seluruh halaman publik (`Allow: /`).
+  * Memblokir perayapan Googlebot ke area sensitif (`Disallow: /admin/` dan `Disallow: /api/`).
+  * Menautkan lokasi resmi Sitemap XML.
+* [x] **Progressive Web App Manifest ([`app/manifest.js`](file:///c:/programming/My-Portfolio/app/manifest.js))**:
+  * Menyajikan manifest PWA `/manifest.webmanifest` dengan standar aplikasi modern.
+  * Konfigurasi tema warna dark mode (`background: #000000`, `theme: #28a745`), ikon high-res 192x192 & 512x512, serta mode tampilan `standalone`.
+* [x] **Rich Structured Data / JSON-LD ([`src/components/JsonLd.jsx`](file:///c:/programming/My-Portfolio/src/components/JsonLd.jsx))**:
+  * Standarisasi Schema.org untuk 3 entitas utama:
+    * `Person`: Profil lengkap Imam Ariadi, profesi Fullstack Web & Mobile Developer, portofolio profil LinkedIn/GitHub, dan relasi website.
+    * `WebSite`: Metadata identitas website `https://imamdev.my.id` dan deskripsi kapabilitas.
+    * `ProfessionalService`: Entitas bisnis jasa teknologi, harga layanan (IDR), jam operasional, dan cakupan bimbingan skripsi / pembuatan aplikasi.
+* [x] **Perluasan Metadata Halaman**:
+  * [`app/layout.jsx`](file:///c:/programming/My-Portfolio/app/layout.jsx): OpenGraph card lengkap, Twitter large summary card, canonical URL, author, creator, publisher, format-detection, dan Googlebot directives.
+  * [`app/all-projects/page.jsx`](file:///c:/programming/My-Portfolio/app/all-projects/page.jsx): Metadata SEO khusus katalog proyek portofolio.
+  * [`app/all-blogs/page.jsx`](file:///c:/programming/My-Portfolio/app/all-blogs/page.jsx): Metadata SEO khusus kumpulan artikel & panduan IT.
+  * [`app/price-list/page.jsx`](file:///c:/programming/My-Portfolio/app/price-list/page.jsx): Metadata SEO khusus daftar harga & paket layanan jasa.
+* [x] **Verifikasi & Validasi Endpoint**:
+  * `GET /robots.txt`: Menghasilkan status 200 OK dengan proteksi admin/api dan penunjuk sitemap.
+  * `GET /sitemap.xml`: Menghasilkan XML 200 OK dengan format sitemap schema valid.
+  * `GET /manifest.webmanifest`: Menghasilkan JSON 200 OK dengan parameter PWA lengkap.
+  * Injeksi metadata dan tag JSON-LD pada HTML render server terkonfirmasi valid.
 
 ---
 

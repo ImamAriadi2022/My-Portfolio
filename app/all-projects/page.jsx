@@ -3,8 +3,25 @@ import AllProjects from '../../src/components/AllProjects';
 import { allPortfolioData } from '../../src/data/portfolioData';
 
 export const metadata = {
-  title: 'Semua Proyek - Imam Ariadi | Portofolio',
-  description: 'Jelajahi seluruh portofolio proyek pengembangan web, aplikasi mobile, dan backend oleh Imam Ariadi.',
+  title: 'Semua Proyek Portofolio',
+  description:
+    'Jelajahi galeri lengkap karya proyek pengembangan web, aplikasi mobile, dan backend yang dibangun oleh Imam Ariadi.',
+  alternates: {
+    canonical: '/all-projects',
+  },
+  openGraph: {
+    title: 'Semua Proyek Portofolio | Imam Ariadi',
+    description:
+      'Katalog lengkap proyek aplikasi web modern, mobile app cross-platform, dan API backend oleh Imam Ariadi.',
+    url: '/all-projects',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Semua Proyek Portofolio | Imam Ariadi',
+    description:
+      'Katalog lengkap proyek aplikasi web modern, mobile app cross-platform, dan API backend oleh Imam Ariadi.',
+  },
 };
 
 export const revalidate = 60;

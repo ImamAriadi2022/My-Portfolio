@@ -3,8 +3,25 @@ import AllBlogs from '../../src/components/AllBlogs';
 import { blogData } from '../../src/data/blogData';
 
 export const metadata = {
-  title: 'Semua Artikel Blog - Imam Ariadi | Portofolio',
-  description: 'Kumpulan panduan teknis, tutorial pemrograman, dan wawasan seputar teknologi oleh Imam Ariadi.',
+  title: 'Semua Artikel Blog & Panduan Teknis',
+  description:
+    'Kumpulan panduan teknis, tutorial pemrograman web & mobile, tips arsitektur sistem, dan wawasan seputar dunia teknologi oleh Imam Ariadi.',
+  alternates: {
+    canonical: '/all-blogs',
+  },
+  openGraph: {
+    title: 'Artikel Blog & Tutorial Teknis | Imam Ariadi',
+    description:
+      'Pelajari tips dan tutorial pemrograman React, Next.js, Node.js, dan arsitektur web modern bersama Imam Ariadi.',
+    url: '/all-blogs',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Artikel Blog & Tutorial Teknis | Imam Ariadi',
+    description:
+      'Pelajari tips dan tutorial pemrograman React, Next.js, Node.js, dan arsitektur web modern bersama Imam Ariadi.',
+  },
 };
 
 export const revalidate = 60;
