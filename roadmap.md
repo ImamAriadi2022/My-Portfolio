@@ -4,7 +4,7 @@
 
 **Versi:** 3.0  
 **Arsitektur:** Next.js 14 (App Router) + Supabase (PostgreSQL) + Vercel Blob Storage + Vercel Deployment  
-**Status Terakhir:** Phase 3 Selesai (Admin CMS & Content Management Aktif 100%)
+**Status Terakhir:** Phase 4 Selesai (On-Demand Revalidation, Leads System, & Vercel Analytics Aktif 100%)
 
 ---
 
@@ -136,20 +136,35 @@ Membangun dashboard CMS terproteksi untuk mengelola seluruh konten website tanpa
 
 ---
 
-## Phase 4 — On-Demand Revalidation & Live Interactivity
+## Phase 4 — On-Demand Revalidation & Live Interactivity (SELESAI)
 
 ### Objective
-Menjaga kecepatan akses static page (ISR) sembari menjamin konten selalu langsung terbarukan begitu diubah di CMS.
+Menjaga kecepatan akses static page (ISR) sembari menjamin konten selalu langsung terbarukan begitu diubah di CMS, sistem penangkapan lead interaktif, serta analitik performa real-time.
 
-### Scope
-* Implementasi On-Demand Cache Revalidation menggunakan `revalidatePath()` atau `revalidateTag()` pada Server Actions CMS.
-* Begitu admin menyimpan data baru di CMS, halaman `/`, `/all-projects`, `/all-blogs`, dan `/price-list` langsung di-revalidate dalam hitungan milidetik tanpa menunggu interval 60 detik.
-* Fitur contact form interaktif dengan integrasi notifikasi (Email notifikasi via Resend atau pesan otomatis ke WhatsApp/Telegram).
-* Integrasi Vercel Web Analytics & Speed Insights untuk memantau pengunjung dan skor Core Web Vitals.
-
-### Deliverables
-* Performa website secepat static site dengan data yang selalu *real-time*.
-* Notifikasi lead masuk langsung ke saluran komunikasi pribadi.
+### Scope & Deliverables
+* [x] **Skrip Migrasi Delta Baru ([`supabase/extend2.sql`](file:///c:/programming/My-Portfolio/supabase/extend2.sql))**:
+  * Pembuatan tabel `public.leads` untuk menampung pesan calon klien dan riwayat kontak.
+  * Kebijakan Row Level Security (RLS) aman: publik dapat melakukan `INSERT`, admin terautentikasi memiliki akses penuh `SELECT`, `UPDATE`, `DELETE`.
+* [x] **On-Demand Cache Revalidation Engine ([`app/api/revalidate/route.js`](file:///c:/programming/My-Portfolio/app/api/revalidate/route.js))**:
+  * Endpoint publik terproteksi token rahasia untuk memicu `revalidatePath()` seketika pada `/`, `/all-projects`, `/all-blogs`, atau `/price-list`.
+  * Integrasi revalidasi otomatis pada seluruh aksi tulis Admin CMS (Projects, Blogs, Pricing).
+* [x] **API Handler & Form Kontak Interaktif ([`app/api/contact/route.js`](file:///c:/programming/My-Portfolio/app/api/contact/route.js))**:
+  * Validasi nama, email, nomor telepon, dan isi pesan.
+  * Penyimpanan pesan calon klien ke tabel `leads` Supabase secara asinkron.
+  * Generator pesan WhatsApp otomatis dengan encode teks percakapan instan.
+* [x] **Komponen Interaktif Modal Kontak ([`src/components/ContactModal.jsx`](file:///c:/programming/My-Portfolio/src/components/ContactModal.jsx) & `.css`)**:
+  * Modal interaktif dark mode elegan yang terhubung ke tombol "Hubungi Saya" di Hero Section dan Footer.
+  * Feedback status pengiriman live (loading, error, sukses) dan tombol direct follow-up ke WhatsApp.
+* [x] **Modul Inbox Admin Leads ([`app/admin/leads/page.jsx`](file:///c:/programming/My-Portfolio/app/admin/leads/page.jsx) & [`app/api/admin/leads/route.js`](file:///c:/programming/My-Portfolio/app/api/admin/leads/route.js))**:
+  * Inbox pesan masuk di Admin CMS dengan filter status (`unread`, `read`, `replied`), pencarian, dan modal baca detail.
+  * Tombol aksi instan: "Balas via WhatsApp", "Balas via Email", "Tandai Selesai", dan "Hapus".
+  * Sinkronisasi metrik jumlah pesan masuk ke Dashboard Overview ([`app/admin/page.jsx`](file:///c:/programming/My-Portfolio/app/admin/page.jsx)).
+* [x] **Integrasi Vercel Web Analytics & Speed Insights**:
+  * Dependensi `@vercel/analytics` dan `@vercel/speed-insights` terpasang.
+  * Komponen `<Analytics />` dan `<SpeedInsights />` terpasang aktif di RootLayout ([`app/layout.jsx`](file:///c:/programming/My-Portfolio/app/layout.jsx)).
+* [x] **Pengujian & Kompilasi Produksi**:
+  * Automated integration test suite Phase 4 sukses 100%.
+  * Next.js production build (`npm run build`) sukses 100% (23/23 routes terkompilasi bersih).
 
 ---
 

@@ -1,4 +1,6 @@
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import '../src/index.css';
 import '../src/styles.css';
 
@@ -21,6 +23,8 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         <div id="root">{children}</div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

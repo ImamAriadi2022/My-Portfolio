@@ -7,7 +7,7 @@ import Link from 'next/link';
 import TermsModal from './TermsModal';
 import socialData from '../data/socialData.json';
 
-const Footer = () => {
+const Footer = ({ onOpenContact }) => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -141,6 +141,20 @@ const Footer = () => {
                 <li><a href="#portfolio">Portofolio</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Statistik</a></li>
+                {onOpenContact && (
+                  <li>
+                    <a
+                      href="#contact-modal"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onOpenContact();
+                      }}
+                      style={{ color: '#34ce57' }}
+                    >
+                      Hubungi Saya
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

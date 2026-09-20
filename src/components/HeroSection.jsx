@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import ParticlesBackground from './ParticlesBackground';
 
-const HeroSection = () => {
+const HeroSection = ({ onOpenContact }) => {
   const particlesRef = useRef(null);
   const [particlesLoaded, setParticlesLoaded] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
@@ -160,14 +160,29 @@ const HeroSection = () => {
               </h1>
               <p>Saya seorang Web &amp; Mobile Developer berpengalaman lebih dari 3 tahun, berfokus pada pengembangan backend, frontend, dan fullstack untuk aplikasi web dan mobile modern.
               </p>
-              <a 
-                href="/cv" 
-                className="btn btn-secondary banner_btn"
-                target="_blank" 
-                rel="noopener noreferrer" 
-              >
-                Unduh CV
-              </a>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary banner_btn"
+                  onClick={onOpenContact}
+                  style={{
+                    background: 'linear-gradient(135deg, #28a745, #1e7e34)',
+                    borderColor: '#28a745',
+                    color: '#ffffff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Hubungi Saya
+                </button>
+                <a 
+                  href="/cv" 
+                  className="btn btn-secondary banner_btn"
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                >
+                  Unduh CV
+                </a>
+              </div>
             </div>
           </div>
           <div className="col-lg-6 col-md-6">

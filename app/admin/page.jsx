@@ -91,6 +91,23 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Leads & Messages Card */}
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon-wrapper" style={{ background: 'rgba(236, 72, 153, 0.12)', color: '#f472b6', border: '1px solid rgba(236, 72, 153, 0.25)' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div className="admin-stat-info">
+            <span className="admin-stat-value">{stats?.leads ? stats.leads.total : 0}</span>
+            <span className="admin-stat-label">Pesan & Calon Klien</span>
+            <span className="admin-stat-sub" style={{ color: '#f472b6' }}>
+              {stats?.leads ? `${stats.leads.unread} belum dibaca` : '0 belum dibaca'}
+            </span>
+          </div>
+        </div>
+
         {/* Database Status Card */}
         <div className="admin-stat-card">
           <div className="admin-stat-icon-wrapper admin-stat-icon-purple">
@@ -137,6 +154,13 @@ export default function AdminDashboard() {
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
               Kelola Harga
+            </Link>
+            <Link href="/admin/leads" className="admin-btn-primary" style={{ background: 'linear-gradient(135deg, #db2777, #be185d)', borderColor: '#db2777' }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              Kotak Pesan
             </Link>
           </div>
         </div>

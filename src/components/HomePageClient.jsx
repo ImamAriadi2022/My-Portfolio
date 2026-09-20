@@ -9,9 +9,11 @@ import Portfolio from './Portfolio';
 import BlogSection from './BlogSection';
 import StatisticsSection from './ContactSection';
 import Footer from './Footer';
+import ContactModal from './ContactModal';
 
 export default function HomePageClient({ initialProjects, initialAllProjects, initialBlogs }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -99,12 +101,13 @@ export default function HomePageClient({ initialProjects, initialAllProjects, in
     <div className="App">
       <Preloader onLoadingComplete={handleLoadingComplete} />
       <Navbar isLoading={isLoading} />
-      <HeroSection isLoading={isLoading} />
+      <HeroSection isLoading={isLoading} onOpenContact={() => setIsContactOpen(true)} />
       <ServicesSection />
       <Portfolio initialProjects={initialProjects} initialAllProjects={initialAllProjects} />
       <BlogSection initialBlogs={initialBlogs} />
       <StatisticsSection />
-      <Footer />
+      <Footer onOpenContact={() => setIsContactOpen(true)} />
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </div>
   );
 }
