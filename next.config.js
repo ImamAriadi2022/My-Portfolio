@@ -17,7 +17,12 @@ const nextConfig = {
     return [
       {
         source: '/pricing',
-        destination: '/price-list',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/price-list',
+        destination: '/',
         permanent: true,
       },
     ];

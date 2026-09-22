@@ -52,7 +52,7 @@ export default function JsonLd() {
     '@type': 'ProfessionalService',
     name: 'Jasa Pembuatan Website & Bimbingan IT - Imam Ariadi',
     image: `${baseUrl}/assets/img/hero-section.png`,
-    url: `${baseUrl}/price-list`,
+    url: baseUrl,
     priceRange: 'Rp 150.000 - Rp 6.000.000',
     address: {
       '@type': 'PostalAddress',

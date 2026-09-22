@@ -19,12 +19,6 @@ export default async function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/price-list`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
       url: `${baseUrl}/all-blogs`,
       lastModified: now,
       changeFrequency: 'weekly',
@@ -47,7 +41,7 @@ export default async function sitemap() {
 
     if (blogsRes.status === 'fulfilled' && blogsRes.value.data?.length > 0) {
       const latestBlog = blogsRes.value.data[0];
-      routes[3].lastModified = new Date(latestBlog.created_at);
+      routes[2].lastModified = new Date(latestBlog.created_at);
     }
   } catch (e) {
     console.warn('Sitemap dynamic date fetch fallback:', e.message);

@@ -72,15 +72,6 @@ const Navbar = ({ isLoading }) => {
               </a>
             </li>
             <li className="nav-item">
-              <Link 
-                className="nav-link" 
-                href="/price-list"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Daftar Harga
-              </Link>
-            </li>
-            <li className="nav-item">
               <a 
                 className="nav-link" 
                 href="#portfolio"
@@ -106,6 +97,16 @@ const Navbar = ({ isLoading }) => {
               >
                 Statistik
               </a>
+            </li>
+            <li className="nav-item nav-item-login ml-lg-2">
+              <Link 
+                className="btn-nav-login" 
+                href="/admin/login"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <i className="fa fa-user-circle" style={{ marginRight: '6px' }}></i>
+                Login
+              </Link>
             </li>
           </ul>
         </div>

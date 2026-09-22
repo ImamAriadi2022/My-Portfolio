@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { services } from '../data/portfolioData';
 
 const ServicesSection = () => {
@@ -38,17 +37,6 @@ const ServicesSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* View Price List CTA */}
-        <div className="row mt-4">
-          <div className="col-12 text-center" data-aos="fade-up" data-aos-delay="300">
-            <Link href="/price-list" className="btn-view-price-list-unique">
-              <i className="fa fa-tags"></i>
-              <span>Lihat Daftar Harga &amp; Paket Layanan</span>
-              <i className="fa fa-arrow-right view-all-arrow"></i>
-            </Link>
-          </div>
         </div>
       </div>
     </section>

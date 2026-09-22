@@ -84,8 +84,7 @@ export async function POST(request) {
 
     if (error) throw error;
 
-    revalidatePath('/price-list');
-    revalidatePath('/pricing');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, data });
   } catch (error) {
@@ -141,8 +140,7 @@ export async function PUT(request) {
 
     if (error) throw error;
 
-    revalidatePath('/price-list');
-    revalidatePath('/pricing');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, data });
   } catch (error) {
@@ -171,8 +169,7 @@ export async function DELETE(request) {
 
     if (error) throw error;
 
-    revalidatePath('/price-list');
-    revalidatePath('/pricing');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, message: 'Paket harga berhasil dihapus.' });
   } catch (error) {

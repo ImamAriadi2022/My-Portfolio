@@ -137,7 +137,7 @@ const Footer = ({ onOpenContact }) => {
               <ul className="footer-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#services">Layanan</a></li>
-                <li><Link href="/price-list">Daftar Harga</Link></li>
+                <li><Link href="/admin/login">Login Admin</Link></li>
                 <li><a href="#portfolio">Portofolio</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Statistik</a></li>

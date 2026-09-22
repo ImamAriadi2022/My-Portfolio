@@ -34,6 +34,58 @@
   backdrop-filter: blur(10px);
 }
 
+/* Navbar Login Button */
+.btn-nav-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff !important;
+  background: rgba(40, 167, 69, 0.15);
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn-nav-login:hover {
+  background: var(--primary-color);
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+  transform: translateY(-1px);
+}
+
+.react-navbar.scrolled .btn-nav-login {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: #ffffff;
+}
+
+.react-navbar.scrolled .btn-nav-login:hover {
+  background: #ffffff;
+  color: #1e7e34 !important;
+  border-color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-item-login {
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  .btn-nav-login {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    padding: 10px 16px;
+    margin-left: 0;
+  }
+}
+
 .section-padding {
   padding: 80px 0;
 }
@@ -1307,37 +1359,6 @@ html {
 }
 
 .btn-view-all-blog:hover .view-all-arrow {
-  transform: translateX(4px);
-}
-
-.btn-view-price-list-unique {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 500;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  box-shadow: 0 4px 18px rgba(40, 167, 69, 0.3);
-  text-decoration: none;
-  margin-top: 15px;
-}
-
-.btn-view-price-list-unique:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.45);
-  color: white;
-  text-decoration: none;
-}
-
-.btn-view-price-list-unique:hover .view-all-arrow {
   transform: translateX(4px);
 }
 
