@@ -143,8 +143,8 @@ AppRouter (BrowserRouter)
 - `/` — Main single-page app (`app/page.jsx`) with dynamic Supabase projects & blogs
 - `/all-projects` — Full portfolio (`app/all-projects/page.jsx`) with filter + modal
 - `/all-blogs` — Full blog list (`app/all-blogs/page.jsx`) with filter + modal
-- `/price-list` — Pricing packages (`app/price-list/page.jsx`) with dynamic Supabase packages
-- `/pricing` — Redirects to `/price-list`
+- `/admin` & `/admin/login` — Admin CMS dashboard and login portal
+- `/pricing` & `/price-list` — Redirects to `/` (Home)
 - `/api/upload` — Route Handler (`app/api/upload/route.js`) for Vercel Blob file/image uploads
 
 ### Data Layer
