@@ -1,9 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import ParticlesBackground from './ParticlesBackground';
+import { useAudienceMode } from '../hooks/useAudienceMode';
 
 const HeroSection = ({ onOpenContact }) => {
+  const { mode, toggleMode, isHrdMode, isClientMode } = useAudienceMode();
   const particlesRef = useRef(null);
   const [particlesLoaded, setParticlesLoaded] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
@@ -150,6 +153,30 @@ const HeroSection = ({ onOpenContact }) => {
         <div className="row align-items-center">
           <div className="col-lg-6 col-md-6">
             <div className="banner_content" data-aos="fade-right">
+              {/* Audience Mode Switcher (HRD Mode vs Client Mode) */}
+              <div className="hero-mode-toggle-wrapper">
+                <span className="hero-mode-caption">Mode:</span>
+                <button
+                  type="button"
+                  className={`hero-mode-pill-toggle ${isClientMode ? 'is-client' : 'is-hrd'}`}
+                  onClick={toggleMode}
+                  role="switch"
+                  aria-checked={isClientMode}
+                  aria-label={`Ganti mode ke ${isHrdMode ? 'Client Mode' : 'HRD Mode'}`}
+                  title="Klik untuk beralih antara Mode HRD dan Mode Client"
+                >
+                  <span className="toggle-pill-knob"></span>
+                  <span className="toggle-pill-text">
+                    {isHrdMode ? 'HRD' : 'CLIENT'}
+                  </span>
+                  <span className="toggle-tap-hint">TAP</span>
+                </button>
+                <div className="hero-mode-status-badge">
+                  <i className={isHrdMode ? "fa fa-briefcase" : "fa fa-user-circle"}></i>
+                  <span>{isHrdMode ? 'HRD Mode' : 'Client Mode'}</span>
+                </div>
+              </div>
+
               <h3>Halo Semuanya,</h3>
               <h1 className="hero-headline">
                 <span className="hero-static-text">I Am </span>
@@ -182,6 +209,15 @@ const HeroSection = ({ onOpenContact }) => {
                 >
                   Unduh CV
                 </a>
+                {isClientMode && (
+                  <Link 
+                    href="/admin/login" 
+                    className="btn btn-secondary banner_btn btn-hero-client-login"
+                  >
+                    <i className="fa fa-sign-in" style={{ marginRight: '6px' }}></i>
+                    Login Portal
+                  </Link>
+                )}
               </div>
             </div>
           </div>

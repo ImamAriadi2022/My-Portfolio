@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useScrollPosition } from '../hooks/useScrollEffects';
+import { useAudienceMode } from '../hooks/useAudienceMode';
 
 const Navbar = ({ isLoading }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollPosition = useScrollPosition();
+  const { isClientMode } = useAudienceMode();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -98,16 +100,18 @@ const Navbar = ({ isLoading }) => {
                 Statistik
               </a>
             </li>
-            <li className="nav-item nav-item-login ml-lg-2">
-              <Link 
-                className="btn-nav-login" 
-                href="/admin/login"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <i className="fa fa-user-circle" style={{ marginRight: '6px' }}></i>
-                Login
-              </Link>
-            </li>
+            {isClientMode && (
+              <li className="nav-item nav-item-login ml-lg-2">
+                <Link 
+                  className="btn-nav-login" 
+                  href="/admin/login"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <i className="fa fa-user-circle" style={{ marginRight: '6px' }}></i>
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
