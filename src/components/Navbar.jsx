@@ -101,7 +101,7 @@ const Navbar = ({ isLoading }) => {
               </a>
             </li>
             {isClientMode && (
-              <li className="nav-item nav-item-login ml-lg-2">
+              <li className="nav-item nav-item-login">
                 <Link 
                   className="btn-nav-login" 
                   href="/admin/login"

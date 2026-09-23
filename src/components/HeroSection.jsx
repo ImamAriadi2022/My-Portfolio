@@ -203,14 +203,16 @@ const HeroSection = ({ onOpenContact }) => {
                 >
                   Hubungi Saya
                 </button>
-                <a 
-                  href="/cv" 
-                  className="btn btn-secondary banner_btn"
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                >
-                  Unduh CV
-                </a>
+                {isHrdMode && (
+                  <a 
+                    href="/cv" 
+                    className="btn btn-secondary banner_btn"
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                  >
+                    Unduh CV
+                  </a>
+                )}
                 {isClientMode && (
                   <Link 
                     href="/admin/login" 

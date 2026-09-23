@@ -45,12 +45,19 @@ body.client-theme,
   --border-color: #2a2517;
 }
 
-/* Custom CSS untuk komponen React */
+/* ===================================================
+   NAVBAR COMPONENT & ALIGNMENT STYLES
+   (Rata Atas-Bawah & Kanan-Kiri Presisi)
+   =================================================== */
+
 .react-navbar {
+  padding: 16px 0 !important;
   transition: all 0.3s ease;
+  z-index: 99999;
 }
 
 .react-navbar.scrolled {
+  padding: 12px 0 !important;
   background-color: rgba(40, 167, 69, 0.9) !important;
   backdrop-filter: blur(10px);
 }
@@ -61,6 +68,35 @@ body.client-theme .react-navbar.scrolled {
   background-color: rgba(16, 14, 9, 0.94) !important;
   border-bottom: 1px solid rgba(201, 151, 0, 0.3) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Navbar Container: Perfect Horizontal Alignment (Flush Left & Right) */
+.react-navbar .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  position: relative;
+}
+
+/* Brand "Imam" - Left-aligned and vertically centered */
+.react-navbar .navbar-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 42px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+.react-navbar .navbar-brand p {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
 }
 
 /* Client Mode - Navbar Brand */
@@ -78,16 +114,86 @@ body.client-theme .navbar-light .navbar-nav .nav-link:hover {
   color: #dfb135 !important;
 }
 
-/* Navbar Login Button */
+/* Desktop Navigation Layout (Min-Width: 769px) */
+@media (min-width: 769px) {
+  .react-navbar .navbar-toggler {
+    display: none !important;
+  }
+
+  .react-navbar .navbar-collapse {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-grow: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 42px !important;
+  }
+
+  .react-navbar .navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    height: 42px !important;
+    gap: 4px;
+  }
+
+  .react-navbar .nav-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 42px !important;
+  }
+
+  .react-navbar .nav-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 38px !important;
+    padding: 0 14px !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    vertical-align: middle !important;
+    transition: color 0.3s ease;
+  }
+
+  .react-navbar .nav-item-login {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 0 0 12px !important;
+    padding: 0 !important;
+    height: 42px !important;
+  }
+
+  .react-navbar .btn-nav-login {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 38px !important;
+    padding: 0 18px !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Navbar Login Button Base & Theme Styles */
 .btn-nav-login {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   color: #ffffff !important;
   background: rgba(40, 167, 69, 0.15);
   border: 1px solid var(--primary-color);
@@ -95,7 +201,6 @@ body.client-theme .navbar-light .navbar-nav .nav-link:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none !important;
   cursor: pointer;
-  margin-left: 10px;
 }
 
 .btn-nav-login:hover {
@@ -139,17 +244,68 @@ body.client-theme .react-navbar.scrolled .btn-nav-login:hover {
   border-color: #dfb135 !important;
 }
 
+/* Mobile Responsive Navigation (Max-Width: 768px) */
 @media only screen and (max-width: 768px) {
-  .nav-item-login {
-    margin-top: 10px;
-    margin-bottom: 8px;
+  .react-navbar .container {
+    flex-wrap: wrap;
   }
-  .btn-nav-login {
+
+  .react-navbar .navbar-toggler {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  .react-navbar .navbar-collapse {
+    width: 100%;
+    margin-top: 15px;
+    background: rgba(10, 10, 10, 0.98);
+    border-radius: 8px;
+    padding: 10px 15px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .react-navbar .navbar-nav {
     display: flex;
-    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    gap: 4px;
+  }
+
+  .react-navbar .nav-item {
+    width: 100%;
+  }
+
+  .react-navbar .nav-link {
+    display: block;
+    width: 100%;
+    padding: 10px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: left;
+  }
+
+  .react-navbar .nav-item-login {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    width: 100%;
+  }
+
+  .react-navbar .btn-nav-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     padding: 10px 16px;
     margin-left: 0;
+    text-align: center;
   }
 }
 
@@ -1635,6 +1791,14 @@ body.client-theme .banner_content h3 {
 /* Backup approach with higher specificity */
 .navbar.scrolled.menu-bg .navbar-brand p {
   color: #ffffff !important;
+}
+
+/* Client Mode Scrolled Brand - Stays Gold */
+[data-audience-mode="client"] .react-navbar.scrolled .navbar-brand p,
+body.client-theme .react-navbar.scrolled .navbar-brand p,
+[data-audience-mode="client"] .navbar.scrolled.menu-bg .navbar-brand p,
+body.client-theme .navbar.scrolled.menu-bg .navbar-brand p {
+  color: #dfb135 !important;
 }
 
 /* ========== CONTACT SECTION STYLES ========== */
