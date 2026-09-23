@@ -10,7 +10,6 @@ import BlogSection from './BlogSection';
 import StatisticsSection from './ContactSection';
 import Footer from './Footer';
 import ContactModal from './ContactModal';
-import { AudienceModeProvider } from '../context/AudienceModeContext';
 
 export default function HomePageClient({ initialProjects, initialAllProjects, initialBlogs }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -99,18 +98,16 @@ export default function HomePageClient({ initialProjects, initialAllProjects, in
   }, []);
 
   return (
-    <AudienceModeProvider>
-      <div className="App">
-        <Preloader onLoadingComplete={handleLoadingComplete} />
-        <Navbar isLoading={isLoading} />
-        <HeroSection isLoading={isLoading} onOpenContact={() => setIsContactOpen(true)} />
-        <ServicesSection />
-        <Portfolio initialProjects={initialProjects} initialAllProjects={initialAllProjects} />
-        <BlogSection initialBlogs={initialBlogs} />
-        <StatisticsSection />
-        <Footer onOpenContact={() => setIsContactOpen(true)} />
-        <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      </div>
-    </AudienceModeProvider>
+    <div className="App">
+      <Preloader onLoadingComplete={handleLoadingComplete} />
+      <Navbar isLoading={isLoading} />
+      <HeroSection isLoading={isLoading} onOpenContact={() => setIsContactOpen(true)} />
+      <ServicesSection />
+      <Portfolio initialProjects={initialProjects} initialAllProjects={initialAllProjects} />
+      <BlogSection initialBlogs={initialBlogs} />
+      <StatisticsSection />
+      <Footer onOpenContact={() => setIsContactOpen(true)} />
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+    </div>
   );
 }

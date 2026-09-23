@@ -2,6 +2,7 @@ import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import JsonLd from '../src/components/JsonLd';
+import { AudienceModeProvider } from '../src/context/AudienceModeContext';
 import '../src/index.css';
 import '../src/styles.css';
 
@@ -85,6 +86,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var m = localStorage.getItem('imam_audience_mode') || 'hrd';
+                  document.documentElement.setAttribute('data-audience-mode', m);
+                  if (m === 'client') {
+                    document.documentElement.classList.add('client-theme');
+                    if (document.body) document.body.classList.add('client-theme');
+                  } else {
+                    document.documentElement.classList.add('hrd-theme');
+                    if (document.body) document.body.classList.add('hrd-theme');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
         <Script
           src="/assets/js/particles.min.js"
           strategy="beforeInteractive"
@@ -92,7 +112,9 @@ export default function RootLayout({ children }) {
         <JsonLd />
       </head>
       <body suppressHydrationWarning>
-        <div id="root">{children}</div>
+        <AudienceModeProvider>
+          <div id="root">{children}</div>
+        </AudienceModeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

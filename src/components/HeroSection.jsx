@@ -190,10 +190,16 @@ const HeroSection = ({ onOpenContact }) => {
                   className="btn btn-secondary banner_btn"
                   onClick={onOpenContact}
                   style={{
-                    background: 'linear-gradient(135deg, #28a745, #1e7e34)',
-                    borderColor: '#28a745',
+                    background: isClientMode
+                      ? 'linear-gradient(135deg, #c99700, #8a6700)'
+                      : 'linear-gradient(135deg, #28a745, #1e7e34)',
+                    borderColor: isClientMode ? '#c99700' : '#28a745',
                     color: '#ffffff',
                     cursor: 'pointer',
+                    boxShadow: isClientMode
+                      ? '0 4px 15px rgba(201, 151, 0, 0.35)'
+                      : '0 4px 15px rgba(40, 167, 69, 0.35)',
+                    transition: 'all 0.3s ease',
                   }}
                 >
                   Hubungi Saya

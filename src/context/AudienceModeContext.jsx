@@ -25,6 +25,20 @@ export const AudienceModeProvider = ({ children }) => {
     }
   }, []);
 
+  // Synchronize data attribute and class on <html> and <body> for global CSS palette theming
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-audience-mode', mode);
+      if (mode === 'client') {
+        document.body.classList.add('client-theme');
+        document.body.classList.remove('hrd-theme');
+      } else {
+        document.body.classList.add('hrd-theme');
+        document.body.classList.remove('client-theme');
+      }
+    }
+  }, [mode]);
+
   const setMode = (newMode) => {
     if (newMode === 'client' || newMode === 'hrd') {
       setModeState(newMode);

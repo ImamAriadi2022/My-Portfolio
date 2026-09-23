@@ -13,15 +13,36 @@
 @import url('/assets/css/slicknav.css');
 
 /* CSS Variables for consistent color scheme */
-:root {
+:root,
+[data-audience-mode="hrd"],
+body.hrd-theme {
   --primary-color: #28a745;
   --primary-color-dark: #1e7e34;
   --primary-color-light: #34ce57;
+  --primary-color-rgb: 40, 167, 69;
+  --theme-glow: rgba(40, 167, 69, 0.25);
   --secondary-color: #6c757d;
   --dark-bg: #000000;
   --text-light: #ffffff;
   --text-muted: #cccccc;
   --border-color: #333333;
+}
+
+/* ===================================================
+   CLIENT MODE PALETTE: Premium Black & Dark Warm Gold / Amber
+   (Kuning Emas Elegan Agak Gelap, Non-Glaring)
+   =================================================== */
+[data-audience-mode="client"],
+body.client-theme,
+.client-theme {
+  --primary-color: #c99700;        /* Elegant dark warm gold (non-glaring) */
+  --primary-color-dark: #8a6700;   /* Deep bronze gold for hovers & gradients */
+  --primary-color-light: #dfb135;  /* Soft champagne gold for text highlights */
+  --primary-color-rgb: 201, 151, 0;
+  --theme-glow: rgba(201, 151, 0, 0.25);
+  --theme-border: rgba(201, 151, 0, 0.35);
+  --dark-bg: #000000;
+  --border-color: #2a2517;
 }
 
 /* Custom CSS untuk komponen React */
@@ -32,6 +53,29 @@
 .react-navbar.scrolled {
   background-color: rgba(40, 167, 69, 0.9) !important;
   backdrop-filter: blur(10px);
+}
+
+/* Client Mode - Scrolled Navbar */
+[data-audience-mode="client"] .react-navbar.scrolled,
+body.client-theme .react-navbar.scrolled {
+  background-color: rgba(16, 14, 9, 0.94) !important;
+  border-bottom: 1px solid rgba(201, 151, 0, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Client Mode - Navbar Brand */
+[data-audience-mode="client"] .navbar-brand p,
+body.client-theme .navbar-brand p {
+  color: #dfb135 !important;
+}
+
+/* Client Mode - Navbar Nav Links */
+[data-audience-mode="client"] .navbar-light .navbar-nav .nav-link:hover,
+[data-audience-mode="client"] .navbar-light .navbar-nav .nav-link:focus,
+[data-audience-mode="client"] .navbar-light .navbar-nav .active > .nav-link,
+[data-audience-mode="client"] .navbar-light .navbar-nav .nav-link.active,
+body.client-theme .navbar-light .navbar-nav .nav-link:hover {
+  color: #dfb135 !important;
 }
 
 /* Navbar Login Button */
@@ -70,6 +114,29 @@
   background: #ffffff;
   color: #1e7e34 !important;
   border-color: #ffffff;
+}
+
+/* Client Mode - Navbar Login Button */
+[data-audience-mode="client"] .btn-nav-login,
+body.client-theme .btn-nav-login {
+  background: rgba(201, 151, 0, 0.15) !important;
+  border-color: #c99700 !important;
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .btn-nav-login:hover,
+body.client-theme .btn-nav-login:hover {
+  background: #c99700 !important;
+  color: #120e00 !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 0 15px rgba(201, 151, 0, 0.45) !important;
+}
+
+[data-audience-mode="client"] .react-navbar.scrolled .btn-nav-login:hover,
+body.client-theme .react-navbar.scrolled .btn-nav-login:hover {
+  background: #dfb135 !important;
+  color: #120e00 !important;
+  border-color: #dfb135 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -271,7 +338,8 @@ html {
 /* When in Client Mode: knob slides to the right */
 .hero-mode-pill-toggle.is-client .toggle-pill-knob {
   transform: translateX(58px);
-  background: #28a745;
+  background: #c99700;
+  box-shadow: 0 2px 10px rgba(201, 151, 0, 0.5);
 }
 
 /* Mode label text inside the pill */
@@ -294,7 +362,7 @@ html {
 /* In Client mode: text sits on the left side */
 .hero-mode-pill-toggle.is-client .toggle-pill-text {
   left: 10px;
-  color: #0f5132;
+  color: #8a6700;
 }
 
 /* Status Badge beside the toggle */
@@ -315,16 +383,16 @@ html {
 }
 
 .hero-mode-pill-toggle.is-client ~ .hero-mode-status-badge {
-  color: #28a745;
-  background: rgba(40, 167, 69, 0.15);
-  border: 1px solid rgba(40, 167, 69, 0.3);
+  color: #dfb135;
+  background: rgba(201, 151, 0, 0.12);
+  border: 1px solid rgba(201, 151, 0, 0.35);
 }
 
 /* Hero Client Login Button */
 .btn-hero-client-login {
-  background: rgba(40, 167, 69, 0.15) !important;
-  border: 1px solid var(--primary-color) !important;
-  color: #ffffff !important;
+  background: rgba(201, 151, 0, 0.15) !important;
+  border: 1px solid #c99700 !important;
+  color: #dfb135 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
@@ -332,8 +400,10 @@ html {
 }
 
 .btn-hero-client-login:hover {
-  background: var(--primary-color) !important;
-  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
+  background: #c99700 !important;
+  color: #120e00 !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 4px 15px rgba(201, 151, 0, 0.45) !important;
   transform: translateY(-2px);
 }
 
@@ -3186,3 +3256,555 @@ html {
 }
 
 /* ===== END MODAL RESPONSIVE STYLES ===== */
+
+/* ==============================================================================
+   CLIENT MODE: LUXURY BLACK & DARK WARM GOLD PALETTE (COMPREHENSIVE SUITE)
+   Designed for Client Mode: Dark warm gold / amber (#c99700 / #8a6700 / #dfb135),
+   black background, non-glaring, elegant and premium.
+   ============================================================================== */
+
+/* --- General Section Titles & Accents --- */
+[data-audience-mode="client"] .section-title span,
+body.client-theme .section-title span,
+[data-audience-mode="client"] .portfolio-section-title span,
+body.client-theme .portfolio-section-title span,
+[data-audience-mode="client"] .all-projects-header-unique h1 span,
+body.client-theme .all-projects-header-unique h1 span,
+[data-audience-mode="client"] .all-blogs-header-unique h1 span,
+body.client-theme .all-blogs-header-unique h1 span {
+  color: #dfb135 !important;
+  background: linear-gradient(135deg, #ffffff 25%, #dfb135 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-audience-mode="client"] .shape,
+body.client-theme .shape,
+[data-audience-mode="client"] .portfolio-section-shape,
+body.client-theme .portfolio-section-shape,
+[data-audience-mode="client"] .all-projects-header-unique .shape,
+body.client-theme .all-projects-header-unique .shape,
+[data-audience-mode="client"] .all-blogs-header-unique .shape,
+body.client-theme .all-blogs-header-unique .shape {
+  background: linear-gradient(135deg, #c99700 0%, #dfb135 100%) !important;
+}
+
+/* --- Hero Section & Typewriter --- */
+[data-audience-mode="client"] .banner_content .hero-typed-text,
+body.client-theme .banner_content .hero-typed-text {
+  color: #dfb135 !important;
+  background: linear-gradient(135deg, #dfb135 0%, #c99700 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 0 25px rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .banner_content .hero-cursor,
+body.client-theme .banner_content .hero-cursor {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .hero-scroll-indicator:hover,
+[data-audience-mode="client"] .hero-scroll-indicator i,
+body.client-theme .hero-scroll-indicator:hover,
+body.client-theme .hero-scroll-indicator i {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .btn-secondary.banner_btn,
+body.client-theme .btn-secondary.banner_btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(201, 151, 0, 0.45) !important;
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .btn-secondary.banner_btn:hover,
+body.client-theme .btn-secondary.banner_btn:hover {
+  background: rgba(201, 151, 0, 0.22) !important;
+  border-color: #c99700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(201, 151, 0, 0.35) !important;
+}
+
+/* --- Services Section --- */
+[data-audience-mode="client"] .services-item:hover,
+body.client-theme .services-item:hover {
+  border-color: #c99700 !important;
+  box-shadow: 0 20px 40px rgba(201, 151, 0, 0.22) !important;
+}
+
+[data-audience-mode="client"] .services-item .services-content h3 a:hover,
+body.client-theme .services-item .services-content h3 a:hover {
+  color: #dfb135 !important;
+}
+
+/* --- Portfolio Filters --- */
+[data-audience-mode="client"] .portfolio-filter-btn,
+body.client-theme .portfolio-filter-btn,
+[data-audience-mode="client"] .all-projects-filter-btn-unique,
+body.client-theme .all-projects-filter-btn-unique {
+  border-color: rgba(201, 151, 0, 0.4) !important;
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .portfolio-filter-btn:hover,
+[data-audience-mode="client"] .portfolio-filter-btn.active,
+body.client-theme .portfolio-filter-btn:hover,
+body.client-theme .portfolio-filter-btn.active,
+[data-audience-mode="client"] .all-projects-filter-btn-unique:hover,
+[data-audience-mode="client"] .all-projects-filter-btn-unique.active,
+body.client-theme .all-projects-filter-btn-unique:hover,
+body.client-theme .all-projects-filter-btn-unique.active {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  border-color: #c99700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 25px rgba(201, 151, 0, 0.35) !important;
+}
+
+/* --- Portfolio Cards --- */
+[data-audience-mode="client"] .portfolio-card-unique,
+body.client-theme .portfolio-card-unique,
+[data-audience-mode="client"] .all-projects-card-unique,
+body.client-theme .all-projects-card-unique {
+  border-color: rgba(201, 151, 0, 0.2) !important;
+}
+
+[data-audience-mode="client"] .portfolio-card-unique:hover,
+body.client-theme .portfolio-card-unique:hover,
+[data-audience-mode="client"] .all-projects-card-unique:hover,
+body.client-theme .all-projects-card-unique:hover {
+  border-color: rgba(201, 151, 0, 0.55) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(201, 151, 0, 0.15) !important;
+}
+
+[data-audience-mode="client"] .card-image-nav-unique:hover,
+body.client-theme .card-image-nav-unique:hover,
+[data-audience-mode="client"] .all-projects-image-nav-unique:hover,
+body.client-theme .all-projects-image-nav-unique:hover {
+  background: rgba(201, 151, 0, 0.9) !important;
+  color: #120e00 !important;
+}
+
+[data-audience-mode="client"] .card-doc-count-badge-unique i,
+body.client-theme .card-doc-count-badge-unique i {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .portfolio-tech-tag-unique,
+body.client-theme .portfolio-tech-tag-unique,
+[data-audience-mode="client"] .all-projects-tech-tag-unique,
+body.client-theme .all-projects-tech-tag-unique {
+  background: rgba(201, 151, 0, 0.12) !important;
+  color: #dfb135 !important;
+  border-color: rgba(201, 151, 0, 0.35) !important;
+}
+
+[data-audience-mode="client"] .portfolio-btn-primary,
+body.client-theme .portfolio-btn-primary,
+[data-audience-mode="client"] .all-projects-btn-primary-unique,
+body.client-theme .all-projects-btn-primary-unique {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 4px 15px rgba(201, 151, 0, 0.35) !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .portfolio-btn-primary:hover,
+body.client-theme .portfolio-btn-primary:hover,
+[data-audience-mode="client"] .all-projects-btn-primary-unique:hover,
+body.client-theme .all-projects-btn-primary-unique:hover {
+  background: linear-gradient(135deg, #dfb135, #c99700) !important;
+  color: #120e00 !important;
+  font-weight: 700 !important;
+}
+
+/* --- View All Projects Button --- */
+[data-audience-mode="client"] .btn-view-all-unique,
+body.client-theme .btn-view-all-unique {
+  background: linear-gradient(135deg, #c99700 0%, #8a6700 100%) !important;
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .btn-view-all-unique:hover,
+body.client-theme .btn-view-all-unique:hover {
+  background: linear-gradient(135deg, #dfb135 0%, #c99700 100%) !important;
+  color: #120e00 !important;
+  box-shadow: 0 6px 22px rgba(201, 151, 0, 0.45) !important;
+}
+
+[data-audience-mode="client"] .btn-view-all-unique:hover i,
+[data-audience-mode="client"] .btn-view-all-unique:hover span,
+body.client-theme .btn-view-all-unique:hover i,
+body.client-theme .btn-view-all-unique:hover span {
+  color: #120e00 !important;
+}
+
+/* --- Portfolio Modal --- */
+[data-audience-mode="client"] .portfolio-modal-content-unique,
+body.client-theme .portfolio-modal-content-unique,
+[data-audience-mode="client"] .all-projects-modal-content-unique,
+body.client-theme .all-projects-modal-content-unique {
+  border-color: rgba(201, 151, 0, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(201, 151, 0, 0.15) !important;
+}
+
+[data-audience-mode="client"] .portfolio-category-badge-unique,
+body.client-theme .portfolio-category-badge-unique,
+[data-audience-mode="client"] .all-projects-category-badge-unique,
+body.client-theme .all-projects-category-badge-unique {
+  color: #dfb135 !important;
+  background: rgba(201, 151, 0, 0.15) !important;
+  border-color: rgba(201, 151, 0, 0.35) !important;
+}
+
+[data-audience-mode="client"] .portfolio-tab-btn-unique.active,
+body.client-theme .portfolio-tab-btn-unique.active,
+[data-audience-mode="client"] .all-projects-tab-btn-unique.active,
+body.client-theme .all-projects-tab-btn-unique.active {
+  color: #dfb135 !important;
+  border-bottom-color: #dfb135 !important;
+  background: rgba(201, 151, 0, 0.08) !important;
+}
+
+[data-audience-mode="client"] .modal-action-btn-unique.primary,
+body.client-theme .modal-action-btn-unique.primary,
+[data-audience-mode="client"] .all-projects-modal-action-primary,
+body.client-theme .all-projects-modal-action-primary {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 4px 15px rgba(201, 151, 0, 0.35) !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .modal-action-btn-unique.primary:hover,
+body.client-theme .modal-action-btn-unique.primary:hover,
+[data-audience-mode="client"] .all-projects-modal-action-primary:hover,
+body.client-theme .all-projects-modal-action-primary:hover {
+  background: linear-gradient(135deg, #dfb135, #c99700) !important;
+  color: #120e00 !important;
+}
+
+[data-audience-mode="client"] .feature-bullet,
+body.client-theme .feature-bullet {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .case-study-callout-unique,
+body.client-theme .case-study-callout-unique {
+  border-left-color: #c99700 !important;
+}
+
+/* --- Blog Section --- */
+[data-audience-mode="client"] .blog-thumb:hover,
+body.client-theme .blog-thumb:hover {
+  border-color: rgba(201, 151, 0, 0.5) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 151, 0, 0.15) !important;
+}
+
+[data-audience-mode="client"] .blog-category,
+body.client-theme .blog-category,
+[data-audience-mode="client"] .all-blogs-category-unique,
+body.client-theme .all-blogs-category-unique {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .blog-title:hover,
+body.client-theme .blog-title:hover,
+[data-audience-mode="client"] .all-blogs-title-unique:hover,
+body.client-theme .all-blogs-title-unique:hover {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .blog-author,
+body.client-theme .blog-author {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .blog-tag,
+body.client-theme .blog-tag,
+[data-audience-mode="client"] .all-blogs-tag-unique,
+body.client-theme .all-blogs-tag-unique {
+  background: rgba(201, 151, 0, 0.15) !important;
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .blog_btn.btn-primary,
+body.client-theme .blog_btn.btn-primary,
+[data-audience-mode="client"] .all-blogs-read-more-unique,
+body.client-theme .all-blogs-read-more-unique {
+  background: linear-gradient(135deg, #c99700 0%, #8a6700 100%) !important;
+  border-color: #c99700 !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .blog_btn.btn-primary:hover,
+body.client-theme .blog_btn.btn-primary:hover,
+[data-audience-mode="client"] .all-blogs-read-more-unique:hover,
+body.client-theme .all-blogs-read-more-unique:hover {
+  background: linear-gradient(135deg, #dfb135 0%, #c99700 100%) !important;
+  color: #120e00 !important;
+  box-shadow: 0 10px 25px rgba(201, 151, 0, 0.4) !important;
+}
+
+[data-audience-mode="client"] .btn-view-all-blog,
+body.client-theme .btn-view-all-blog {
+  background: linear-gradient(135deg, #c99700 0%, #8a6700 100%) !important;
+  box-shadow: 0 4px 16px rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .btn-view-all-blog:hover,
+body.client-theme .btn-view-all-blog:hover {
+  background: linear-gradient(135deg, #dfb135 0%, #c99700 100%) !important;
+  color: #120e00 !important;
+  box-shadow: 0 6px 22px rgba(201, 151, 0, 0.45) !important;
+}
+
+/* --- Statistics Section (styles.css) --- */
+[data-audience-mode="client"] .statistics-area::before,
+body.client-theme .statistics-area::before {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(201, 151, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(201, 151, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(201, 151, 0, 0.06) 0%, transparent 50%) !important;
+}
+
+[data-audience-mode="client"] .sync-badge,
+body.client-theme .sync-badge {
+  background: rgba(201, 151, 0, 0.1) !important;
+  border-color: rgba(201, 151, 0, 0.35) !important;
+  color: #f0deb0 !important;
+}
+
+[data-audience-mode="client"] .sync-pulse-dot,
+body.client-theme .sync-pulse-dot {
+  background-color: #c99700 !important;
+  box-shadow: 0 0 10px #c99700 !important;
+}
+
+[data-audience-mode="client"] .stat-card,
+body.client-theme .stat-card {
+  border-color: rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .stat-card:hover,
+body.client-theme .stat-card:hover {
+  border-color: #c99700 !important;
+  box-shadow: 0 20px 40px rgba(201, 151, 0, 0.35) !important;
+}
+
+[data-audience-mode="client"] .stat-icon,
+body.client-theme .stat-icon {
+  color: #dfb135 !important;
+  text-shadow: 0 0 20px rgba(201, 151, 0, 0.4) !important;
+}
+
+[data-audience-mode="client"] .stat-number,
+body.client-theme .stat-number {
+  color: #dfb135 !important;
+  text-shadow: 0 0 20px rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .tab-navigation,
+body.client-theme .tab-navigation {
+  border-color: rgba(201, 151, 0, 0.2) !important;
+}
+
+[data-audience-mode="client"] .tab-btn,
+body.client-theme .tab-btn {
+  border-color: rgba(201, 151, 0, 0.25) !important;
+}
+
+[data-audience-mode="client"] .tab-btn:hover,
+body.client-theme .tab-btn:hover {
+  background: rgba(201, 151, 0, 0.18) !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 8px 25px rgba(201, 151, 0, 0.3) !important;
+}
+
+[data-audience-mode="client"] .tab-btn.active,
+body.client-theme .tab-btn.active {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  border-color: #c99700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(201, 151, 0, 0.45) !important;
+}
+
+[data-audience-mode="client"] .tab-content,
+body.client-theme .tab-content,
+[data-audience-mode="client"] .chart-wrapper,
+body.client-theme .chart-wrapper {
+  border-color: rgba(201, 151, 0, 0.25) !important;
+}
+
+[data-audience-mode="client"] .chart-wrapper h4::after,
+body.client-theme .chart-wrapper h4::after {
+  background: #c99700 !important;
+}
+
+[data-audience-mode="client"] .bar,
+body.client-theme .bar {
+  background: linear-gradient(180deg, #c99700 0%, #8a6700 100%) !important;
+}
+
+[data-audience-mode="client"] .bar-item.current-month .bar,
+body.client-theme .bar-item.current-month .bar {
+  background: linear-gradient(180deg, #dfb135 0%, #8a6700 100%) !important;
+  box-shadow: 0 0 16px rgba(201, 151, 0, 0.4) !important;
+}
+
+[data-audience-mode="client"] .bar-item.peak-month .bar,
+body.client-theme .bar-item.peak-month .bar {
+  background: linear-gradient(180deg, #edd07a 0%, #8a6700 100%) !important;
+  box-shadow: 0 0 20px rgba(223, 177, 53, 0.4) !important;
+  border-top: 2px solid #edd07a !important;
+}
+
+[data-audience-mode="client"] .bar-item.current-month .bar-label,
+body.client-theme .bar-item.current-month .bar-label {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .bar-peak-badge,
+body.client-theme .bar-peak-badge {
+  background: #c99700 !important;
+  color: #120e00 !important;
+}
+
+[data-audience-mode="client"] .bar-current-badge,
+body.client-theme .bar-current-badge {
+  background: #8a6700 !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .tech-percentage,
+body.client-theme .tech-percentage {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .tech-progress,
+body.client-theme .tech-progress {
+  background: linear-gradient(90deg, #8a6700 0%, #c99700 50%, #dfb135 100%) !important;
+}
+
+/* --- Contact Modal & Forms --- */
+[data-audience-mode="client"] .contact-modal-container,
+body.client-theme .contact-modal-container {
+  border-color: rgba(201, 151, 0, 0.35) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 151, 0, 0.15) !important;
+}
+
+[data-audience-mode="client"] .contact-modal-container::before,
+body.client-theme .contact-modal-container::before {
+  background: linear-gradient(90deg, #8a6700, #dfb135, #c99700) !important;
+}
+
+[data-audience-mode="client"] .contact-input:focus,
+[data-audience-mode="client"] .contact-textarea:focus,
+[data-audience-mode="client"] .contact-select:focus,
+body.client-theme .contact-input:focus,
+body.client-theme .contact-textarea:focus,
+body.client-theme .contact-select:focus,
+[data-audience-mode="client"] .contact-form .form-control:focus,
+body.client-theme .contact-form .form-control:focus {
+  border-color: #c99700 !important;
+  box-shadow: 0 0 0 3px rgba(201, 151, 0, 0.2) !important;
+}
+
+[data-audience-mode="client"] .contact-btn-submit,
+body.client-theme .contact-btn-submit {
+  background: linear-gradient(135deg, #c99700, #8a6700) !important;
+  border-color: #c99700 !important;
+  box-shadow: 0 4px 14px rgba(201, 151, 0, 0.35) !important;
+  color: #ffffff !important;
+}
+
+[data-audience-mode="client"] .contact-btn-submit:hover:not(:disabled),
+body.client-theme .contact-btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dfb135, #c99700) !important;
+  color: #120e00 !important;
+  font-weight: 700 !important;
+}
+
+[data-audience-mode="client"] .btn-quick:hover,
+body.client-theme .btn-quick:hover {
+  background: rgba(201, 151, 0, 0.18) !important;
+  border-color: #c99700 !important;
+}
+
+/* --- Footer & Back to Top --- */
+[data-audience-mode="client"] .footer-logo h3 span,
+body.client-theme .footer-logo h3 span,
+[data-audience-mode="client"] .footer-logo p,
+body.client-theme .footer-logo p {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .widget-title::after,
+body.client-theme .widget-title::after {
+  background: linear-gradient(45deg, #c99700, #dfb135) !important;
+}
+
+[data-audience-mode="client"] .footer-links a::before,
+body.client-theme .footer-links a::before {
+  color: #c99700 !important;
+}
+
+[data-audience-mode="client"] .footer-links a:hover,
+body.client-theme .footer-links a:hover {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .footer-services li:hover,
+body.client-theme .footer-services li:hover {
+  background: rgba(201, 151, 0, 0.12) !important;
+}
+
+[data-audience-mode="client"] .footer-services li i,
+body.client-theme .footer-services li i,
+[data-audience-mode="client"] .contact-item i,
+body.client-theme .contact-item i {
+  background: linear-gradient(45deg, #c99700, #dfb135) !important;
+  color: #120e00 !important;
+}
+
+[data-audience-mode="client"] .copyright .brand,
+body.client-theme .copyright .brand,
+[data-audience-mode="client"] .footer-bottom-links a:hover,
+body.client-theme .footer-bottom-links a:hover {
+  color: #dfb135 !important;
+}
+
+[data-audience-mode="client"] .back-to-top,
+body.client-theme .back-to-top {
+  background: linear-gradient(45deg, #c99700, #dfb135) !important;
+  color: #120e00 !important;
+  box-shadow: 0 5px 20px rgba(201, 151, 0, 0.35) !important;
+}
+
+[data-audience-mode="client"] .back-to-top:hover,
+body.client-theme .back-to-top:hover {
+  box-shadow: 0 10px 30px rgba(201, 151, 0, 0.55) !important;
+}
+
+[data-audience-mode="client"] .decoration-line,
+body.client-theme .decoration-line {
+  background: linear-gradient(45deg, #c99700, #dfb135) !important;
+}
+
+[data-audience-mode="client"] .decoration-dots span,
+body.client-theme .decoration-dots span {
+  background: #c99700 !important;
+}
+
+/* --- All-Projects & All-Blogs Pages Search & Specifics --- */
+[data-audience-mode="client"] .all-projects-search-unique input:focus,
+body.client-theme .all-projects-search-unique input:focus,
+[data-audience-mode="client"] .all-blogs-search-unique input:focus,
+body.client-theme .all-blogs-search-unique input:focus {
+  border-color: #c99700 !important;
+  box-shadow: 0 0 0 3px rgba(201, 151, 0, 0.25) !important;
+}
+
