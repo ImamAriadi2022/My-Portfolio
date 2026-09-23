@@ -145,11 +145,12 @@ const Footer = ({ onOpenContact }) => {
                   <li>
                     <a
                       href="#contact-modal"
+                      className="footer-contact-link"
                       onClick={(e) => {
                         e.preventDefault();
                         onOpenContact();
                       }}
-                      style={{ color: '#34ce57' }}
+                      style={{ color: 'var(--primary-color-light, #34ce57)' }}
                     >
                       Hubungi Saya
                     </a>

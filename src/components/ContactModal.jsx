@@ -66,7 +66,7 @@ export default function ContactModal({ isOpen, onClose }) {
         <div className="contact-modal-header">
           <div>
             <h3 className="contact-modal-title">
-              <i className="fa fa-paper-plane" style={{ color: '#28a745' }}></i>
+              <i className="fa fa-paper-plane" style={{ color: 'var(--primary-color, #28a745)' }}></i>
               Mulai Diskusi Proyek
             </h3>
             <p className="contact-modal-sub">
