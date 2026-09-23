@@ -91,13 +91,10 @@ const HeroSection = ({ onOpenContact }) => {
     };
   }, []);
 
-  // Professional rotating titles (English as requested)
+  // Rotating titles: Imam Ariadi & Software Engineer
   const titles = [
     'Imam Ariadi',
-    'Fullstack Developer',
-    'Web Developer',
-    'Mobile App Developer',
-    'Backend Specialist'
+    'Software Engineer'
   ];
 
   const [titleIndex, setTitleIndex] = useState(0);
