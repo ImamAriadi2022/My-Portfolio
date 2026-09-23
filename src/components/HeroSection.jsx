@@ -166,7 +166,6 @@ const HeroSection = ({ onOpenContact }) => {
                   <span className="toggle-pill-text">
                     {isHrdMode ? 'HRD' : 'CLIENT'}
                   </span>
-                  <span className="toggle-tap-hint">TAP</span>
                 </button>
                 <div className="hero-mode-status-badge">
                   <i className={isHrdMode ? "fa fa-briefcase" : "fa fa-user-circle"}></i>
