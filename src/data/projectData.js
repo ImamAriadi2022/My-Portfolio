@@ -11,11 +11,18 @@ const FULL_MONTHS = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Ju
  * - Distribusi Kategori Proyek
  */
 export const generateSynchronizedProjectData = (refDate = new Date()) => {
-  const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
   // 1. Dapatkan 6 bulan terakhir yang berakhir di bulan sekarang
   const currentMonthIdx = refDate.getMonth();
   const currentYear = refDate.getFullYear();
+
+  // Deterministic PRNG seeded by year and month (e.g. September 2026)
+  // Menjamin nilai yang dihasilkan 100% identik antara Server SSR dan Client Hydration
+  let seed = ((currentYear * 12 + currentMonthIdx) * 16807 + 1013904223) >>> 0;
+  const seededRandom = () => {
+    seed = ((seed * 1664525 + 1013904223) % 4294967296) >>> 0;
+    return seed / 4294967296;
+  };
+  const randomInt = (min, max) => Math.floor(seededRandom() * (max - min + 1)) + min;
   
   const pastMonths = [];
   for (let i = 5; i >= 0; i--) {
@@ -71,7 +78,7 @@ export const generateSynchronizedProjectData = (refDate = new Date()) => {
   const windowClientsSum = monthlyData.reduce((sum, item) => sum + item.clients, 0);
   const totalClients = Math.max(30, Math.min(45, Math.round(windowClientsSum * 0.9) + randomInt(6, 9)));
   const returningClients = Math.round(totalClients * (randomInt(52, 58) / 100)); // ~55% repeat order
-  const happyClients = totalClients - (Math.random() > 0.8 ? 1 : 0);
+  const happyClients = totalClients - (seededRandom() > 0.8 ? 1 : 0);
 
   // 6. Metrik Keberhasilan
   const successRate = randomInt(97, 99); // 97% - 99%

@@ -48,6 +48,21 @@ const StatisticsSection = () => {
     animateCounters(statsData.projectStats);
   }, [animateCounters, statsData.projectStats]);
 
+  // Sinkronisasi waktu lokal klien setelah mount untuk mencegah perbedaan timezone SSR
+  useEffect(() => {
+    try {
+      const now = new Date();
+      const liveTime = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      setStatsData(prev => ({
+        ...prev,
+        lastUpdated: {
+          ...prev.lastUpdated,
+          time: liveTime
+        }
+      }));
+    } catch (e) {}
+  }, []);
+
   const renderChart = (data, type) => {
     if (type === 'bar') {
       const maxValue = Math.max(...data.map(item => item.projects), 1);
@@ -132,7 +147,7 @@ const StatisticsSection = () => {
 
           {/* Bar Sinkronisasi Waktu Nyata */}
           <div className="stats-sync-bar">
-            <span className="sync-badge">
+            <span className="sync-badge" suppressHydrationWarning>
               <span className="sync-pulse-dot"></span>
               Sinkronisasi Real-Time: <strong>{statsData.lastUpdated.monthName} {statsData.lastUpdated.year}</strong> (Pukul {statsData.lastUpdated.time} WIB)
             </span>
@@ -146,11 +161,11 @@ const StatisticsSection = () => {
               <i className="fa fa-check-circle"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">
+              <h3 className="stat-number" suppressHydrationWarning>
                 {animatedStats.projects ?? statsData.projectStats.projects.completed}
               </h3>
               <p className="stat-label">Proyek Selesai</p>
-              <small className="stat-detail">+{statsData.projectStats.projects.ongoing} sedang dikerjakan</small>
+              <small className="stat-detail" suppressHydrationWarning>+{statsData.projectStats.projects.ongoing} sedang dikerjakan</small>
             </div>
           </div>
           
@@ -159,11 +174,11 @@ const StatisticsSection = () => {
               <i className="fa fa-users"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">
+              <h3 className="stat-number" suppressHydrationWarning>
                 {animatedStats.clients ?? statsData.projectStats.clients.total}
               </h3>
               <p className="stat-label">Total Klien</p>
-              <small className="stat-detail">{statsData.projectStats.clients.returning} klien setia / repeat order</small>
+              <small className="stat-detail" suppressHydrationWarning>{statsData.projectStats.clients.returning} klien setia / repeat order</small>
             </div>
           </div>
           
@@ -172,11 +187,11 @@ const StatisticsSection = () => {
               <i className="fa fa-trophy"></i>
             </div>
             <div className="stat-content">
-              <h3 className="stat-number">
+              <h3 className="stat-number" suppressHydrationWarning>
                 {animatedStats.successRate ?? statsData.projectStats.metrics.successRate}%
               </h3>
               <p className="stat-label">Tingkat Keberhasilan</p>
-              <small className="stat-detail">{statsData.projectStats.metrics.onTimeDelivery}% selesai tepat waktu</small>
+              <small className="stat-detail" suppressHydrationWarning>{statsData.projectStats.metrics.onTimeDelivery}% selesai tepat waktu</small>
             </div>
           </div>
         </div>
